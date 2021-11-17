@@ -1,0 +1,36 @@
+{
+	"name": "forwarding-discord-telegram",
+	"version": "1.0.0",
+	"description": "This bot can help you to read discord messages in telegam.",
+	"main": "src/index.js",
+	"scripts": {
+		"start": "node .",
+		"prettier": "npx prettier --write .",
+		"lint": "eslint ./"
+	},
+	"keywords": [
+		"bot",
+		"discord",
+		"self-bot"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Zamur650/forwarding-discord-telegram.git"
+	},
+	"author": {
+		"email": "alexiy.rybin@gmail.com",
+		"name": "Alexiy Rybin",
+		"url": "https://rybin.vercel.app"
+	},
+	"dependencies": {
+		"@types/node": "^16.11.7",
+		"discord.js-selfbot": "^12.0.2",
+		"dotenv": "^10.0.0",
+		"telegraf": "^4.4.2"
+	},
+	"devDependencies": {
+		"prettier": "^2.4.1",
+		"typescript": "^4.4.4"
+	},
+	"license": "MIT"
+}
