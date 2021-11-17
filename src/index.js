@@ -1,5 +1,5 @@
-const Discord = require('discord.js-selfbot')
 const { Telegraf } = require('telegraf')
+const Discord = require('discord.js-selfbot')
 const dotenv = require('dotenv')
 
 ;(async () => {
@@ -63,7 +63,12 @@ client.on('message', (message) => {
 	if (allEmbeds.length != 0) toSend += allEmbeds.join('')
 
 	console.log(toSend)
-	bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID, toSend)
+
+	try {
+		bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID, toSend)
+	} catch (error) {
+		console.log('Error, to to much messages!')
+	}
 })
 
 client.login(process.env.DISCORD_TOKEN)
