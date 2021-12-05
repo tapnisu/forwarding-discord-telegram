@@ -11,6 +11,8 @@ const dotenv = require('dotenv')
 const client = new Discord.Client()
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN)
 
+global.tempText = ''
+
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`)
 })
@@ -25,7 +27,9 @@ client.on('message', (message) => {
 		second: '2-digit'
 	})
 
-	let toSend = `[${date}] [${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: ${message.content}`
+	let render = message.guild
+		? `[${date}] [${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: ${message.content}`
+		: `[${date}] [${message.author.tag}]: ${message.content}`
 
 	let allEmbeds = []
 
@@ -60,15 +64,17 @@ client.on('message', (message) => {
 		allEmbeds = [...allEmbeds, stringEmbed]
 	})
 
-	if (allEmbeds.length != 0) toSend += allEmbeds.join('')
+	if (allEmbeds.length != 0) render += allEmbeds.join('')
 
-	console.log(toSend)
-
-	try {
-		bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID, toSend)
-	} catch (error) {
-		console.log('Error, to to much messages!')
-	}
+	global.tempText += render
 })
+
+const sendData = (text) => {
+	if (text != '') bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID, text)
+}
+
+setInterval(() => {
+	sendData(global.tempText)
+}, 5000)
 
 client.login(process.env.DISCORD_TOKEN)

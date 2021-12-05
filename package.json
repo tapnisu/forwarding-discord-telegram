@@ -23,14 +23,12 @@
 		"url": "https://rybin.vercel.app"
 	},
 	"dependencies": {
-		"@types/node": "^16.11.7",
 		"discord.js-selfbot": "^12.0.2",
 		"dotenv": "^10.0.0",
 		"telegraf": "^4.4.2"
 	},
 	"devDependencies": {
-		"prettier": "^2.4.1",
-		"typescript": "^4.4.4"
+		"prettier": "^2.4.1"
 	},
 	"license": "MIT"
 }
