@@ -18,7 +18,15 @@ Self-Bots are against Discord's Terms of Service, so your account can be banned.
    DISCORD_TOKEN=<YOUR_DISCORD_TOKEN>
    TELEGRAM_TOKEN=<YOUR_TELEGAM_TOKEN>
    TELEGRAM_CHAT_ID=<YOUR_TELEGRAM_CHAT_ID>
-   DISCORD_CHANNEL_ID=<YOUR_DISCORD_CHANNEL_ID>
+   ```
+
+1. Config your bot via [`config.json`](сonfig.json)
+
+   ```json
+   {
+      "mutedChannelsIds": ["Muted channel id", "Muted channel id"],
+      "allowedChannelsIds": ["Allowed channels id", "Allowed channels id"]
+   }
    ```
 
 1. Install dependencies via

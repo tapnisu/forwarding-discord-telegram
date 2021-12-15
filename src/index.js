@@ -1,12 +1,23 @@
 const { Telegraf } = require('telegraf')
 const Discord = require('discord.js-selfbot')
+const config = require('../config.json')
 const dotenv = require('dotenv')
-
+	
+// Import tokens
 ;(async () => {
 	if (process.env.NODE_ENV != 'production') {
 		await dotenv.config()
 	}
 })()
+
+// Make config validation
+config.mutedChannelsIds.forEach(channelId => {
+	if (typeof channelId != 'string') console.error(`You should put muted channels ids as string ("${channelId}", not ${channelId})!`)
+})
+
+config.allowedChannelsIds.forEach(channelId => {
+	if (typeof channelId != 'string') console.error(`You should put allowed channels ids as string ("${channelId}", not ${channelId})!`)
+})
 
 const client = new Discord.Client()
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN)
@@ -18,6 +29,20 @@ client.on('ready', () => {
 })
 
 client.on('message', (message) => {
+	if (
+		config.mutedChannelsIds.toString() != '' &&
+		config.mutedChannelsIds != undefined
+	) {
+		if (config.mutedChannelsIds.includes(message.channel.id)) return
+	}
+
+	if (
+		config.allowedChannelsIds.toString() != '' &&
+		config.allowedChannelsIds != undefined
+	) {
+		if (!config.allowedChannelsIds.includes(message.channel.id)) return
+	}
+
 	const date = new Date().toLocaleString('en-US', {
 		day: '2-digit',
 		year: '2-digit',
@@ -66,15 +91,21 @@ client.on('message', (message) => {
 
 	if (allEmbeds.length != 0) render += allEmbeds.join('')
 
-	global.tempText += render
+	global.tempText += `${render}\n`
 })
 
 const sendData = (text) => {
-	if (text != '') bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID, text)
+	try {
+		if (text != '') bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID, text)
+	} catch (e) {
+		console.error('Bot crushed!')
+	}
 }
 
 setInterval(() => {
 	sendData(global.tempText)
+
+	global.tempText = ''
 }, 5000)
 
 client.login(process.env.DISCORD_TOKEN)
