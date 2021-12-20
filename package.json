@@ -1,11 +1,11 @@
 {
 	"name": "forwarding-discord-telegram",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "This bot can help you to read discord messages in telegam.",
 	"main": "src/index.js",
 	"scripts": {
 		"start": "node .",
-		"prettier": "npx prettier --write .",
+		"format": "npx prettier --write .",
 		"lint": "eslint ./"
 	},
 	"keywords": [

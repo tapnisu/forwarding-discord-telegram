@@ -2,7 +2,7 @@ const { Telegraf } = require('telegraf')
 const Discord = require('discord.js-selfbot')
 const config = require('../config.json')
 const dotenv = require('dotenv')
-	
+
 // Import tokens
 ;(async () => {
 	if (process.env.NODE_ENV != 'production') {
@@ -11,12 +11,18 @@ const dotenv = require('dotenv')
 })()
 
 // Make config validation
-config.mutedChannelsIds.forEach(channelId => {
-	if (typeof channelId != 'string') console.error(`You should put muted channels ids as string ("${channelId}", not ${channelId})!`)
+config.mutedChannelsIds.forEach((channelId) => {
+	if (typeof channelId != 'string')
+		console.error(
+			`You should put muted channels ids as string ("${channelId}", not ${channelId})!`
+		)
 })
 
-config.allowedChannelsIds.forEach(channelId => {
-	if (typeof channelId != 'string') console.error(`You should put allowed channels ids as string ("${channelId}", not ${channelId})!`)
+config.allowedChannelsIds.forEach((channelId) => {
+	if (typeof channelId != 'string')
+		console.error(
+			`You should put allowed channels ids as string ("${channelId}", not ${channelId})!`
+		)
 })
 
 const client = new Discord.Client()
@@ -91,6 +97,7 @@ client.on('message', (message) => {
 
 	if (allEmbeds.length != 0) render += allEmbeds.join('')
 
+	console.log(render)
 	global.tempText += `${render}\n`
 })
 
