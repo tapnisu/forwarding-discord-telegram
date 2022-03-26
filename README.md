@@ -8,6 +8,8 @@ This bot can help you to read discord messages in telegam.
 
 Self-Bots are against Discord's Terms of Service, so your account can be banned.
 
+1. Install node.js from <https://nodejs.org/en/> (version >= 12)
+
 1. Clone this project via
 
    `git clone https://github.com/Zamur650/forwarding-discord-telegram.git`
