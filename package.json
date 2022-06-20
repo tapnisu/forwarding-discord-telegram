@@ -28,7 +28,7 @@
 		"telegraf": "^4.8.5"
 	},
 	"devDependencies": {
-		"eslint": "^8.17.0",
+		"eslint": "^8.18.0",
 		"prettier": "^2.7.1"
 	},
 	"license": "MIT"
