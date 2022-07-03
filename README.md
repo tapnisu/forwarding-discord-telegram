@@ -12,7 +12,7 @@ Self-Bots are against Discord's Terms of Service, so your account can be banned.
 
 1. Clone this project via
 
-   `git clone https://github.com/Zamur650/forwarding-discord-telegram.git`
+   `git clone https://github.com/taprisu/forwarding-discord-telegram.git`
 
 1. Create `.env` file
 
