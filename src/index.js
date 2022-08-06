@@ -97,6 +97,19 @@ client.on("message", (message) => {
 
 	if (allEmbeds.length != 0) render += allEmbeds.join("");
 
+	let allAttachments = [];
+
+	message.attachments.forEach((attachment) => {
+		allAttachments = [
+			...allAttachments,
+			`Attachment:\n  Name: ${attachment.name}\n${
+				attachment.description ? `	Description: ${attachment.description}\n` : ""
+			}  Size: ${formatSize(attachment.size)}\n  Url: ${attachment.url}`
+		];
+	});
+
+	if (allAttachments.length != 0) render += allAttachments.join("");
+
 	console.log(render);
 	global.tempText += `${render}\n`;
 });
