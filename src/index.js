@@ -34,6 +34,19 @@ client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
 
+const formatSize = (length) => {
+	let i = 0;
+	const type = ["Bytes", "KB", "MB", "GB", "TB", "PB"];
+
+	while ((length / 1000) | 0 && i < type.length - 1) {
+		length /= 1024;
+
+		i++;
+	}
+
+	return length.toFixed(2) + " " + type[i];
+};
+
 client.on("message", (message) => {
 	if (
 		config.mutedChannelsIds.toString() != "" &&
