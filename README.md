@@ -26,8 +26,8 @@ Self-Bots are against Discord's Terms of Service, so your account can be banned.
 
    ```json
    {
-      "mutedChannelsIds": ["Muted channel id", "Muted channel id"],
-      "allowedChannelsIds": ["Allowed channels id", "Allowed channels id"]
+   	"mutedChannelsIds": ["Muted channel id", "Muted channel id"],
+   	"allowedChannelsIds": ["Allowed channels id", "Allowed channels id"]
    }
    ```
 
