@@ -25,7 +25,7 @@
 	"dependencies": {
 		"discord.js-selfbot": "^12.0.2",
 		"dotenv": "^16.0.1",
-		"telegraf": "^4.9.0"
+		"telegraf": "^4.9.1"
 	},
 	"devDependencies": {
 		"eslint": "^8.23.0",
