@@ -1,5 +1,5 @@
 const { Telegraf } = require("telegraf");
-const Discord = require("discord.js-selfbot");
+const Discord = require("discord.js-selfbot-v13");
 const config = require("../config.json");
 const dotenv = require("dotenv");
 
