@@ -361,15 +361,15 @@ discord-api-types@^0.36.2:
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.36.3.tgz#a931b7e57473a5c971d6937fa5f392eb30047579"
   integrity sha512-bz/NDyG0KBo/tY14vSkrwQ/n3HKPf87a0WFW/1M9+tXYK+vp5Z5EksawfCWo2zkAc6o7CClc0eff1Pjrqznlwg==
 
-discord-api-types@^0.37.3, discord-api-types@^0.37.8:
-  version "0.37.10"
-  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.10.tgz#d596ed7178f349009e6a9109de5724f11a1de157"
-  integrity sha512-NvDh2Puc3wZQzQt2zLavlI5ewBnLFjI46/NJmvWIs6OC0JOkq7KcmH4s80X2+22mSQ3wUyge2mxq3cGYRT2noQ==
+discord-api-types@^0.37.10, discord-api-types@^0.37.3:
+  version "0.37.11"
+  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.11.tgz#2e60199bc943c9200fd5123fa00d3d94bea27915"
+  integrity sha512-cUNXrCdD4hEj5iJ9SligTNur64rNnLX5s6CbvmatRpWKMZtrLTOlyLhuXmVbjfDXeXH7os8Qb71Wa7IEhC27Sw==
 
-discord.js-selfbot-v13@^2.6.15:
-  version "2.6.15"
-  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.6.15.tgz#7468def9d7730f7b7d3d5f005c7de3f55898980b"
-  integrity sha512-xtwpaKgaT8Mknxaiylsr0p18ZzIFBXfU6Dq1ueHnhx4n/xJJ8yzU6XO0YbV8/abMM8SBNsSNH6FSQBYXB/14Aw==
+discord.js-selfbot-v13@^2.6.16:
+  version "2.6.16"
+  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.6.16.tgz#6f8a59216539f02c0db9850a881dc00ed463dd5e"
+  integrity sha512-IrSwjCTqXHKeT6bAX0BgqmGtSv8q2QkD5y4/13zeLds0C4R3ZGXRTl8N7tjxT9uTC5wRX9XJWSJN0uxEXTguBw==
   dependencies:
     "@aikochan2k6/qrcode-terminal" "^0.12.1"
     "@discordjs/builders" "^1.2.0"
@@ -382,14 +382,15 @@ discord.js-selfbot-v13@^2.6.15:
     axios "^0.27.2"
     bignumber.js "^9.1.0"
     chalk "^4.1.2"
-    discord-api-types "^0.37.8"
+    discord-api-types "^0.37.10"
     form-data "^4.0.0"
     json-bigint "^1.0.0"
     node-fetch "^2.6.1"
     proxy-agent "^5.0.0"
     safe-base64 "^2.0.1-0"
+    string-similarity "^4.0.4"
     string_decoder "^1.3.0"
-    ws "^8.8.1"
+    ws "^8.9.0"
 
 doctrine@^3.0.0:
   version "3.0.0"
@@ -1251,6 +1252,11 @@ statuses@2.0.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.1.tgz#55cb000ccf1d48728bd23c685a063998cf1a1b63"
   integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
 
+string-similarity@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/string-similarity/-/string-similarity-4.0.4.tgz#42d01ab0b34660ea8a018da8f56a3309bb8b2a5b"
+  integrity sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==
+
 string_decoder@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.3.0.tgz#42f114594a46cf1a8e30b0a84f56c78c3edac21e"
@@ -1407,10 +1413,10 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-ws@^8.8.1:
-  version "8.8.1"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.8.1.tgz#5dbad0feb7ade8ecc99b830c1d77c913d4955ff0"
-  integrity sha512-bGy2JzvzkPowEJV++hF07hAD6niYSr0JzBNo/J29WsB57A2r7Wlc1UFcTR9IzrPvuNVO4B8LGqF8qcpsVOhJCA==
+ws@^8.8.1, ws@^8.9.0:
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.9.0.tgz#2a994bb67144be1b53fe2d23c53c028adeb7f45e"
+  integrity sha512-Ja7nszREasGaYUYCI2k4lCKIRTt+y7XuqVoHR44YpI49TtryyqbqvDMn5eqfW7e6HzTukDRIsXqzVHScqRcafg==
 
 xregexp@2.0.0:
   version "2.0.0"
