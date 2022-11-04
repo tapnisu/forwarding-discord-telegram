@@ -15,7 +15,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/taprisu/forwarding-discord-telegram.git"
+		"url": "git+https://github.com/tapnisu/forwarding-discord-telegram.git"
 	},
 	"author": {
 		"email": "alexiy.rybin@gmail.com",
