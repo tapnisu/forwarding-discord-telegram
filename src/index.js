@@ -55,6 +55,7 @@ client.on("messageCreate", (message) => {
 		config.mutedChannelsIds != undefined
 	) {
 		if (config.mutedChannelsIds.includes(message.channel.id)) return;
+		if (config.mutedChannelsIds.includes(Number(message.channel.id))) return;
 	}
 
 	if (
@@ -62,6 +63,7 @@ client.on("messageCreate", (message) => {
 		config.allowedChannelsIds != undefined
 	) {
 		if (!config.allowedChannelsIds.includes(message.channel.id)) return;
+		if (config.mutedChannelsIds.includes(Number(message.channel.id))) return;
 	}
 
 	const date = new Date().toLocaleString("en-US", {
