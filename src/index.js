@@ -49,7 +49,7 @@ const formatSize = (length) => {
 	return length.toFixed(2) + " " + type[i];
 };
 
-client.on("message", (message) => {
+client.on("messageCreate", (message) => {
 	if (
 		config.mutedChannelsIds.toString() != "" &&
 		config.mutedChannelsIds != undefined
