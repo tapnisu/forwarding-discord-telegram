@@ -1,7 +1,7 @@
 {
 	"name": "forwarding-discord-telegram",
 	"version": "1.2.1",
-	"description": "This bot can help you to read discord messages in telegam.",
+	"description": "This bot can help you to read discord messages in telegram.",
 	"main": "src/index.js",
 	"scripts": {
 		"start": "node .",
@@ -20,7 +20,7 @@
 	"author": {
 		"email": "alexiy.rybin@gmail.com",
 		"name": "Alexiy Rybin",
-		"url": "https://rybin.vercel.app"
+		"url": "https://tapni.su"
 	},
 	"dependencies": {
 		"2captcha": "^3.0.5",
