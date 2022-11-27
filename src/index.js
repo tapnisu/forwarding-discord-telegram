@@ -73,9 +73,16 @@ client.on("messageCreate", (message) => {
 		second: "2-digit"
 	});
 
-	let render = message.guild
-		? `[${date}] [${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: ${message.content}`
-		: `[${date}] [${message.author.tag}]: ${message.content}`;
+	let render = "";
+
+	if (config.showDate) render += `[${date}] `;
+
+	if (config.showChat)
+		render += message.guild
+			? `[${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: `
+			: `[${message.author.tag}]: `;
+
+	render += message.content;
 
 	let allEmbeds = [];
 
