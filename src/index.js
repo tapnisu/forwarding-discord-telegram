@@ -25,7 +25,7 @@ config.allowedChannelsIds.forEach((channelId) => {
 		);
 });
 
-const client = new Discord.Client();
+const client = new Discord.Client(Discord.Intents);
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
 global.tempText = "";
