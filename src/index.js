@@ -10,21 +10,6 @@ const dotenv = require("dotenv");
 	}
 })();
 
-// Make config validation
-config.mutedChannelsIds.forEach((channelId) => {
-	if (typeof channelId != "string")
-		console.error(
-			`You should put muted channels ids as string ("${channelId}", not ${channelId})!`
-		);
-});
-
-config.allowedChannelsIds.forEach((channelId) => {
-	if (typeof channelId != "string")
-		console.error(
-			`You should put allowed channels ids as string ("${channelId}", not ${channelId})!`
-		);
-});
-
 const client = new Discord.Client({
 	checkUpdate: false
 });
@@ -54,16 +39,22 @@ client.on("messageCreate", (message) => {
 		config.mutedChannelsIds.toString() != "" &&
 		config.mutedChannelsIds != undefined
 	) {
-		if (config.mutedChannelsIds.includes(message.channel.id)) return;
-		if (config.mutedChannelsIds.includes(Number(message.channel.id))) return;
+		if (
+			config.mutedChannelsIds.includes(message.channel.id) ||
+			config.mutedChannelsIds.includes(Number(message.channel.id))
+		)
+			return;
 	}
 
 	if (
 		config.allowedChannelsIds.toString() != "" &&
 		config.allowedChannelsIds != undefined
 	) {
-		if (!config.allowedChannelsIds.includes(message.channel.id)) return;
-		if (config.mutedChannelsIds.includes(Number(message.channel.id))) return;
+		if (
+			!config.allowedChannelsIds.includes(message.channel.id) &&
+			!config.allowedChannelsIds.includes(Number(message.channel.id))
+		)
+			return;
 	}
 
 	const date = new Date().toLocaleString("en-US", {
