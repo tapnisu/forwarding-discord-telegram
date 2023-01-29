@@ -165,6 +165,10 @@ client.on("messageCreate", (message) => {
 	global.tempText += `${render}\n`;
 });
 
+bot.catch((err) => {
+	console.log(err);
+});
+
 const sendData = (text) => {
 	try {
 		if (text != "")
