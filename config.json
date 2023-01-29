@@ -1,6 +1,8 @@
 {
 	"mutedChannelsIds": [],
 	"allowedChannelsIds": [],
+	"allowedUsersIds": [],
+	"mutedUsersIds": [],
 	"showDate": true,
 	"showChat": true
 }

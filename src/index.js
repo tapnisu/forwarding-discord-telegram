@@ -57,6 +57,28 @@ client.on("messageCreate", (message) => {
 			return;
 	}
 
+	if (
+		config.mutedUsersIds.toString() != "" &&
+		config.mutedUsersIds != undefined
+	) {
+		if (
+			config.mutedUsersIds.includes(message.author.id) ||
+			config.mutedUsersIds.includes(Number(message.author.id))
+		)
+			return;
+	}
+
+	if (
+		config.allowedUsersIds.toString() != "" &&
+		config.allowedUsersIds != undefined
+	) {
+		if (
+			!config.allowedUsersIds.includes(message.author.id) &&
+			!config.allowedUsersIds.includes(Number(message.author.id))
+		)
+			return;
+	}
+
 	const date = new Date().toLocaleString("en-US", {
 		day: "2-digit",
 		year: "2-digit",
