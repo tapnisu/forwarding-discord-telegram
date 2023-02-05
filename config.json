@@ -11,5 +11,5 @@
 	},
 	"showDate": true,
 	"showChat": true,
-	"stackMessages": true
+	"stackMessages": false
 }
