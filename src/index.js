@@ -162,7 +162,10 @@ client.on("messageCreate", (message) => {
 	if (allAttachments.length != 0) render += allAttachments.join("");
 
 	console.log(render);
-	global.tempText += `${render}\n`;
+
+	if (config.stackMessages) return global.tempText += `${render}\n\n`;
+
+	sendData(render);
 });
 
 bot.catch((err) => {
@@ -178,10 +181,11 @@ const sendData = (text) => {
 	}
 };
 
-setInterval(() => {
-	sendData(global.tempText);
+if (config.stackMessages)
+	setInterval(() => {
+		sendData(global.tempText);
 
-	global.tempText = "";
-}, 5000);
+		global.tempText = "";
+	}, 5000);
 
 client.login(process.env.DISCORD_TOKEN);

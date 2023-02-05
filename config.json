@@ -10,5 +10,6 @@
 		}
 	},
 	"showDate": true,
-	"showChat": true
+	"showChat": true,
+	"stackMessages": false
 }
