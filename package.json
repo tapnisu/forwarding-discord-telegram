@@ -24,7 +24,7 @@
 	},
 	"dependencies": {
 		"2captcha": "^3.0.5",
-		"discord.js-selfbot-v13": "^2.11.2",
+		"discord.js-selfbot-v13": "^2.11.4",
 		"dotenv": "^16.0.3",
 		"telegraf": "^4.11.2"
 	},
