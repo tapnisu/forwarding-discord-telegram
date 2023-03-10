@@ -932,10 +932,10 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-telegraf@^4.12.1:
-  version "4.12.1"
-  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-4.12.1.tgz#be76ccd64f7a98bf8b6c56320ed9e70887fca1da"
-  integrity sha512-c+NJ776tsNsdJnDJs7zyLA1vTZl90UaVuvTdoJJE9HJ6CnPxCfmpTzqGAaDvZhPI2vD/B4+fBVD/raU+JL8OdQ==
+telegraf@^4.12.2:
+  version "4.12.2"
+  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-4.12.2.tgz#1cf4f38c275e04416f1282f3581833994870f0bc"
+  integrity sha512-PgwqI4wD86cMqVfFtEM9JkGGnMHgvgLJbReZMmwW4z35QeOi4DvbdItONld4bPnYn3A1jcO0SRKs0BXmR+x+Ew==
   dependencies:
     abort-controller "^3.0.0"
     debug "^4.3.4"
