@@ -307,10 +307,10 @@ discord-api-types@^0.37.20, discord-api-types@^0.37.31:
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.32.tgz#661053cfab02eb4807d26a3800c81949b5ab7607"
   integrity sha512-oUA4dhrzFOkvIWOc9WvKhPwsezUUVd5v5M7am1uupnRZjOmpE9RJMS0fTCUqNiMRlNAaZwPEy09UZOdIR9CyGQ==
 
-discord.js-selfbot-v13@^2.11.4:
-  version "2.11.4"
-  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.11.4.tgz#f43db58a5a0870f5cb7ab52dc6ce181aa00c4b37"
-  integrity sha512-PRhq3WszbhJKls5mTJxoSMJlzPPsv50O+9Nk8xOz8xNcFPDs8O2Ol+dDmYFLm+RBZRrHW30Fjr/sAvLwRoEDUw==
+discord.js-selfbot-v13@^2.11.5:
+  version "2.11.5"
+  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.11.5.tgz#68348c51db06c6c30f03398bd5b181988853b3b6"
+  integrity sha512-L/1CXic5jasIkiNUMeBdeufA9PnMjjEAnZcgBnztwCTTkuyIoj0zjAVXoiDaydNVdTA0Muo3aKU1ur5q1/CacQ==
   dependencies:
     "@aikochan2k6/qrcode-terminal" "^0.12.1"
     "@discordjs/builders" "^1.4.0"
