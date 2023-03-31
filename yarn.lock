@@ -322,10 +322,10 @@ discord-api-types@^0.37.35, discord-api-types@^0.37.36:
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.36.tgz#650a8f66dce2c5e54a8c2275db74a0bb7936430d"
   integrity sha512-Nlxmp10UpVr/utgZ9uODQvG2Or+5w7LFrvFMswyeKC9l/+UaqGT6H0OVgEFhu9GEO4U6K7NNO5W8Carv7irnCA==
 
-discord.js-selfbot-v13@^2.12.1:
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.12.1.tgz#67e18dc00dc4590f09f55988e1c7c359b1eaa65b"
-  integrity sha512-MGNBHg3uRzqAWKvb7DkcFmwormLIXGi7DAjFqk00k8dBtOR0rWSOjqwciPtGQxW3ntlJWJfWQBt7tuFtq+4OtQ==
+discord.js-selfbot-v13@^2.12.2:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.12.2.tgz#ffe3a1d8fe8ec070c41b06c017983926bd1957eb"
+  integrity sha512-5MNFigCQw8z3sMWMZH4F/wGa/usS458fb5hIusIhEzQsruM9eHs8+Hiflftyz2m61JrPly+yhFyx1Xr+FJHmkQ==
   dependencies:
     "@aikochan2k6/qrcode-terminal" "^0.12.1"
     "@discordjs/builders" "^1.5.0"
@@ -340,8 +340,10 @@ discord.js-selfbot-v13@^2.12.1:
     discord-api-types "^0.37.36"
     form-data "^4.0.0"
     json-bigint "^1.0.0"
+    lodash.permutations "^1.0.0"
     node-fetch "^2.6.9"
     safe-base64 "^2.0.1-0"
+    set-cookie-parser "^2.6.0"
     string-similarity "^4.0.4"
     string_decoder "^1.3.0"
     ws "^8.13.0"
@@ -676,6 +678,11 @@ lodash.merge@^4.6.2:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
+lodash.permutations@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/lodash.permutations/-/lodash.permutations-1.0.0.tgz#591fdf51f6e97a583f84c2843255ef35acf455e3"
+  integrity sha512-0hFwfPb1V63YefDRGyR3iLDwdOEiNwxb1E3QQfGfytwha9wxb8ZRI1TrIAUPBG/GRGs51ctYvsNWrp+slXC9pw==
+
 lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
@@ -857,6 +864,11 @@ sandwich-stream@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/sandwich-stream/-/sandwich-stream-2.0.2.tgz#6d1feb6cf7e9fe9fadb41513459a72c2e84000fa"
   integrity sha512-jLYV0DORrzY3xaz/S9ydJL6Iz7essZeAfnAavsJ+zsJGZ1MOnsS52yRjU3uF3pJa/lla7+wisp//fxOwOH8SKQ==
+
+set-cookie-parser@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/set-cookie-parser/-/set-cookie-parser-2.6.0.tgz#131921e50f62ff1a66a461d7d62d7b21d5d15a51"
+  integrity sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==
 
 shebang-command@^2.0.0:
   version "2.0.0"
