@@ -317,15 +317,15 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
-discord-api-types@^0.37.37:
-  version "0.37.37"
-  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.37.tgz#49bc42a36124c85f06297f1548f130329ed5aeb0"
-  integrity sha512-LDMBKzl/zbvHO/yCzno5hevuA6lFIXJwdKSJZQrB+1ToDpFfN9thK+xxgZNR4aVkI7GHRDja0p4Sl2oYVPnHYg==
+discord-api-types@^0.37.37, discord-api-types@^0.37.40:
+  version "0.37.40"
+  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.40.tgz#030b8eae88f3fc57505077e37691e9087170b458"
+  integrity sha512-LMALvtO+p6ERK8rwWoaI490NfIE/egbqjR4/rfLL1z9gQE1gqLiTpIUUDIunfAtKYzeH6ucyXhaXXWpfZh/Q6g==
 
-discord.js-selfbot-v13@^2.13.5:
-  version "2.13.5"
-  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.13.5.tgz#f483fb632d8d86dbe523327653ccc935b58bc7d4"
-  integrity sha512-W7ukrf5DO0qk4vrivgCobsJHT85RdCzjrBkuENWpZ8oUBOuPDoC3WIbR0UGB7HYbiL3H2kUWJyY8qAM+rVz0Uw==
+discord.js-selfbot-v13@^2.13.6:
+  version "2.13.6"
+  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.13.6.tgz#6630e3826a54b3c55392d5a8d812756eff4f922e"
+  integrity sha512-geHx4zkAGIstBLLeIDfLgAqn24UZpB8MiKRtXq4NQu71TR5p6KFUkBgJjz/UZBZ/C5zRAD8NNH+54B+YokhEbA==
   dependencies:
     "@aikochan2k6/qrcode-terminal" "^0.12.1"
     "@discordjs/builders" "^1.6.1"
@@ -337,7 +337,7 @@ discord.js-selfbot-v13@^2.13.5:
     "@types/ws" "^8.5.4"
     axios "1.1"
     chalk "^4.1.2"
-    discord-api-types "^0.37.37"
+    discord-api-types "^0.37.40"
     form-data "^4.0.0"
     json-bigint "^1.0.0"
     lodash.permutations "^1.0.0"
