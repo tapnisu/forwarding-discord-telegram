@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"2captcha@^3.0.5":
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/2captcha/-/2captcha-3.0.5.tgz#f6b0fec8d86b4dd01e753955c6f557c5e6df299a"
-  integrity sha512-YAE6kseEzAqT3o0yLLswKZLM46a2iBSfDOU8qPKj8Fh4MN0R1sC+Mm2YMq367NhxHqWMNqlSnM7o4fAGXjzP5A==
+"2captcha@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/2captcha/-/2captcha-3.0.6.tgz#cabf4a0a5aca435acf4b07e7c03a42e1ab33ee5f"
+  integrity sha512-cjw+ZuN1snVm/kwJteQesRm+51/FiUH5e2iOZEtGMnoycdjtPFR0EJVVpL/Aspd10hNQyYqSEn57lCHQzBIbzg==
   dependencies:
     node-fetch "^2.6.1"
 
