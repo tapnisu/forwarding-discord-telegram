@@ -322,10 +322,10 @@ discord-api-types@^0.37.37, discord-api-types@^0.37.40:
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.40.tgz#030b8eae88f3fc57505077e37691e9087170b458"
   integrity sha512-LMALvtO+p6ERK8rwWoaI490NfIE/egbqjR4/rfLL1z9gQE1gqLiTpIUUDIunfAtKYzeH6ucyXhaXXWpfZh/Q6g==
 
-discord.js-selfbot-v13@^2.14.0:
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.14.0.tgz#4f0cc113e950d25ba43b7a9a13a90e3e36bee0f3"
-  integrity sha512-8JJ/RNTvooWCrBO/gO+/XpatnBJVeZg/HWm6wQc1La2CJnnI4TWk+XnEaL4uShHhyTUKJo/GLjESEvEzBjmV8Q==
+discord.js-selfbot-v13@^2.14.1:
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/discord.js-selfbot-v13/-/discord.js-selfbot-v13-2.14.1.tgz#14b97e93faa0d10c26c5d3aa0eb6903ff53950cb"
+  integrity sha512-8t9+kHeayCXvRmU2nq2R+TJGhl8YAxzPbhCWym0F7CGPJqA+pR/hwW/t+WI+RL0bYAjJ1UTiC60HiLMlm0R0Iw==
   dependencies:
     "@aikochan2k6/qrcode-terminal" "^0.12.1"
     "@discordjs/builders" "^1.6.1"
@@ -341,7 +341,6 @@ discord.js-selfbot-v13@^2.14.0:
     form-data "^4.0.0"
     json-bigint "^1.0.0"
     lodash.permutations "^1.0.0"
-    murmurhash "^2.0.1"
     node-fetch "^2.6.9"
     safe-base64 "^2.0.1-0"
     set-cookie-parser "^2.6.0"
@@ -717,11 +716,6 @@ ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
-
-murmurhash@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/murmurhash/-/murmurhash-2.0.1.tgz#4097720e08cf978872194ad84ea5be2dec9b610f"
-  integrity sha512-5vQEh3y+DG/lMPM0mCGPDnyV8chYg/g7rl6v3Gd8WMF9S429ox3Xk8qrk174kWhG767KQMqqxLD1WnGd77hiew==
 
 natural-compare@^1.4.0:
   version "1.4.0"
