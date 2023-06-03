@@ -1,17 +1,25 @@
-name: Test CI
+name: CI
 
-on: [push]
+on: push
 
 jobs:
-  lint:
-    name: Lint
+  ubuntu-latest:
+    name: Ubuntu-latest
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
-      - name: Install packages
-        run: yarn install
+          node-version: 18
+
+      - run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Lint
-        run: yarn run lint
+        run: pnpm lint
