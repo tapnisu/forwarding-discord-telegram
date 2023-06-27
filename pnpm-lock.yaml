@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   2captcha:
-    specifier: ^3.0.6
-    version: 3.0.6
+    specifier: ^3.0.7
+    version: 3.0.7
   discord.js-selfbot-v13:
     specifier: ^2.14.3
     version: 2.14.3(lodash@4.17.21)
@@ -28,8 +28,8 @@ devDependencies:
 
 packages:
 
-  /2captcha@3.0.6:
-    resolution: {integrity: sha512-cjw+ZuN1snVm/kwJteQesRm+51/FiUH5e2iOZEtGMnoycdjtPFR0EJVVpL/Aspd10hNQyYqSEn57lCHQzBIbzg==}
+  /2captcha@3.0.7:
+    resolution: {integrity: sha512-i7iswxBsNzzFxQCebgdowHW61UK34+o8KaDonJxRH+gDDeQsiN/3uK0X/fo4AmMTE26c4VSHVe0X8b8CVVNZiw==}
     dependencies:
       node-fetch: 2.6.11
     transitivePeerDependencies:
