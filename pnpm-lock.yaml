@@ -9,8 +9,8 @@ dependencies:
     specifier: ^3.0.7
     version: 3.0.7
   discord.js-selfbot-v13:
-    specifier: ^2.14.8
-    version: 2.14.8(lodash@4.17.21)
+    specifier: ^2.14.9
+    version: 2.14.9(lodash@4.17.21)
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -52,7 +52,7 @@ packages:
       '@discordjs/formatters': 0.3.1
       '@discordjs/util': 0.3.1
       '@sapphire/shapeshift': 3.9.2
-      discord-api-types: 0.37.48
+      discord-api-types: 0.37.49
       fast-deep-equal: 3.1.3
       ts-mixer: 6.0.3
       tslib: 2.5.3
@@ -67,7 +67,7 @@ packages:
     resolution: {integrity: sha512-M7X4IGiSeh4znwcRGcs+49B5tBkNDn4k5bmhxJDAUhRxRHTiFAOTVUNQ6yAKySu5jZTnCbSvTYHW3w0rAzV1MA==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      discord-api-types: 0.37.48
+      discord-api-types: 0.37.49
     dev: false
 
   /@discordjs/util@0.3.1:
@@ -80,7 +80,7 @@ packages:
     engines: {node: '>=16.9.0'}
     dependencies:
       '@types/ws': 8.5.5
-      discord-api-types: 0.37.48
+      discord-api-types: 0.37.49
       prism-media: 1.3.5
       tslib: 2.5.3
       ws: 8.13.0
@@ -341,12 +341,12 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: false
 
-  /discord-api-types@0.37.48:
-    resolution: {integrity: sha512-vu2NQJD7SZRjpKDC2DPNsxTz34KS53OrotA+LGRW6mcyT55Hjqu66aRrouzjYhea7tllL9I7rvWVX7bg3aT2AQ==}
+  /discord-api-types@0.37.49:
+    resolution: {integrity: sha512-a2vvjgmE/1cPtXOuOh5zHlLe+qheu0uO625K+FyZVFomoCmpV1xNpadC48S98K30CnQ4/XJyFGnOZLXxAyBbCQ==}
     dev: false
 
-  /discord.js-selfbot-v13@2.14.8(lodash@4.17.21):
-    resolution: {integrity: sha512-nvFdsHFtHWjL8OgbVpTlfAA+U6ZZKh6GIYne9pc7lpvPGdvhpe2nf03puVAr+1m5xy5lh0wvYk4P/zJT+1XUkg==}
+  /discord.js-selfbot-v13@2.14.9(lodash@4.17.21):
+    resolution: {integrity: sha512-1u9/R9ER83owsHfNiReEXxu5UXh+ufgV63hWqaxsEf8m9Sv3cXa31Ktjc0VTwzbwri4V8YR49eiAWTbK+cRSgA==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@aikochan2k6/qrcode-terminal': 0.12.1
@@ -358,7 +358,7 @@ packages:
       '@types/node-fetch': 2.6.4
       '@types/ws': 8.5.5
       chalk: 4.1.2
-      discord-api-types: 0.37.48
+      discord-api-types: 0.37.49
       fetch-cookie: 2.1.0
       form-data: 4.0.0
       json-bigint: 1.0.0
