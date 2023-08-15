@@ -22,12 +22,23 @@ Self-Bots are against Discord's Terms of Service, so your account can be banned.
    TELEGRAM_CHAT_ID=<YOUR_TELEGRAM_CHAT_ID>
    ```
 
-1. Config your bot via [`config.json`](сonfig.json)
+1. Config your bot via [`config.json`](сonfig.json) (insert your values)
 
    ```json
    {
-   	"mutedChannelsIds": ["Muted channel id", "Muted channel id"],
-   	"allowedChannelsIds": ["Allowed channels id", "Allowed channels id"]
+	   "mutedChannelsIds": [1013671171029467227],
+	   "allowedChannelsIds": [],
+	   "allowedUsersIds": [],
+	   "mutedUsersIds": [1038694628490235904],
+	   "channelConfigs": {
+		   "1013671171029467227": {
+			   "muted": [869088074758520832],
+			   "allowed": []
+		   }
+	   },
+	   "showDate": true,
+	   "showChat": true,
+	   "stackMessages": false
    }
    ```
 
