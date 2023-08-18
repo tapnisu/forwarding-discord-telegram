@@ -1,6 +1,6 @@
 # Forwarding discord to telegram bot
 
-This bot can help you to read discord messages in telegam.
+This bot can help you to read discord messages in telegram.
 
 > **Warning**:
 > Selfbots are against Discord's Terms of Service, use at your own risk!
@@ -19,7 +19,7 @@ This bot can help you to read discord messages in telegam.
 
    ```env
    DISCORD_TOKEN=<YOUR_DISCORD_TOKEN>
-   TELEGRAM_TOKEN=<YOUR_TELEGAM_TOKEN>
+   TELEGRAM_TOKEN=<YOUR_TELEGRAM_TOKEN>
    TELEGRAM_CHAT_ID=<YOUR_TELEGRAM_CHAT_ID>
    ```
 
