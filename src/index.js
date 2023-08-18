@@ -3,38 +3,35 @@ const Discord = require("discord.js-selfbot-v13");
 const config = require("../config.json");
 const dotenv = require("dotenv");
 
-// Import tokens
-(async () => {
-	if (process.env.NODE_ENV != "production") {
-		await dotenv.config();
-	}
-})();
+// Import config
+if (process.env.NODE_ENV != "production") dotenv.config();
 
 const client = new Discord.Client({
 	checkUpdate: false
 });
+
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
 global.tempText = "";
 
-client.on("ready", () => {
-	console.log(`Logged in as ${client.user.tag}!`);
-});
+client.on("ready", () => console.log(`Logged in as ${client.user.tag}!`));
+
+const sizeUnits = ["Bytes", "KB", "MB", "GB", "TB", "PB"];
 
 const formatSize = (length) => {
 	let i = 0;
-	const type = ["Bytes", "KB", "MB", "GB", "TB", "PB"];
 
-	while ((length / 1000) | 0 && i < type.length - 1) {
+	while ((length / 1000) | 0 && i < sizeUnits.length - 1) {
 		length /= 1024;
 
 		i++;
 	}
 
-	return length.toFixed(2) + " " + type[i];
+	return length.toFixed(2) + " " + sizeUnits[i];
 };
 
 client.on("messageCreate", (message) => {
+	// TODO: Please rewrite this mess
 	if (
 		config.mutedChannelsIds != undefined &&
 		config.mutedChannelsIds?.length != 0 &&
@@ -163,7 +160,7 @@ client.on("messageCreate", (message) => {
 
 	console.log(render);
 
-	if (config.stackMessages) return global.tempText += `${render}\n\n`;
+	if (config.stackMessages) return (global.tempText += `${render}\n\n`);
 
 	sendData(render);
 });
