@@ -2,11 +2,12 @@
 
 This bot can help you to read discord messages in telegam.
 
+> **Warning**:
+> Selfbots are against Discord's Terms of Service, use at your own risk!
+
 ## Setup
 
-### Disclaimer
 
-Self-Bots are against Discord's Terms of Service, so your account can be banned.
 
 1. Install node.js from <https://nodejs.org/en/> (version >= 12)
 
