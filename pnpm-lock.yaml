@@ -9,8 +9,8 @@ dependencies:
     specifier: ^3.0.7
     version: 3.0.7
   discord.js-selfbot-v13:
-    specifier: ^2.14.10
-    version: 2.14.10(lodash@4.17.21)
+    specifier: ^2.14.11
+    version: 2.14.11(lodash@4.17.21)
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -349,8 +349,8 @@ packages:
     resolution: {integrity: sha512-a2vvjgmE/1cPtXOuOh5zHlLe+qheu0uO625K+FyZVFomoCmpV1xNpadC48S98K30CnQ4/XJyFGnOZLXxAyBbCQ==}
     dev: false
 
-  /discord.js-selfbot-v13@2.14.10(lodash@4.17.21):
-    resolution: {integrity: sha512-sIQ93G/0sWJXD2TUC31PVWcLPFPHsDtZW72cfVDRdwQ6mmoKwQ2A7ZzdDhMGYOyb4BPHnLuDpNqs4FfWykvrEA==}
+  /discord.js-selfbot-v13@2.14.11(lodash@4.17.21):
+    resolution: {integrity: sha512-iCCa0OgcyGHCowE14oJuD0yPbMN9nKyAq/20nqp1OjIhWvKRm0f+uSpSy0PYf5K2onn7aHu13Nki0MjFnsJIHg==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@aikochan2k6/qrcode-terminal': 0.12.1
