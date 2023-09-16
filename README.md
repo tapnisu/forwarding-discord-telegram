@@ -7,8 +7,6 @@ This bot can help you to read discord messages in telegram.
 
 ## Setup
 
-
-
 1. Install node.js from <https://nodejs.org/en/> (version >= 12)
 
 1. Clone this project via
@@ -27,19 +25,19 @@ This bot can help you to read discord messages in telegram.
 
    ```json
    {
-	   "mutedChannelsIds": [1013671171029467227],
-	   "allowedChannelsIds": [],
-	   "allowedUsersIds": [],
-	   "mutedUsersIds": [1038694628490235904],
-	   "channelConfigs": {
-		   "1013671171029467227": {
-			   "muted": [869088074758520832],
-			   "allowed": []
-		   }
-	   },
-	   "showDate": true,
-	   "showChat": true,
-	   "stackMessages": false
+   	"mutedChannelsIds": [1013671171029467227],
+   	"allowedChannelsIds": [],
+   	"allowedUsersIds": [],
+   	"mutedUsersIds": [1038694628490235904],
+   	"channelConfigs": {
+   		"1013671171029467227": {
+   			"muted": [869088074758520832],
+   			"allowed": []
+   		}
+   	},
+   	"showDate": true,
+   	"showChat": true,
+   	"stackMessages": false
    }
    ```
 
