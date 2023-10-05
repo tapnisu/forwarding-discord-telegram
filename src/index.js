@@ -33,6 +33,22 @@ const formatSize = (length) => {
 client.on("messageCreate", (message) => {
 	// TODO: Please rewrite this mess
 	if (
+		config.mutedGuildsIds != undefined &&
+		config.mutedGuildsIds?.length != 0 &&
+		(config.mutedGuildsIds?.includes(message.guildId) ||
+			config.mutedGuildsIds?.includes(Number(message.guildId)))
+	)
+		return;
+
+	if (
+		config.allowedGuildsIds != undefined &&
+		config.allowedGuildsIds?.length != 0 &&
+		!config.allowedGuildsIds?.includes(message.guildId) &&
+		!config.allowedGuildsIds?.includes(Number(message.guildId))
+	)
+		return;
+
+	if (
 		config.mutedChannelsIds != undefined &&
 		config.mutedChannelsIds?.length != 0 &&
 		(config.mutedChannelsIds?.includes(message.channel.id) ||
