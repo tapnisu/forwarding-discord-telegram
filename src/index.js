@@ -1,4 +1,5 @@
 const { Bot } = require("grammy");
+const { autoRetry } = require("@grammyjs/auto-retry");
 const Discord = require("discord.js-selfbot-v13");
 const config = require("../config.json");
 const env = require("./env");
@@ -8,6 +9,7 @@ const client = new Discord.Client({
 });
 
 const bot = new Bot(env.TELEGRAM_TOKEN);
+bot.api.config.use(autoRetry());
 
 global.messagesToSend = [];
 
