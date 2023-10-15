@@ -8,6 +8,9 @@ dependencies:
   2captcha:
     specifier: ^3.0.7
     version: 3.0.7
+  '@grammyjs/auto-retry':
+    specifier: ^1.1.1
+    version: 1.1.1
   discord.js-selfbot-v13:
     specifier: ^2.14.11
     version: 2.14.11(lodash@4.17.21)
@@ -132,6 +135,11 @@ packages:
     resolution: {integrity: sha512-HxjQ8Qn+4SI3/AFv6sOrDB+g6PpUTDwSJiQqOrnneEk8L71161srI9gjzzZvYVbzHiVg/BvcH95+cK/zfIt4pg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@grammyjs/auto-retry@1.1.1:
+    resolution: {integrity: sha512-vaQDl45Unhidi4r5+JrwDKfmPFJuJpAh9YmE38pACcP3TyKnwUMQxQ3bRdl0Y1ME/uBwTm9YiX1pwol0vnubCw==}
+    engines: {node: '>=12.20.0 || >=14.13.1'}
+    dev: false
 
   /@grammyjs/types@3.3.0:
     resolution: {integrity: sha512-18Qb12jXiIptqZAlboJMvFxNxydLskUjvE5PbU8ergKQlNIr8jRvYoHDm4t/x3qEfpf+FNhGw23lyZfgEE6e/g==}

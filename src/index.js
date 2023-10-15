@@ -1,4 +1,5 @@
 const { Bot } = require("grammy");
+const { autoRetry } = require("@grammyjs/auto-retry");
 const Discord = require("discord.js-selfbot-v13");
 const config = require("../config.json");
 const dotenv = require("dotenv");
@@ -11,6 +12,7 @@ const client = new Discord.Client({
 });
 
 const bot = new Bot(process.env.TELEGRAM_TOKEN);
+bot.api.config.use(autoRetry());
 
 global.tempText = "";
 
@@ -190,8 +192,7 @@ bot.catch((err) => {
 
 const sendData = (text) => {
 	try {
-		if (text != "")
-			bot.api.sendMessage(process.env.TELEGRAM_CHAT_ID, text);
+		if (text != "") bot.api.sendMessage(process.env.TELEGRAM_CHAT_ID, text);
 	} catch (e) {
 		console.error("Bot crushed!");
 	}
