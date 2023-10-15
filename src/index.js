@@ -1,4 +1,4 @@
-const { Telegraf } = require("telegraf");
+const { Bot } = require("grammy");
 const Discord = require("discord.js-selfbot-v13");
 const config = require("../config.json");
 const env = require("./env");
@@ -7,11 +7,11 @@ const client = new Discord.Client({
 	checkUpdate: false
 });
 
-const bot = new Telegraf(env.TELEGRAM_TOKEN);
+const bot = new Bot(env.TELEGRAM_TOKEN);
 
 global.messagesToSend = [];
 
-client.on("ready", () => console.log(`Logged in as ${client.user.tag}!`));
+client.on("ready", () => console.log(`Logged in as ${client.user?.tag}!`));
 
 const SIZE_UNITS = ["Bytes", "KB", "MB", "GB", "TB", "PB"];
 
@@ -187,7 +187,7 @@ bot.catch((err) => {
 const sendData = (messagesToSend) => {
 	try {
 		if (messagesToSend.length != 0) {
-			bot.telegram.sendMessage(env.TELEGRAM_CHAT_ID, messagesToSend.join("\n"));
+			bot.api.sendMessage(env.TELEGRAM_CHAT_ID, messagesToSend.join("\n"));
 		}
 	} catch (e) {
 		console.error(e);
