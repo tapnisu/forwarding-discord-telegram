@@ -25,6 +25,8 @@ This bot can help you to read discord messages in telegram.
 
    ```json
    {
+   	"mutedGuildsIds": [1013671171029467227],
+   	"allowedGuildsIds": [],
    	"mutedChannelsIds": [1013671171029467227],
    	"allowedChannelsIds": [],
    	"allowedUsersIds": [],
