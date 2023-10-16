@@ -1,16 +1,13 @@
 const { Telegraf } = require("telegraf");
 const Discord = require("discord.js-selfbot-v13");
 const config = require("../config.json");
-const dotenv = require("dotenv");
-
-// Import config
-if (process.env.NODE_ENV != "production") dotenv.config();
+const env = require("./env");
 
 const client = new Discord.Client({
 	checkUpdate: false
 });
 
-const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
+const bot = new Telegraf(env.TELEGRAM_TOKEN);
 
 global.tempText = "";
 
@@ -81,26 +78,28 @@ client.on("messageCreate", (message) => {
 		return;
 
 	if (
-		config.channelConfigs[message.channel.id] != undefined &&
-		config.channelConfigs[message.channel.id]?.allowed != undefined &&
-		config.channelConfigs[message.channel.id]?.allowed?.length != 0 &&
-		!config.channelConfigs[message.channel.id]?.allowed?.includes(
+		config.channelConfigs != undefined &&
+		config.channelConfigs?.length != 0 &&
+		config.channelConfigs?.[message.channel.id] != undefined &&
+		config.channelConfigs?.[message.channel.id]?.allowed != undefined &&
+		config.channelConfigs?.[message.channel.id]?.allowed?.length != 0 &&
+		!config.channelConfigs?.[message.channel.id]?.allowed?.includes(
 			message.author.id
 		) &&
-		!config.channelConfigs[message.channel.id]?.allowed?.includes(
+		!config.channelConfigs?.[message.channel.id]?.allowed?.includes(
 			Number(message.author.id)
 		)
 	)
 		return;
 
 	if (
-		config.channelConfigs[message.channel.id] != undefined &&
-		config.channelConfigs[message.channel.id]?.muted != undefined &&
-		config.channelConfigs[message.channel.id]?.muted?.length != 0 &&
-		(config.channelConfigs[message.channel.id]?.muted?.includes(
+		config.channelConfigs?.[message.channel.id] != undefined &&
+		config.channelConfigs?.[message.channel.id]?.muted != undefined &&
+		config.channelConfigs?.[message.channel.id]?.muted?.length != 0 &&
+		(config.channelConfigs?.[message.channel.id]?.muted?.includes(
 			message.author.id
 		) ||
-			config.channelConfigs[message.channel.id]?.muted?.includes(
+			config.channelConfigs?.[message.channel.id]?.muted?.includes(
 				Number(message.author.id)
 			))
 	)
@@ -187,8 +186,7 @@ bot.catch((err) => {
 
 const sendData = (text) => {
 	try {
-		if (text != "")
-			bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID, text);
+		if (text != "") bot.telegram.sendMessage(env.TELEGRAM_CHAT_ID, text);
 	} catch (e) {
 		console.error("Bot crushed!");
 	}
@@ -201,4 +199,4 @@ if (config.stackMessages)
 		global.tempText = "";
 	}, 5000);
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(env.DISCORD_TOKEN);
