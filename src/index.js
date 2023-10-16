@@ -16,18 +16,18 @@ global.tempText = "";
 
 client.on("ready", () => console.log(`Logged in as ${client.user.tag}!`));
 
-const sizeUnits = ["Bytes", "KB", "MB", "GB", "TB", "PB"];
+const SIZE_UNITS = ["Bytes", "KB", "MB", "GB", "TB", "PB"];
 
 const formatSize = (length) => {
 	let i = 0;
 
-	while ((length / 1000) | 0 && i < sizeUnits.length - 1) {
+	while ((length / 1000) | 0 && i < SIZE_UNITS.length - 1) {
 		length /= 1024;
 
 		i++;
 	}
 
-	return length.toFixed(2) + " " + sizeUnits[i];
+	return length.toFixed(2) + " " + SIZE_UNITS[i];
 };
 
 client.on("messageCreate", (message) => {
