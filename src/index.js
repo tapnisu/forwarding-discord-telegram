@@ -9,7 +9,7 @@ const client = new Discord.Client({
 
 const bot = new Telegraf(env.TELEGRAM_TOKEN);
 
-global.tempText = "";
+global.messagesToSend = [];
 
 client.on("ready", () => console.log(`Logged in as ${client.user.tag}!`));
 
@@ -175,28 +175,29 @@ client.on("messageCreate", (message) => {
 
 	console.log(render);
 
-	if (config.stackMessages) return (global.tempText += `${render}\n\n`);
+	if (config.stackMessages) return global.messagesToSend.push(render);
 
-	sendData(render);
+	sendData([render]);
 });
 
 bot.catch((err) => {
 	console.log(err);
 });
 
-const sendData = (text) => {
+const sendData = (messagesToSend) => {
 	try {
-		if (text != "") bot.telegram.sendMessage(env.TELEGRAM_CHAT_ID, text);
+		if (messagesToSend.length != 0) {
+			bot.telegram.sendMessage(env.TELEGRAM_CHAT_ID, messagesToSend.join("\n"));
+		}
 	} catch (e) {
-		console.error("Bot crushed!");
+		console.error(e);
 	}
 };
 
 if (config.stackMessages)
 	setInterval(() => {
-		sendData(global.tempText);
-
-		global.tempText = "";
+		sendData(global.messagesToSend);
+		global.messagesToSend = [];
 	}, 5000);
 
 client.login(env.DISCORD_TOKEN);
