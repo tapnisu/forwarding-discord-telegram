@@ -1,4 +1,4 @@
-const { Bot } = require("grammy");
+const { Bot, InputMediaBuilder } = require("grammy");
 const { autoRetry } = require("@grammyjs/auto-retry");
 const Discord = require("discord.js-selfbot-v13");
 const config = require("../config.json");
@@ -12,6 +12,7 @@ const bot = new Bot(env.TELEGRAM_TOKEN);
 bot.api.config.use(autoRetry());
 
 global.messagesToSend = [];
+global.imagesToSend = [];
 
 client.on("ready", () => console.log(`Logged in as ${client.user?.tag}!`));
 
@@ -163,8 +164,11 @@ client.on("messageCreate", (message) => {
 	if (allEmbeds.length != 0) render += allEmbeds.join("");
 
 	let allAttachments = [];
+	const images = [];
 
 	message.attachments.forEach((attachment) => {
+		if (attachment.contentType.startsWith("image")) return images.push(attachment.url);
+
 		allAttachments = [
 			...allAttachments,
 			`Attachment:\n  Name: ${attachment.name}\n${
@@ -177,19 +181,35 @@ client.on("messageCreate", (message) => {
 
 	console.log(render);
 
-	if (config.stackMessages) return global.messagesToSend.push(render);
+	if (config.stackMessages) {
+		global.messagesToSend.push(render);
+		global.imagesToSend.push(images);
 
-	sendData([render]);
+		return;
+	}
+
+	sendData([render], images);
 });
 
 bot.catch((err) => {
 	console.log(err);
 });
 
-const sendData = (messagesToSend) => {
+const sendData = async (messagesToSend, imagesToSend) => {
 	try {
 		if (messagesToSend.length != 0) {
-			bot.api.sendMessage(env.TELEGRAM_CHAT_ID, messagesToSend.join("\n"));
+			if (imagesToSend.length != 0) {
+				imagesToSend = imagesToSend.map((image) =>
+					InputMediaBuilder.photo(image)
+				);
+
+				await bot.api.sendMediaGroup(env.TELEGRAM_CHAT_ID, imagesToSend);
+			}
+
+			await bot.api.sendMessage(
+				env.TELEGRAM_CHAT_ID,
+				messagesToSend.join("\n")
+			);
 		}
 	} catch (e) {
 		console.error(e);
@@ -198,8 +218,9 @@ const sendData = (messagesToSend) => {
 
 if (config.stackMessages)
 	setInterval(() => {
-		sendData(global.messagesToSend);
+		sendData(global.messagesToSend, global.imagesToSend);
 		global.messagesToSend = [];
+		global.imagesToSend = [];
 	}, 5000);
 
 client.login(env.DISCORD_TOKEN);
