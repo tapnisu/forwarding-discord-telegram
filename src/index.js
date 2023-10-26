@@ -4,6 +4,10 @@ const Discord = require("discord.js-selfbot-v13");
 const config = require("../config.json");
 const env = require("./env");
 
+let channelsToSend = config.outputChannels ?? [];
+if (env.TELEGRAM_CHAT_ID)
+	channelsToSend = [env.TELEGRAM_CHAT_ID, ...channelsToSend];
+
 const client = new Discord.Client({
 	checkUpdate: false
 });
@@ -167,7 +171,8 @@ client.on("messageCreate", (message) => {
 	const images = [];
 
 	message.attachments.forEach((attachment) => {
-		if (attachment.contentType.startsWith("image")) return images.push(attachment.url);
+		if (attachment.contentType.startsWith("image"))
+			return images.push(attachment.url);
 
 		allAttachments = [
 			...allAttachments,
@@ -198,18 +203,17 @@ bot.catch((err) => {
 const sendData = async (messagesToSend, imagesToSend) => {
 	try {
 		if (messagesToSend.length != 0) {
-			if (imagesToSend.length != 0) {
-				imagesToSend = imagesToSend.map((image) =>
-					InputMediaBuilder.photo(image)
-				);
+			channelsToSend.forEach(async (channel) => {
+				if (imagesToSend.length != 0) {
+					imagesToSend = imagesToSend.map((image) =>
+						InputMediaBuilder.photo(image)
+					);
 
-				await bot.api.sendMediaGroup(env.TELEGRAM_CHAT_ID, imagesToSend);
-			}
+					await bot.api.sendMediaGroup(channel, imagesToSend);
+				}
 
-			await bot.api.sendMessage(
-				env.TELEGRAM_CHAT_ID,
-				messagesToSend.join("\n")
-			);
+				await bot.api.sendMessage(channel, messagesToSend.join("\n"));
+			});
 		}
 	} catch (e) {
 		console.error(e);
