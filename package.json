@@ -31,7 +31,7 @@
 		"node-capmonster": "^0.4.2"
 	},
 	"devDependencies": {
-		"eslint": "^8.52.0",
+		"eslint": "^8.53.0",
 		"prettier": "^3.0.3"
 	},
 	"license": "MIT"
