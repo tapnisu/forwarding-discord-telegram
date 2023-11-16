@@ -1,6 +1,6 @@
 const { Bot, InputMediaBuilder } = require("grammy");
 const { autoRetry } = require("@grammyjs/auto-retry");
-const Discord = require("discord.js-selfbot-v13");
+const { Client } = require("discord.js-selfbot-v13");
 const config = require("../config.json");
 const env = require("./env");
 
@@ -8,7 +8,7 @@ let channelsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID)
 	channelsToSend = [env.TELEGRAM_CHAT_ID, ...channelsToSend];
 
-const client = new Discord.Client({
+const client = new Client({
 	checkUpdate: false
 });
 
