@@ -1,15 +1,23 @@
 {
 	"env": {
-		"node": true,
-		"commonjs": true
+		"browser": true,
+		"es2021": true
 	},
-	"extends": "eslint:recommended",
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	],
+	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"ecmaVersion": 2021
+		"ecmaVersion": 12,
+		"sourceType": "module"
 	},
+	"plugins": ["@typescript-eslint", "prettier"],
 	"rules": {
-		"indent": ["error", "tab"],
-		"quotes": ["error", "double"],
-		"semi": ["error", "always"]
-	}
+		"indent": ["warn", "tab"],
+		"quotes": ["warn", "double"],
+		"semi": ["warn", "always"]
+	},
+	"ignorePatterns": ["dist", "node_modules"]
 }
