@@ -1,5 +1,13 @@
 import dotenv from "dotenv";
 
-if (process.env.NODE_ENV != "production") dotenv.config();
+export interface Env {
+	DISCORD_TOKEN: string;
+	TELEGRAM_TOKEN: string;
+	TELEGRAM_CHAT_ID: string | number;
+}
 
-export default process.env;
+export function getEnv() {
+	if (process.env.NODE_ENV != "production") dotenv.config();
+
+	return process.env as unknown as Env;
+}

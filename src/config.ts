@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 
-export type ChannelsIds = number[];
+export type ChannelsIds = Array<number | string>;
 
 export interface ChannelConfig {
 	muted: ChannelsIds;

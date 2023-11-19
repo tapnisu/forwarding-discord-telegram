@@ -2,8 +2,9 @@ import { autoRetry } from "@grammyjs/auto-retry";
 import { Client } from "discord.js-selfbot-v13";
 import { Bot, InputMediaBuilder } from "grammy";
 import { getConfig } from "./config";
-import env from "./env";
+import { getEnv } from "./env";
 
+const env = getEnv();
 const config = getConfig();
 
 let channelsToSend = config.outputChannels ?? [];
@@ -88,7 +89,6 @@ client.on("messageCreate", (message) => {
 
 	if (
 		config.channelConfigs != undefined &&
-		config.channelConfigs?.length != 0 &&
 		config.channelConfigs?.[message.channel.id] != undefined &&
 		config.channelConfigs?.[message.channel.id]?.allowed != undefined &&
 		config.channelConfigs?.[message.channel.id]?.allowed?.length != 0 &&
@@ -126,9 +126,8 @@ client.on("messageCreate", (message) => {
 	let render = "";
 
 	if (config.showDate) render += `[${date}] `;
-
 	if (config.showChat)
-		render += message.guild
+		render += message.inGuild()
 			? `[${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: `
 			: `[${message.author.tag}]: `;
 
