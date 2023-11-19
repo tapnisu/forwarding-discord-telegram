@@ -1,8 +1,10 @@
 import { autoRetry } from "@grammyjs/auto-retry";
 import { Client } from "discord.js-selfbot-v13";
 import { Bot, InputMediaBuilder } from "grammy";
-import config from "../config.json";
+import { getConfig } from "./config";
 import env from "./env";
+
+const config = getConfig();
 
 let channelsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID)

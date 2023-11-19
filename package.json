@@ -5,6 +5,7 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"start": "node .",
+		"build": "tsc",
 		"format": "npx prettier --write .",
 		"lint": "eslint ./"
 	},
