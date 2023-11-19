@@ -18,14 +18,14 @@ const client = new Client({
 const bot = new Bot(env.TELEGRAM_TOKEN);
 bot.api.config.use(autoRetry());
 
-global.messagesToSend = [];
-global.imagesToSend = [];
+const messagesToSend: string[] = [];
+const imagesToSend: string[] = [];
 
 client.on("ready", () => console.log(`Logged in as ${client.user?.tag}!`));
 
 const SIZE_UNITS = ["Bytes", "KB", "MB", "GB", "TB", "PB"];
 
-const formatSize = (length) => {
+function formatSize(length: number) {
 	let i = 0;
 
 	while ((length / 1000) | 0 && i < SIZE_UNITS.length - 1) {
@@ -35,7 +35,7 @@ const formatSize = (length) => {
 	}
 
 	return `${length.toFixed(2)} ${SIZE_UNITS[i]}`;
-};
+}
 
 client.on("messageCreate", (message) => {
 	// TODO: Please rewrite this mess
@@ -168,19 +168,18 @@ client.on("messageCreate", (message) => {
 
 	if (allEmbeds.length != 0) render += allEmbeds.join("");
 
-	let allAttachments = [];
-	const images = [];
+	const allAttachments: string[] = [];
+	const images: string[] = [];
 
 	message.attachments.forEach((attachment) => {
 		if (attachment.contentType.startsWith("image"))
 			return images.push(attachment.url);
 
-		allAttachments = [
-			...allAttachments,
+		allAttachments.push(
 			`Attachment:\n  Name: ${attachment.name}\n${
 				attachment.description ? `	Description: ${attachment.description}\n` : ""
 			}  Size: ${formatSize(attachment.size)}\n  Url: ${attachment.url}`
-		];
+		);
 	});
 
 	if (allAttachments.length != 0) render += allAttachments.join("");
@@ -188,8 +187,8 @@ client.on("messageCreate", (message) => {
 	console.log(render);
 
 	if (config.stackMessages) {
-		global.messagesToSend.push(render);
-		global.imagesToSend.push(images);
+		messagesToSend.push(render);
+		imagesToSend.push(...images);
 
 		return;
 	}
@@ -201,17 +200,15 @@ bot.catch((err) => {
 	console.log(err);
 });
 
-const sendData = async (messagesToSend, imagesToSend) => {
+async function sendData(messagesToSend: string[], imagesToSend: string[]) {
 	try {
 		if (messagesToSend.length != 0) {
 			channelsToSend.forEach(async (channel) => {
-				if (imagesToSend.length != 0) {
-					imagesToSend = imagesToSend.map((image) =>
-						InputMediaBuilder.photo(image)
+				if (imagesToSend.length != 0)
+					await bot.api.sendMediaGroup(
+						channel,
+						imagesToSend.map((image) => InputMediaBuilder.photo(image))
 					);
-
-					await bot.api.sendMediaGroup(channel, imagesToSend);
-				}
 
 				await bot.api.sendMessage(channel, messagesToSend.join("\n"));
 			});
@@ -219,7 +216,7 @@ const sendData = async (messagesToSend, imagesToSend) => {
 	} catch (e) {
 		console.error(e);
 	}
-};
+}
 
 if (config.stackMessages)
 	setInterval(() => {
