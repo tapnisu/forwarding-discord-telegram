@@ -31,7 +31,7 @@ const formatSize = (length) => {
 		i++;
 	}
 
-	return length.toFixed(2) + " " + SIZE_UNITS[i];
+	return `${length.toFixed(2)} ${SIZE_UNITS[i]}`;
 };
 
 client.on("messageCreate", (message) => {
