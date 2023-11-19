@@ -2,7 +2,7 @@
 	"name": "forwarding-discord-telegram",
 	"version": "1.5.0",
 	"description": "This bot can help you to read discord messages in telegram.",
-	"main": "src/index.js",
+	"main": "dist/index.js",
 	"scripts": {
 		"start": "node .",
 		"format": "npx prettier --write .",
@@ -28,7 +28,8 @@
 		"discord.js-selfbot-v13": "^2.15.0",
 		"dotenv": "^16.3.1",
 		"grammy": "^1.19.2",
-		"node-capmonster": "^0.4.2"
+		"node-capmonster": "^0.4.2",
+		"typescript": "^5.2.2"
 	},
 	"devDependencies": {
 		"eslint": "^8.53.0",
