@@ -444,8 +444,8 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
 
-  /axios@1.5.1:
-    resolution: {integrity: sha512-Q28iYCWzNHjAm+yEAot5QaAMxhMghWLFVf7rRdwhUI+c2jix2DUXjAHXVi+s1ibs3mjPO/cCgbA++3BjD0vP/A==}
+  /axios@1.6.2:
+    resolution: {integrity: sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==}
     dependencies:
       follow-redirects: 1.15.3
       form-data: 4.0.0
@@ -1182,7 +1182,7 @@ packages:
   /node-capmonster@0.4.2:
     resolution: {integrity: sha512-+1rLmPaplHZPSGcDnnmqT57U8v2v+uLTUrZ5sMIKuo2Mjh80q/DuXUevWAagfs5nfn76SHJoQMvUVhOxC7OCDA==}
     dependencies:
-      axios: 1.5.1
+      axios: 1.6.2
     transitivePeerDependencies:
       - debug
     dev: false
