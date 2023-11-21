@@ -133,9 +133,7 @@ client.on("messageCreate", (message) => {
 
 	render += message.content;
 
-	let allEmbeds = [];
-
-	message.embeds.forEach((embed) => {
+	const embeds = message.embeds.map((embed) => {
 		let stringEmbed = "Embed:\n";
 
 		if (embed.title) stringEmbed += `  Title: ${embed.title}\n`;
@@ -145,7 +143,7 @@ client.on("messageCreate", (message) => {
 		if (embed.color) stringEmbed += `  Color: ${embed.color}\n`;
 		if (embed.timestamp) stringEmbed += `  Url: ${embed.timestamp}\n`;
 
-		let allFields = ["  Fields:\n"];
+		const allFields = ["  Fields:\n"];
 
 		embed.fields.forEach((field) => {
 			let stringField = "    Field:\n";
@@ -153,7 +151,7 @@ client.on("messageCreate", (message) => {
 			if (field.name) stringField += `      Name: ${field.name}\n`;
 			if (field.value) stringField += `      Value: ${field.value}\n`;
 
-			allFields = [...allFields, stringField];
+			allFields.push(stringField);
 		});
 
 		if (allFields.length != 1) stringEmbed += `${allFields.join("")}`;
@@ -163,10 +161,10 @@ client.on("messageCreate", (message) => {
 		if (embed.author) stringEmbed += `  Author: ${embed.author.name}\n`;
 		if (embed.footer) stringEmbed += `  Footer: ${embed.footer.iconURL}\n`;
 
-		allEmbeds = [...allEmbeds, stringEmbed];
+		return stringEmbed;
 	});
 
-	if (allEmbeds.length != 0) render += allEmbeds.join("");
+	if (embeds.length != 0) render += embeds.join("");
 
 	const allAttachments: string[] = [];
 	const images: string[] = [];
@@ -197,7 +195,7 @@ client.on("messageCreate", (message) => {
 });
 
 bot.catch((err) => {
-	console.log(err);
+	console.error(err);
 });
 
 async function sendData(messagesToSend: string[], imagesToSend: string[]) {
@@ -220,9 +218,10 @@ async function sendData(messagesToSend: string[], imagesToSend: string[]) {
 
 if (config.stackMessages)
 	setInterval(() => {
-		sendData(global.messagesToSend, global.imagesToSend);
-		global.messagesToSend = [];
-		global.imagesToSend = [];
+		sendData(messagesToSend, imagesToSend);
+
+		messagesToSend.length = 0;
+		imagesToSend.length = 0;
 	}, 5000);
 
 client.login(env.DISCORD_TOKEN);
