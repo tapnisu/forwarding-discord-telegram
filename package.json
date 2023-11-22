@@ -42,5 +42,8 @@
 		"eslint-plugin-prettier": "^5.0.1",
 		"prettier": "^3.1.0"
 	},
+	"engines": {
+		"node": ">=16.0.0"
+	},
 	"license": "MIT"
 }
