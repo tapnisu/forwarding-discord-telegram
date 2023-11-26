@@ -156,7 +156,10 @@ client.on("messageCreate", (message) => {
 
 		if (allFields.length != 1) stringEmbed += `${allFields.join("")}`;
 		if (embed.thumbnail) stringEmbed += `  Thumbnail: ${embed.thumbnail.url}\n`;
-		if (embed.image) stringEmbed += `  Image: ${embed.image.url}\n`;
+		if (embed.image) {
+			stringEmbed += `  Image: ${embed.image.url}\n`;
+			images.push(embed.image.url);
+		}
 		if (embed.video) stringEmbed += `  Video: ${embed.video.url}\n`;
 		if (embed.author) stringEmbed += `  Author: ${embed.author.name}\n`;
 		if (embed.footer) stringEmbed += `  Footer: ${embed.footer.iconURL}\n`;
