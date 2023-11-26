@@ -208,6 +208,8 @@ async function sendData(messagesToSend: string[], imagesToSend: string[]) {
 						imagesToSend.map((image) => InputMediaBuilder.photo(image))
 					);
 
+				if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
+
 				await bot.api.sendMessage(channel, messagesToSend.join("\n"));
 			});
 		}
