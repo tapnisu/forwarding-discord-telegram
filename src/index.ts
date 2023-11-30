@@ -1,6 +1,4 @@
-import { autoRetry } from "@grammyjs/auto-retry";
 import { Client } from "discord.js-selfbot-v13";
-import { Bot, InputMediaBuilder } from "grammy";
 import { getConfig } from "./config";
 import { getEnv } from "./env";
 
@@ -15,11 +13,7 @@ const client = new Client({
 	checkUpdate: false
 });
 
-const bot = new Bot(env.TELEGRAM_TOKEN);
-bot.api.config.use(autoRetry());
-
 const messagesToSend: string[] = [];
-const imagesToSend: string[] = [];
 
 client.on("ready", () => console.log(`Logged in as ${client.user?.tag}!`));
 
@@ -156,10 +150,7 @@ client.on("messageCreate", (message) => {
 
 		if (allFields.length != 1) stringEmbed += `${allFields.join("")}`;
 		if (embed.thumbnail) stringEmbed += `  Thumbnail: ${embed.thumbnail.url}\n`;
-		if (embed.image) {
-			stringEmbed += `  Image: ${embed.image.url}\n`;
-			images.push(embed.image.url);
-		}
+		if (embed.image) stringEmbed += `  Image: ${embed.image.url}\n`;
 		if (embed.video) stringEmbed += `  Video: ${embed.video.url}\n`;
 		if (embed.author) stringEmbed += `  Author: ${embed.author.name}\n`;
 		if (embed.footer) stringEmbed += `  Footer: ${embed.footer.iconURL}\n`;
@@ -170,12 +161,8 @@ client.on("messageCreate", (message) => {
 	if (embeds.length != 0) render += embeds.join("");
 
 	const allAttachments: string[] = [];
-	const images: string[] = [];
 
 	message.attachments.forEach((attachment) => {
-		if (attachment.contentType.startsWith("image"))
-			return images.push(attachment.url);
-
 		allAttachments.push(
 			`Attachment:\n  Name: ${attachment.name}\n${
 				attachment.description ? `	Description: ${attachment.description}\n` : ""
@@ -189,31 +176,24 @@ client.on("messageCreate", (message) => {
 
 	if (config.stackMessages) {
 		messagesToSend.push(render);
-		imagesToSend.push(...images);
 
 		return;
 	}
 
-	sendData([render], images);
+	sendData([render]);
 });
 
-bot.catch((err) => {
-	console.error(err);
-});
-
-async function sendData(messagesToSend: string[], imagesToSend: string[]) {
+async function sendData(messagesToSend: string[]) {
 	try {
 		if (messagesToSend.length != 0) {
-			channelsToSend.forEach(async (channel) => {
-				if (imagesToSend.length != 0)
-					await bot.api.sendMediaGroup(
-						channel,
-						imagesToSend.map((image) => InputMediaBuilder.photo(image))
-					);
+			channelsToSend.forEach(async (channelId) => {
+				const channel = await client.channels.fetch(channelId.toString());
 
-				if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
+				if (channel.isDirectory()) return;
 
-				await bot.api.sendMessage(channel, messagesToSend.join("\n"));
+				channel.send({
+					content: messagesToSend.join("\n")
+				});
 			});
 		}
 	} catch (e) {
@@ -223,10 +203,9 @@ async function sendData(messagesToSend: string[], imagesToSend: string[]) {
 
 if (config.stackMessages)
 	setInterval(() => {
-		sendData(messagesToSend, imagesToSend);
+		sendData(messagesToSend);
 
 		messagesToSend.length = 0;
-		imagesToSend.length = 0;
 	}, 5000);
 
 client.login(env.DISCORD_TOKEN);
