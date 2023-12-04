@@ -29,7 +29,7 @@
 		"discord.js-selfbot-v13": "^2.15.0",
 		"dotenv": "^16.3.1",
 		"node-capmonster": "^0.4.2",
-		"nodemon": "^3.0.1",
+		"nodemon": "^3.0.2",
 		"typescript": "^5.3.2"
 	},
 	"devDependencies": {
