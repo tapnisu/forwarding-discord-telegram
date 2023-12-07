@@ -30,7 +30,7 @@
 		"dotenv": "^16.3.1",
 		"node-capmonster": "^0.4.2",
 		"nodemon": "^3.0.2",
-		"typescript": "^5.3.2"
+		"typescript": "^5.3.3"
 	},
 	"devDependencies": {
 		"@types/node": "^20.10.3",
