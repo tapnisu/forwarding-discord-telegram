@@ -19,6 +19,7 @@ dependencies:
   grammy:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     specifier: ^1.19.3
     version: 1.19.3
 >>>>>>> 9b41613 (chore(deps): bump grammy from 1.19.2 to 1.19.3)
@@ -30,6 +31,10 @@ dependencies:
     specifier: ^1.20.2
     version: 1.20.2
 >>>>>>> 38e924e (chore(deps): bump grammy from 1.20.1 to 1.20.2)
+=======
+    specifier: ^1.20.3
+    version: 1.20.3
+>>>>>>> fc8a313 (chore(deps): bump grammy from 1.20.2 to 1.20.3)
   node-capmonster:
     specifier: ^0.4.2
     version: 0.4.2
@@ -174,8 +179,8 @@ packages:
     engines: {node: '>=12.20.0 || >=14.13.1'}
     dev: false
 
-  /@grammyjs/types@3.4.4:
-    resolution: {integrity: sha512-r/m54PnAb1Yh76SNlU/3uc2K9t0cYfZXiYZ6IqJfb245m7QeIH7DnjFTg/OtymybKehdkm3PFlw7QODJNyDqhQ==}
+  /@grammyjs/types@3.4.6:
+    resolution: {integrity: sha512-J7xb4JFmdTG2JXDirytp9KuUBKhzT8cAeB3tg2dyWy0VzF/Pdi1t8YaBmNsGeL6VvdvAXHtBTfzrc3jBTD2Kuw==}
     dev: false
 
 >>>>>>> 2b79fe8 (chore(deps): bump grammy from 1.19.3 to 1.20.1)
@@ -992,11 +997,11 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /grammy@1.20.2:
-    resolution: {integrity: sha512-hZ2ZIB8n9rcglpcnerqOgn+duVvB144mdbLAgKfE18Nj/ZBi+6SzXT/P5dIz89F56Q6YynzrwUFN8+uCPVuc1A==}
+  /grammy@1.20.3:
+    resolution: {integrity: sha512-eHvS0iOD6aos7NbwL1dhFE6JDiMGm/Qz2TKgetRg/SZ5BIVoUSVSU/mn8L01r1Q7i+ywG9uePzy5xpK5CkOrUA==}
     engines: {node: ^12.20.0 || >=14.13.1}
     dependencies:
-      '@grammyjs/types': 3.4.4
+      '@grammyjs/types': 3.4.6
       abort-controller: 3.0.0
       debug: 4.3.4(supports-color@5.5.0)
       node-fetch: 2.7.0
