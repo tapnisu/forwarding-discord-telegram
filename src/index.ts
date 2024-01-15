@@ -213,7 +213,11 @@ async function sendData(messagesToSend: string[], imagesToSend: string[]) {
 
 				if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
 
-				await bot.api.sendMessage(channel, messagesToSend.join("\n"));
+				await bot.api.sendMessage(channel, messagesToSend.join("\n"), {
+					link_preview_options: {
+						is_disabled: config.disableLinkPreview
+					}
+				});
 			});
 		}
 	} catch (e) {
