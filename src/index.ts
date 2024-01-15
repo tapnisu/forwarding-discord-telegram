@@ -133,6 +133,9 @@ client.on("messageCreate", (message) => {
 
 	render += message.content;
 
+	const allAttachments: string[] = [];
+	const images: string[] = [];
+
 	const embeds = message.embeds.map((embed) => {
 		let stringEmbed = "Embed:\n";
 
@@ -168,9 +171,6 @@ client.on("messageCreate", (message) => {
 	});
 
 	if (embeds.length != 0) render += embeds.join("");
-
-	const allAttachments: string[] = [];
-	const images: string[] = [];
 
 	message.attachments.forEach((attachment) => {
 		if (attachment.contentType.startsWith("image"))
