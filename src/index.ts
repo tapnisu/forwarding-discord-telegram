@@ -9,9 +9,7 @@ let channelsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID)
 	channelsToSend = [env.TELEGRAM_CHAT_ID, ...channelsToSend];
 
-const client = new Client({
-	checkUpdate: false
-});
+const client = new Client();
 
 const messagesToSend: string[] = [];
 
@@ -127,6 +125,8 @@ client.on("messageCreate", (message) => {
 
 	render += message.content;
 
+	const allAttachments: string[] = [];
+
 	const embeds = message.embeds.map((embed) => {
 		let stringEmbed = "Embed:\n";
 
@@ -159,8 +159,6 @@ client.on("messageCreate", (message) => {
 	});
 
 	if (embeds.length != 0) render += embeds.join("");
-
-	const allAttachments: string[] = [];
 
 	message.attachments.forEach((attachment) => {
 		allAttachments.push(
