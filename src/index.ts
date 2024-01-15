@@ -11,9 +11,7 @@ let channelsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID)
 	channelsToSend = [env.TELEGRAM_CHAT_ID, ...channelsToSend];
 
-const client = new Client({
-	checkUpdate: false
-});
+const client = new Client();
 
 const bot = new Bot(env.TELEGRAM_TOKEN);
 bot.api.config.use(autoRetry());
