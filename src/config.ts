@@ -1,26 +1,21 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 
 export type ChannelId = number | string;
-export type ChannelsIds = ChannelId[];
 
 export interface ChannelConfig {
-	muted: ChannelsIds;
-	allowed: ChannelsIds;
-}
-
-export interface ChannelConfigs {
-	[k: string]: ChannelConfig;
+	muted: ChannelId[];
+	allowed: ChannelId[];
 }
 
 export interface Config {
-	outputChannels?: ChannelsIds;
-	mutedGuildsIds?: ChannelsIds;
-	allowedGuildsIds?: ChannelsIds;
-	mutedChannelsIds?: ChannelsIds;
-	allowedChannelsIds?: ChannelsIds;
-	allowedUsersIds?: ChannelsIds;
-	mutedUsersIds?: ChannelsIds;
-	channelConfigs?: ChannelConfigs;
+	outputChannels?: ChannelId[];
+	mutedGuildsIds?: ChannelId[];
+	allowedGuildsIds?: ChannelId[];
+	mutedChannelsIds?: ChannelId[];
+	allowedChannelsIds?: ChannelId[];
+	allowedUsersIds?: ChannelId[];
+	mutedUsersIds?: ChannelId[];
+	channelConfigs?: Record<string, ChannelConfig>;
 	showDate?: boolean;
 	showChat?: boolean;
 	stackMessages?: boolean;
