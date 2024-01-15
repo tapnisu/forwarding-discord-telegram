@@ -5,6 +5,7 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"start": "tsc && nodemon .",
+		"start:node": "node .",
 		"stast:withoutbuild": "nodemon .",
 		"build": "tsc",
 		"format": "npx prettier --write .",

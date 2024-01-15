@@ -12,6 +12,7 @@
 			"allowed": []
 		}
 	},
+	"disableLinkPreview": false,
 	"showDate": true,
 	"showChat": true,
 	"stackMessages": false
