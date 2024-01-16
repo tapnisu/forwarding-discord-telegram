@@ -13,6 +13,7 @@
 		}
 	},
 	"disableLinkPreview": false,
+	"imagesAsMedia": true,
 	"showDate": true,
 	"showChat": true,
 	"stackMessages": false
