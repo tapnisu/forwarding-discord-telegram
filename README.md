@@ -35,6 +35,7 @@ This bot can help you to read discord messages in telegram.
    	"mutedUsersIds": [],
    	"channelConfigs": {},
    	"disableLinkPreview": false,
+   	"imagesAsMedia": false,
    	"showDate": true,
    	"showChat": true,
    	"stackMessages": false

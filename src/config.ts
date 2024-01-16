@@ -17,16 +17,15 @@ export interface Config {
 	mutedUsersIds?: ChannelId[];
 	channelConfigs?: Record<string, ChannelConfig>;
 	disableLinkPreview: boolean;
+	imagesAsMedia?: boolean;
 	showDate?: boolean;
 	showChat?: boolean;
 	stackMessages?: boolean;
 }
 
-export function getConfig() {
+export function getConfig(): Config {
 	if (!existsSync("./config.json"))
 		writeFileSync("./config.json", JSON.stringify({}));
 
-	const config: Config = JSON.parse(readFileSync("./config.json").toString());
-
-	return config;
+	return JSON.parse(readFileSync("./config.json").toString());
 }
