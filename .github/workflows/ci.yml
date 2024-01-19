@@ -11,12 +11,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Set up Node
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: 18
+          version: 8
 
-      - run: npm install -g pnpm
+      - name: Sync node version and setup cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
