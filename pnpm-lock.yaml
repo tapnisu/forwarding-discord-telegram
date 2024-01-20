@@ -14,27 +14,6 @@ dependencies:
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
-<<<<<<< HEAD
-=======
-  grammy:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    specifier: ^1.19.3
-    version: 1.19.3
->>>>>>> 9b41613 (chore(deps): bump grammy from 1.19.2 to 1.19.3)
-=======
-    specifier: ^1.20.1
-    version: 1.20.1
->>>>>>> 2b79fe8 (chore(deps): bump grammy from 1.19.3 to 1.20.1)
-=======
-    specifier: ^1.20.2
-    version: 1.20.2
->>>>>>> 38e924e (chore(deps): bump grammy from 1.20.1 to 1.20.2)
-=======
-    specifier: ^1.20.3
-    version: 1.20.3
->>>>>>> fc8a313 (chore(deps): bump grammy from 1.20.2 to 1.20.3)
   node-capmonster:
     specifier: ^0.4.2
     version: 0.4.2
@@ -154,21 +133,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  /@grammyjs/auto-retry@1.1.1:
-    resolution: {integrity: sha512-vaQDl45Unhidi4r5+JrwDKfmPFJuJpAh9YmE38pACcP3TyKnwUMQxQ3bRdl0Y1ME/uBwTm9YiX1pwol0vnubCw==}
-    engines: {node: '>=12.20.0 || >=14.13.1'}
-    dev: false
-
-=======
->>>>>>> a408a54 (Regenerate pnpm lock)
-  /@grammyjs/types@3.4.6:
-    resolution: {integrity: sha512-J7xb4JFmdTG2JXDirytp9KuUBKhzT8cAeB3tg2dyWy0VzF/Pdi1t8YaBmNsGeL6VvdvAXHtBTfzrc3jBTD2Kuw==}
-    dev: false
-
->>>>>>> 2b79fe8 (chore(deps): bump grammy from 1.19.3 to 1.20.1)
   /@humanwhocodes/config-array@0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}
     engines: {node: '>=10.10.0'}
@@ -494,21 +458,6 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  /abbrev@1.1.1:
-    resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
-=======
-=======
->>>>>>> a408a54 (Regenerate pnpm lock)
-  /abort-controller@3.0.0:
-    resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
-    engines: {node: '>=6.5'}
-    dependencies:
-      event-target-shim: 5.0.1
->>>>>>> 773b327 (Remove nodemon)
-    dev: false
-
   /acorn-jsx@5.3.2(acorn@8.9.0):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -829,14 +778,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-<<<<<<< HEAD
-<<<<<<< HEAD
-      supports-color: 5.5.0
-    dev: true
-=======
->>>>>>> 773b327 (Remove nodemon)
-=======
->>>>>>> a408a54 (Regenerate pnpm lock)
 
   /deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -1081,13 +1022,6 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
 
-<<<<<<< HEAD
-=======
-  /event-target-shim@5.0.1:
-    resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
-    engines: {node: '>=6'}
-    dev: false
-
   /eventemitter2@0.4.14:
     resolution: {integrity: sha512-K7J4xq5xAD5jHsGM5ReWXRTFa3JRGofHiMcVgQ8PRwgWxzjHpMWCIzsmyf60+mh8KLsqYPcjUMa0AC4hd6lPyQ==}
     dev: false
@@ -1100,7 +1034,6 @@ packages:
     resolution: {integrity: sha512-JEPTiaOt9f04oa6NOkc4aH+nVp5I3wEjpHbIPqfgCdD5v5bUzy7xQqwcVO2aDQgOWhI28da57HksMrzK9HlRxg==}
     dev: false
 
->>>>>>> 9d2d69f (Use pm2 for deployments)
   /execa@5.1.1:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
@@ -1332,19 +1265,6 @@ packages:
 
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
-    dev: false
-
-  /grammy@1.20.3:
-    resolution: {integrity: sha512-eHvS0iOD6aos7NbwL1dhFE6JDiMGm/Qz2TKgetRg/SZ5BIVoUSVSU/mn8L01r1Q7i+ywG9uePzy5xpK5CkOrUA==}
-    engines: {node: ^12.20.0 || >=14.13.1}
-    dependencies:
-      '@grammyjs/types': 3.4.6
-      abort-controller: 3.0.0
-      debug: 4.3.4
-      node-fetch: 2.7.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
     dev: false
 
   /graphemer@1.4.0:
