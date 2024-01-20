@@ -2,6 +2,8 @@ import { Client } from "discord.js-selfbot-v13";
 import { getConfig } from "./config";
 import { getEnv } from "./env";
 
+throw "error";
+
 const env = getEnv();
 const config = getConfig();
 

@@ -4,9 +4,8 @@
 	"description": "This bot can help you to read discord messages in telegram.",
 	"main": "dist/index.js",
 	"scripts": {
-		"start": "tsc && nodemon .",
+		"start": "node .",
 		"start:node": "node .",
-		"stast:withoutbuild": "nodemon .",
 		"build": "tsc",
 		"format": "npx prettier --write .",
 		"lint": "eslint ./"
@@ -32,7 +31,6 @@
 		"dotenv": "^16.3.1",
 		"grammy": "^1.20.2",
 		"node-capmonster": "^0.4.2",
-		"nodemon": "^3.0.3",
 		"typescript": "^5.3.3"
 	},
 	"devDependencies": {
