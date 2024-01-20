@@ -16,8 +16,6 @@ export interface Config {
 	allowedUsersIds?: ChannelId[];
 	mutedUsersIds?: ChannelId[];
 	channelConfigs?: Record<string, ChannelConfig>;
-	disableLinkPreview: boolean;
-	imagesAsMedia?: boolean;
 	showDate?: boolean;
 	showChat?: boolean;
 	stackMessages?: boolean;
