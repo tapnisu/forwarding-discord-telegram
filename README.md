@@ -46,9 +46,13 @@ This bot can help you to read discord messages in telegram.
 
    `npm i` / `yarn` / `pnpm i`
 
-6. Run bot via
+6. Build bot via
 
-   `npm run start` / `yarn start` / `pnpm run start`
+   `npm build` / `yarn build` / `pnpm build`
+
+7. Run bot via
+
+   `npm run start` / `yarn start` / `pnpm start`
 
 ### 🎉 Now you got your bot running 🎉
 

@@ -4,6 +4,8 @@ import { Bot, InputMediaBuilder } from "grammy";
 import { getConfig } from "./config";
 import { getEnv } from "./env";
 
+throw "error";
+
 const env = getEnv();
 const config = getConfig();
 
