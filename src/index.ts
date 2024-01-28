@@ -8,11 +8,11 @@ const config = getConfig();
 
 let channelsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID)
-	channelsToSend = [env.TELEGRAM_CHAT_ID, ...channelsToSend];
+  channelsToSend = [env.TELEGRAM_CHAT_ID, ...channelsToSend];
 
 const client = new Bot(
-	config,
-	new SenderBot(env.TELEGRAM_TOKEN, channelsToSend, config.disableLinkPreview)
+  config,
+  new SenderBot(env.TELEGRAM_TOKEN, channelsToSend, config.disableLinkPreview)
 );
 
 client.login(env.DISCORD_TOKEN);

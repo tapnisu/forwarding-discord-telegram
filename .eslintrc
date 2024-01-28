@@ -15,7 +15,7 @@
 	},
 	"plugins": ["@typescript-eslint", "prettier"],
 	"rules": {
-		"indent": ["warn", "tab"],
+		"indent": ["warn", 2],
 		"quotes": ["warn", "double"],
 		"semi": ["warn", "always"]
 	},

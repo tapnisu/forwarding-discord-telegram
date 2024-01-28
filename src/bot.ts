@@ -5,118 +5,118 @@ import { formatSize } from "./format";
 import { SenderBot } from "./senderBot";
 
 export class Bot extends Client {
-	messagesToSend: string[] = [];
-	imagesToSend: string[] = [];
-	senderBot: SenderBot;
-	config: Config;
+  messagesToSend: string[] = [];
+  imagesToSend: string[] = [];
+  senderBot: SenderBot;
+  config: Config;
 
-	constructor(config: Config, senderBot: SenderBot) {
-		super();
+  constructor(config: Config, senderBot: SenderBot) {
+    super();
 
-		this.config = config;
-		this.senderBot = senderBot;
+    this.config = config;
+    this.senderBot = senderBot;
 
-		this.on("ready", () => console.log(`Logged in as ${this.user?.tag}!`));
+    this.on("ready", () => console.log(`Logged in as ${this.user?.tag}!`));
 
-		this.on("messageCreate", (message) => {
-			if (!filterMessages(message, this.config)) return;
+    this.on("messageCreate", (message) => {
+      if (!filterMessages(message, this.config)) return;
 
-			const date = new Date().toLocaleString("en-US", {
-				day: "2-digit",
-				year: "2-digit",
-				month: "2-digit",
-				hour: "2-digit",
-				minute: "2-digit",
-				second: "2-digit"
-			});
+      const date = new Date().toLocaleString("en-US", {
+        day: "2-digit",
+        year: "2-digit",
+        month: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
 
-			let render = "";
+      let render = "";
 
-			if (config.showDate) render += `[${date}] `;
-			if (config.showChat)
-				render += message.inGuild()
-					? `[${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: `
-					: `[${message.author.tag}]: `;
+      if (config.showDate) render += `[${date}] `;
+      if (config.showChat)
+        render += message.inGuild()
+          ? `[${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: `
+          : `[${message.author.tag}]: `;
 
-			render += message.content;
+      render += message.content;
 
-			const allAttachments: string[] = [];
-			const images: string[] = [];
+      const allAttachments: string[] = [];
+      const images: string[] = [];
 
-			const embeds = message.embeds.map((embed) => {
-				let stringEmbed = "Embed:\n";
+      const embeds = message.embeds.map((embed) => {
+        let stringEmbed = "Embed:\n";
 
-				if (embed.title) stringEmbed += `  Title: ${embed.title}\n`;
-				if (embed.description)
-					stringEmbed += `  Description: ${embed.description}\n`;
-				if (embed.url) stringEmbed += `  Url: ${embed.url}\n`;
-				if (embed.color) stringEmbed += `  Color: ${embed.color}\n`;
-				if (embed.timestamp) stringEmbed += `  Url: ${embed.timestamp}\n`;
+        if (embed.title) stringEmbed += `  Title: ${embed.title}\n`;
+        if (embed.description)
+          stringEmbed += `  Description: ${embed.description}\n`;
+        if (embed.url) stringEmbed += `  Url: ${embed.url}\n`;
+        if (embed.color) stringEmbed += `  Color: ${embed.color}\n`;
+        if (embed.timestamp) stringEmbed += `  Url: ${embed.timestamp}\n`;
 
-				const allFields = ["  Fields:\n"];
+        const allFields = ["  Fields:\n"];
 
-				embed.fields.forEach((field) => {
-					let stringField = "    Field:\n";
+        embed.fields.forEach((field) => {
+          let stringField = "    Field:\n";
 
-					if (field.name) stringField += `      Name: ${field.name}\n`;
-					if (field.value) stringField += `      Value: ${field.value}\n`;
+          if (field.name) stringField += `      Name: ${field.name}\n`;
+          if (field.value) stringField += `      Value: ${field.value}\n`;
 
-					allFields.push(stringField);
-				});
+          allFields.push(stringField);
+        });
 
-				if (allFields.length != 1) stringEmbed += `${allFields.join("")}`;
-				if (embed.thumbnail)
-					stringEmbed += `  Thumbnail: ${embed.thumbnail.url}\n`;
-				if (embed.image) {
-					stringEmbed += `  Image: ${embed.image.url}\n`;
+        if (allFields.length != 1) stringEmbed += `${allFields.join("")}`;
+        if (embed.thumbnail)
+          stringEmbed += `  Thumbnail: ${embed.thumbnail.url}\n`;
+        if (embed.image) {
+          stringEmbed += `  Image: ${embed.image.url}\n`;
 
-					if (config.imagesAsMedia ?? true) images.push(embed.image.url);
-				}
-				if (embed.video) stringEmbed += `  Video: ${embed.video.url}\n`;
-				if (embed.author) stringEmbed += `  Author: ${embed.author.name}\n`;
-				if (embed.footer) stringEmbed += `  Footer: ${embed.footer.iconURL}\n`;
+          if (config.imagesAsMedia ?? true) images.push(embed.image.url);
+        }
+        if (embed.video) stringEmbed += `  Video: ${embed.video.url}\n`;
+        if (embed.author) stringEmbed += `  Author: ${embed.author.name}\n`;
+        if (embed.footer) stringEmbed += `  Footer: ${embed.footer.iconURL}\n`;
 
-				return stringEmbed;
-			});
+        return stringEmbed;
+      });
 
-			if (embeds.length != 0) render += embeds.join("");
+      if (embeds.length != 0) render += embeds.join("");
 
-			message.attachments.forEach((attachment) => {
-				if (
-					(config.imagesAsMedia ?? true) &&
-					attachment.contentType.startsWith("image")
-				)
-					return images.push(attachment.url);
+      message.attachments.forEach((attachment) => {
+        if (
+          (config.imagesAsMedia ?? true) &&
+          attachment.contentType.startsWith("image")
+        )
+          return images.push(attachment.url);
 
-				allAttachments.push(
-					`Attachment:\n  Name: ${attachment.name}\n${
-						attachment.description
-							? `	Description: ${attachment.description}\n`
-							: ""
-					}  Size: ${formatSize(attachment.size)}\n  Url: ${attachment.url}`
-				);
-			});
+        allAttachments.push(
+          `Attachment:\n  Name: ${attachment.name}\n${
+            attachment.description
+              ? `	Description: ${attachment.description}\n`
+              : ""
+          }  Size: ${formatSize(attachment.size)}\n  Url: ${attachment.url}`
+        );
+      });
 
-			if (allAttachments.length != 0) render += allAttachments.join("");
+      if (allAttachments.length != 0) render += allAttachments.join("");
 
-			console.log(render);
+      console.log(render);
 
-			if (config.stackMessages) {
-				this.messagesToSend.push(render);
-				this.imagesToSend.push(...images);
+      if (config.stackMessages) {
+        this.messagesToSend.push(render);
+        this.imagesToSend.push(...images);
 
-				return;
-			}
+        return;
+      }
 
-			this.senderBot.sendData([render], images);
-		});
+      this.senderBot.sendData([render], images);
+    });
 
-		if (config.stackMessages)
-			setInterval(() => {
-				this.senderBot.sendData(this.messagesToSend, this.imagesToSend);
+    if (config.stackMessages)
+      setInterval(() => {
+        this.senderBot.sendData(this.messagesToSend, this.imagesToSend);
 
-				this.messagesToSend.length = 0;
-				this.imagesToSend.length = 0;
-			}, 5000);
-	}
+        this.messagesToSend.length = 0;
+        this.imagesToSend.length = 0;
+      }, 5000);
+  }
 }
