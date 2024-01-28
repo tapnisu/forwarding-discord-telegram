@@ -12,11 +12,7 @@ if (env.TELEGRAM_CHAT_ID)
 
 const client = new Bot(
 	config,
-	new SenderBot(
-		env.TELEGRAM_CHAT_ID.toString(),
-		channelsToSend,
-		config.disableLinkPreview
-	)
+	new SenderBot(env.TELEGRAM_TOKEN, channelsToSend, config.disableLinkPreview)
 );
 
 client.login(env.DISCORD_TOKEN);

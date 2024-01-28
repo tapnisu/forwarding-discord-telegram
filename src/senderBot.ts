@@ -8,13 +8,13 @@ export class SenderBot<C extends Context = Context> extends Bot<C> {
 
 	constructor(
 		token: string,
-		channelsToSend: ChannelId[],
+		chatsToSend: ChannelId[],
 		disableLinkPreview: boolean,
 		config?: BotConfig<C>
 	) {
 		super(token, config);
 
-		this.chatsToSend = channelsToSend;
+		this.chatsToSend = chatsToSend;
 		this.disableLinkPreview = disableLinkPreview;
 
 		this.api.config.use(autoRetry());
