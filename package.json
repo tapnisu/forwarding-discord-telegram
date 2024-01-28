@@ -9,6 +9,7 @@
 		"pm2:start:watch": "pm2 start . --name 'forwarding-discord-telegram' --watch --exp-backoff-restart-delay=100",
 		"pm2:stop": "pm2 stop .",
 		"build": "tsc",
+		"build:watch": "tsc --watch",
 		"format": "npx prettier --write .",
 		"lint": "eslint ./"
 	},
