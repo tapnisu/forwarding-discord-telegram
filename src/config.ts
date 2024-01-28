@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 
 export type ChannelId = number | string;
+export type ChatId = ChannelId;
 
 export interface ChannelConfig {
   muted: ChannelId[];
@@ -8,7 +9,7 @@ export interface ChannelConfig {
 }
 
 export interface Config {
-  outputChannels?: ChannelId[];
+  outputChannels?: ChatId[];
   mutedGuildsIds?: ChannelId[];
   allowedGuildsIds?: ChannelId[];
   mutedChannelsIds?: ChannelId[];
