@@ -52,8 +52,8 @@ This bot can help you to read discord messages in telegram.
 
 7. Run bot via
 
-   `npm run start` / `yarn start` / `pnpm start`
+   `npm start` / `yarn start` / `pnpm start`
 
 ### 🎉 Now you got your bot running 🎉
 
-Built using [discord.js-selfbot-v13](https://github.com/aiko-chan-ai/discord.js-selfbot-v13), typescript
+Built using [discord.js-selfbot-v13](https://github.com/aiko-chan-ai/discord.js-selfbot-v13), [Grammy](https://www.npmjs.com/package/grammy), typescript
