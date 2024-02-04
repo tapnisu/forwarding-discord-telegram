@@ -26,7 +26,24 @@ export interface Config {
 
 export function getConfig(): Config {
   if (!existsSync("./config.json"))
-    writeFileSync("./config.json", JSON.stringify({}));
+    writeFileSync(
+      "./config.json",
+      JSON.stringify({
+        outputChannels: [],
+        mutedGuildsIds: [],
+        allowedGuildsIds: [],
+        mutedChannelsIds: [],
+        allowedChannelsIds: [],
+        allowedUsersIds: [],
+        mutedUsersIds: [],
+        channelConfigs: {},
+        disableLinkPreview: false,
+        imagesAsMedia: true,
+        showDate: true,
+        showChat: true,
+        stackMessages: false
+      })
+    );
 
   return JSON.parse(readFileSync("./config.json").toString());
 }
