@@ -1,5 +1,5 @@
 import { Message } from "discord.js-selfbot-v13";
-import { Config } from "./config";
+import { Config } from "./config.js";
 
 export function filterMessages(
   message: Message<boolean>,

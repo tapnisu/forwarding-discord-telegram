@@ -1,8 +1,8 @@
 import { Client } from "discord.js-selfbot-v13";
-import { Config } from "./config";
-import { filterMessages } from "./filterMessages";
-import { formatSize } from "./format";
-import { SenderBot } from "./senderBot";
+import { Config } from "./config.js";
+import { filterMessages } from "./filterMessages.js";
+import { formatSize } from "./format.js";
+import { SenderBot } from "./senderBot.js";
 
 export class Bot extends Client {
   messagesToSend: string[] = [];

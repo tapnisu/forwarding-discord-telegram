@@ -1,7 +1,7 @@
-import { Bot } from "./bot";
-import { getConfig } from "./config";
-import { getEnv } from "./env";
-import { SenderBot } from "./senderBot";
+import { Bot } from "./bot.js";
+import { getConfig } from "./config.js";
+import { getEnv } from "./env.js";
+import { SenderBot } from "./senderBot.js";
 
 const env = getEnv();
 const config = getConfig();

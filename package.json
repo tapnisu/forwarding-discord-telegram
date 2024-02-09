@@ -1,6 +1,6 @@
 {
   "name": "forwarding-discord-telegram",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "This bot can help you to read discord messages in telegram.",
   "main": "dist/index.js",
   "scripts": {
@@ -56,5 +56,6 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module"
 }

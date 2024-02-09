@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { ChatId } from "./config";
+import { ChatId } from "./config.js";
 
 export interface Env {
   DISCORD_TOKEN: string;

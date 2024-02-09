@@ -1,6 +1,6 @@
 import { autoRetry } from "@grammyjs/auto-retry";
 import { Bot, BotConfig, Context, InputMediaBuilder } from "grammy";
-import { ChannelId } from "./config";
+import { ChannelId } from "./config.js";
 
 export class SenderBot<C extends Context = Context> extends Bot<C> {
   chatsToSend: ChannelId[];
