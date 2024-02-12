@@ -18,8 +18,8 @@ dependencies:
     specifier: ^16.4.2
     version: 16.4.2
   grammy:
-    specifier: ^1.20.3
-    version: 1.20.3
+    specifier: ^1.20.4
+    version: 1.20.4
   node-capmonster:
     specifier: ^0.4.2
     version: 0.4.2
@@ -1225,8 +1225,8 @@ packages:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
     dev: false
 
-  /grammy@1.20.3:
-    resolution: {integrity: sha512-eHvS0iOD6aos7NbwL1dhFE6JDiMGm/Qz2TKgetRg/SZ5BIVoUSVSU/mn8L01r1Q7i+ywG9uePzy5xpK5CkOrUA==}
+  /grammy@1.20.4:
+    resolution: {integrity: sha512-9BqBOcpQpDzGOUmjdXZKqFWVRqY+ZkWAhkYU1YiDq90a+yOIIoQbjWt8rip6zRE4ePoLhHG5Rq7QLk90sshNiw==}
     engines: {node: ^12.20.0 || >=14.13.1}
     dependencies:
       '@grammyjs/types': 3.4.6
