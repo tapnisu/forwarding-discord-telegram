@@ -18,8 +18,8 @@ dependencies:
     specifier: ^16.4.4
     version: 16.4.4
   grammy:
-    specifier: ^1.20.4
-    version: 1.20.4
+    specifier: ^1.21.1
+    version: 1.21.1
   node-capmonster:
     specifier: ^0.4.2
     version: 0.4.2
@@ -144,8 +144,8 @@ packages:
     engines: {node: '>=12.20.0 || >=14.13.1'}
     dev: false
 
-  /@grammyjs/types@3.4.6:
-    resolution: {integrity: sha512-J7xb4JFmdTG2JXDirytp9KuUBKhzT8cAeB3tg2dyWy0VzF/Pdi1t8YaBmNsGeL6VvdvAXHtBTfzrc3jBTD2Kuw==}
+  /@grammyjs/types@3.5.2:
+    resolution: {integrity: sha512-KZlJcOdgD8N6SMIHWfwmb11L5/L2+rptWBxCexbzNCry/wfLXFFGFniyUrySnvFo+cWMxgy5GuImwY3mhUrP8g==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
@@ -1225,11 +1225,11 @@ packages:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
     dev: false
 
-  /grammy@1.20.4:
-    resolution: {integrity: sha512-9BqBOcpQpDzGOUmjdXZKqFWVRqY+ZkWAhkYU1YiDq90a+yOIIoQbjWt8rip6zRE4ePoLhHG5Rq7QLk90sshNiw==}
+  /grammy@1.21.1:
+    resolution: {integrity: sha512-gXHHU83yffHtxutuQlyefClFZN+3bZrmGXYcKVAE2R9SSNlnW9ohF4dC7omn6gHhBoZNRiRS4kumiFc12sal3A==}
     engines: {node: ^12.20.0 || >=14.13.1}
     dependencies:
-      '@grammyjs/types': 3.4.6
+      '@grammyjs/types': 3.5.2
       abort-controller: 3.0.0
       debug: 4.3.4
       node-fetch: 2.7.0
