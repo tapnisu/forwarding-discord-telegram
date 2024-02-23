@@ -1,6 +1,6 @@
 # Forwarding discord to telegram bot
 
-This bot can help you to read discord messages in telegram.
+This bot can help you to read Discord messages in Telegram
 
 > **Warning**:
 > Selfbots are against Discord's Terms of Service, use at your own risk!
@@ -56,4 +56,4 @@ This bot can help you to read discord messages in telegram.
 
 ### 🎉 Now you got your bot running 🎉
 
-Built using [discord.js-selfbot-v13](https://github.com/aiko-chan-ai/discord.js-selfbot-v13), [Grammy](https://www.npmjs.com/package/grammy), typescript
+Built using [discord.js-selfbot-v13](https://github.com/aiko-chan-ai/discord.js-selfbot-v13), [Grammy](https://www.npmjs.com/package/grammy), TypeScript
