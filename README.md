@@ -1,6 +1,6 @@
-# Forwarding discord to telegram bot
+# Forwarding Discord to Telegram
 
-This bot can help you to read Discord messages in Telegram
+Selfbot that forwards your Discord messages to Telegram
 
 > **Warning**:
 > Selfbots are against Discord's Terms of Service, use at your own risk!
@@ -11,6 +11,8 @@ This bot can help you to read Discord messages in Telegram
 
    > **Important**:
    > You should use version 16 or newer!
+
+   If your system doesn't have Node 16 (or newer), you can use [Node Version Manager](https://github.com/nvm-sh/nvm).
 
 2. Clone this project via `git clone https://github.com/tapnisu/forwarding-discord-telegram.git`
 
@@ -56,4 +58,4 @@ This bot can help you to read Discord messages in Telegram
 
 ### 🎉 Now you got your bot running 🎉
 
-Built using [discord.js-selfbot-v13](https://github.com/aiko-chan-ai/discord.js-selfbot-v13), [Grammy](https://www.npmjs.com/package/grammy), TypeScript
+Built using [discord.js-selfbot-v13](https://github.com/aiko-chan-ai/discord.js-selfbot-v13), [Grammy](https://www.npmjs.com/package/grammy) and TypeScript
