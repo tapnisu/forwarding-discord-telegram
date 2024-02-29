@@ -53,18 +53,12 @@ export class Bot extends Client {
         if (embed.color) stringEmbed += `  Color: ${embed.color}\n`;
         if (embed.timestamp) stringEmbed += `  Url: ${embed.timestamp}\n`;
 
-        const allFields = ["  Fields:\n"];
+        const fields = embed.fields.map(
+          (field) =>
+            `    Field:\n      Name: ${field.name}\n      Value: ${field.value}\n`
+        );
+        if (fields.length != 0) stringEmbed += `  Fields:\n${fields.join("")}`;
 
-        embed.fields.forEach((field) => {
-          let stringField = "    Field:\n";
-
-          if (field.name) stringField += `      Name: ${field.name}\n`;
-          if (field.value) stringField += `      Value: ${field.value}\n`;
-
-          allFields.push(stringField);
-        });
-
-        if (allFields.length != 1) stringEmbed += `${allFields.join("")}`;
         if (embed.thumbnail)
           stringEmbed += `  Thumbnail: ${embed.thumbnail.url}\n`;
         if (embed.image) {
@@ -79,7 +73,7 @@ export class Bot extends Client {
         return stringEmbed;
       });
 
-      if (embeds.length != 0) render += embeds.join("");
+      render += embeds.join("");
 
       message.attachments.forEach((attachment) => {
         if (
@@ -97,7 +91,7 @@ export class Bot extends Client {
         );
       });
 
-      if (allAttachments.length != 0) render += allAttachments.join("");
+      render += allAttachments.join("");
 
       console.log(render);
 
@@ -115,8 +109,8 @@ export class Bot extends Client {
       setInterval(() => {
         this.senderBot.sendData(this.messagesToSend, this.imagesToSend);
 
-        this.messagesToSend.length = 0;
-        this.imagesToSend.length = 0;
+        this.messagesToSend = [];
+        this.imagesToSend = [];
       }, 5000);
   }
 }
