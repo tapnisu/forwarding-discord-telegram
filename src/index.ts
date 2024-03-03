@@ -6,9 +6,8 @@ import { SenderBot } from "./senderBot.js";
 const env = getEnv();
 const config = getConfig();
 
-let channelsToSend = config.outputChannels ?? [];
-if (env.TELEGRAM_CHAT_ID)
-  channelsToSend = [env.TELEGRAM_CHAT_ID, ...channelsToSend];
+const channelsToSend = config.outputChannels ?? [];
+if (env.TELEGRAM_CHAT_ID) channelsToSend.unshift(env.TELEGRAM_CHAT_ID);
 
 const client = new Bot(
   config,

@@ -25,27 +25,22 @@ export class SenderBot<C extends Context = Context> extends Bot<C> {
   }
 
   async sendData(messagesToSend: string[], imagesToSend: string[]) {
-    try {
-      if (messagesToSend.length != 0) {
-        this.chatsToSend.forEach(async (chatId) => {
-          if (imagesToSend.length != 0)
-            await this.api.sendMediaGroup(
-              chatId,
-              imagesToSend.map((image) => InputMediaBuilder.photo(image))
-            );
+    if (messagesToSend.length != 0) {
+      this.chatsToSend.forEach(async (chatId) => {
+        if (imagesToSend.length != 0)
+          await this.api.sendMediaGroup(
+            chatId,
+            imagesToSend.map((image) => InputMediaBuilder.photo(image))
+          );
 
-          if (messagesToSend.length == 0 || messagesToSend.join("") == "")
-            return;
+        if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
 
-          await this.api.sendMessage(chatId, messagesToSend.join("\n"), {
-            link_preview_options: {
-              is_disabled: this.disableLinkPreview
-            }
-          });
+        await this.api.sendMessage(chatId, messagesToSend.join("\n"), {
+          link_preview_options: {
+            is_disabled: this.disableLinkPreview
+          }
         });
-      }
-    } catch (e) {
-      console.error(e);
+      });
     }
   }
 }

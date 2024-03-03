@@ -1,14 +1,14 @@
 {
   "outputChannels": [],
-  "mutedGuildsIds": [1013671171029467227, 1139818485166379039],
+  "mutedGuildsIds": ["1013671171029467227", "1139818485166379039"],
   "allowedGuildsIds": [],
-  "mutedChannelsIds": [1013671171029467227],
+  "mutedChannelsIds": ["1013671171029467227"],
   "allowedChannelsIds": [],
   "allowedUsersIds": [],
-  "mutedUsersIds": [1038694628490235904],
+  "mutedUsersIds": ["1038694628490235904"],
   "channelConfigs": {
     "1013671171029467227": {
-      "muted": [869088074758520832],
+      "muted": ["869088074758520832"],
       "allowed": []
     }
   },

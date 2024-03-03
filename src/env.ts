@@ -1,10 +1,9 @@
 import dotenv from "dotenv";
-import { ChatId } from "./config.js";
 
 export interface Env {
   DISCORD_TOKEN: string;
   TELEGRAM_TOKEN: string;
-  TELEGRAM_CHAT_ID: ChatId;
+  TELEGRAM_CHAT_ID: string;
 }
 
 export function getEnv(): Env {
