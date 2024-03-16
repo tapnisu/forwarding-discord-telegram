@@ -60,6 +60,12 @@ export class Bot extends Client {
         ? `[${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: `
         : `[${message.author.tag}]: `;
 
+    if (message.reference) {
+      const referenceMessage = await message.fetchReference();
+
+      render += `\n(Reference to @${referenceMessage.author.tag}'s msg: ${referenceMessage.content})\n`;
+    }
+
     render += message.content;
 
     const allAttachments: string[] = [];
