@@ -1,8 +1,8 @@
-import { Message } from "discord.js-selfbot-v13";
+import { Message, PartialMessage } from "discord.js-selfbot-v13";
 import { Config } from "./config.js";
 
 export function filterMessages(
-  message: Message<boolean>,
+  message: Message<boolean> | PartialMessage,
   config: Config
 ): boolean {
   if (
