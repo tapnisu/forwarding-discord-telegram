@@ -34,7 +34,7 @@
     "dotenv": "^16.4.5",
     "grammy": "^1.21.1",
     "node-capmonster": "^0.4.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
