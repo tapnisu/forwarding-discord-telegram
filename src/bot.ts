@@ -57,8 +57,8 @@ export class Bot extends Client {
     if (this.config.showDate) render += `[${date}] `;
     if (this.config.showChat)
       render += message.inGuild()
-        ? `[${message.guild.name} / ${message.channel.name} / ${message.author.tag}]: `
-        : `[${message.author.tag}]: `;
+        ? `[${message.guild?.name} / ${message.channel?.name} / ${message.author?.tag}]: `
+        : `[${message.author?.tag}]: `;
 
     if (message.reference) {
       const referenceMessage = await message.fetchReference();
