@@ -17,6 +17,6 @@
   "showDate": true,
   "showChat": true,
   "stackMessages": false,
-  "showMessageUpdates": true,
-  "showMessageDeletions": true
+  "showMessageUpdates": false,
+  "showMessageDeletions": false
 }
