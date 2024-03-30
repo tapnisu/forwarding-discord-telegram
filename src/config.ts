@@ -22,6 +22,8 @@ export interface Config {
   showDate?: boolean;
   showChat?: boolean;
   stackMessages?: boolean;
+  showMessageDeletions?: boolean;
+  showMessageUpdates?: boolean;
 }
 
 export function getConfig(): Config {

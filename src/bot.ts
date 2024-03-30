@@ -19,12 +19,14 @@ export class Bot extends Client {
     this.on("ready", () => console.log(`Logged in as ${this.user?.tag}!`));
 
     this.on("messageCreate", (message) => this.messageAction(message));
-    this.on("messageUpdate", (_oldMessage, newMessage) =>
-      this.messageAction(newMessage, "edited")
-    );
-    this.on("messageDelete", (message) =>
-      this.messageAction(message, "deleted")
-    );
+    if (config.showMessageUpdates ?? true)
+      this.on("messageUpdate", (_oldMessage, newMessage) =>
+        this.messageAction(newMessage, "updated")
+      );
+    if (config.showMessageDeletions ?? true)
+      this.on("messageDelete", (message) =>
+        this.messageAction(message, "deleted")
+      );
 
     if (config.stackMessages)
       setInterval(() => {

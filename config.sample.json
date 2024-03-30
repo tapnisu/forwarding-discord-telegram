@@ -16,5 +16,7 @@
   "imagesAsMedia": true,
   "showDate": true,
   "showChat": true,
-  "stackMessages": false
+  "stackMessages": false,
+  "showMessageUpdates": true,
+  "showMessageDeletions": true
 }
