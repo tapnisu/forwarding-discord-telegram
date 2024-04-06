@@ -68,7 +68,35 @@ export class Bot extends Client {
       render += `\n(Reference to @${referenceMessage.author.tag}'s msg: ${referenceMessage.content})\n`;
     }
 
-    render += message.content;
+    let content = message.content;
+
+    await Promise.all(
+      message.mentions.users.map(
+        async (user) =>
+          (content = content.replace(`<@${user.id}>`, `@${user.displayName}`))
+      )
+    );
+
+    await Promise.all(
+      message.mentions.channels.map(async (channel) => {
+        const fetched_channel = await channel.fetch();
+
+        content = content.replace(
+          `<#${channel.id}>`,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          `#${(fetched_channel as any).name}`
+        );
+      })
+    );
+
+    await Promise.all(
+      message.mentions.roles.map(
+        async (roles) =>
+          (content = content.replace(`<@&${roles.id}>`, `@${roles.name}`))
+      )
+    );
+
+    render += content;
 
     const allAttachments: string[] = [];
     const images: string[] = [];
