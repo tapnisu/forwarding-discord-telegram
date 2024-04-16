@@ -1,12 +1,19 @@
-import { Client, Message, PartialMessage } from "discord.js-selfbot-v13";
+import {
+  Client,
+  Message,
+  MessageAttachment,
+  PartialMessage
+} from "discord.js-selfbot-v13";
 import { Config } from "./config.js";
 import { filterMessages } from "./filterMessages.js";
 import { formatSize } from "./format.js";
 import { SenderBot } from "./senderBot.js";
+import { InputMediaBuilder } from "grammy";
+import { InputFile, InputMediaPhoto } from "grammy/types";
 
 export class Bot extends Client {
   messagesToSend: string[] = [];
-  imagesToSend: string[] = [];
+  imagesToSend: InputMediaPhoto[] = [];
   senderBot: SenderBot;
   config: Config;
 
@@ -99,7 +106,7 @@ export class Bot extends Client {
     render += content;
 
     const allAttachments: string[] = [];
-    const images: string[] = [];
+    const images: InputMediaPhoto[] = [];
 
     const embeds = message.embeds.map((embed) => {
       let stringEmbed = "Embed:\n";
@@ -122,7 +129,8 @@ export class Bot extends Client {
       if (embed.image) {
         stringEmbed += `  Image: ${embed.image.url}\n`;
 
-        if (this.config.imagesAsMedia ?? true) images.push(embed.image.url);
+        if (this.config.imagesAsMedia ?? true)
+          images.push(InputMediaBuilder.photo(embed.image.url));
       }
       if (embed.video) stringEmbed += `  Video: ${embed.video.url}\n`;
       if (embed.author) stringEmbed += `  Author: ${embed.author.name}\n`;
@@ -133,21 +141,24 @@ export class Bot extends Client {
 
     render += embeds.join("");
 
-    message.attachments.forEach((attachment) => {
-      if (
-        (this.config.imagesAsMedia ?? true) &&
-        attachment.contentType.startsWith("image")
-      )
-        return images.push(attachment.url);
+    await Promise.all(
+      message.attachments.map(async (attachment) => {
+        if (
+          (this.config.imagesAsMedia ?? true) &&
+          attachment.contentType.startsWith("image") &&
+          attachment.size < 10 * 1024 * 1024
+        )
+          return images.push(await this.attachmentToMedia(attachment));
 
-      allAttachments.push(
-        `Attachment:\n  Name: ${attachment.name}\n${
-          attachment.description
-            ? `	Description: ${attachment.description}\n`
-            : ""
-        }  Size: ${formatSize(attachment.size)}\n  Url: ${attachment.url}`
-      );
-    });
+        allAttachments.push(
+          `Attachment:\n  Name: ${attachment.name}\n${
+            attachment.description
+              ? `	Description: ${attachment.description}\n`
+              : ""
+          }  Size: ${formatSize(attachment.size)}\n  Url: ${attachment.url}`
+        );
+      })
+    );
 
     render += allAttachments.join("");
 
@@ -161,5 +172,16 @@ export class Bot extends Client {
     }
 
     this.senderBot.sendData([render], images);
+  }
+
+  async attachmentToMedia(attachment: MessageAttachment) {
+    if (attachment.size < 5 * 1024 * 1024)
+      return InputMediaBuilder.photo(attachment.url);
+
+    const res = await fetch(attachment.url);
+    const data = await res.blob();
+    const inputFile = new InputFile(data.stream());
+
+    return InputMediaBuilder.photo(inputFile);
   }
 }
