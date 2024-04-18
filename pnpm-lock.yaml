@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.22.4
     version: 1.22.4
   node-capmonster:
-    specifier: ^0.4.2
-    version: 0.4.2
+    specifier: ^0.4.3
+    version: 0.4.3
   pm2:
     specifier: '>=5.3.0'
     version: 5.3.1
@@ -1694,8 +1694,8 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: false
 
-  /node-capmonster@0.4.2:
-    resolution: {integrity: sha512-+1rLmPaplHZPSGcDnnmqT57U8v2v+uLTUrZ5sMIKuo2Mjh80q/DuXUevWAagfs5nfn76SHJoQMvUVhOxC7OCDA==}
+  /node-capmonster@0.4.3:
+    resolution: {integrity: sha512-cPHrHyjjqjT1vfYDrcT8dY4/uQXnXqF/pMZo4twbO1or8Ms7Wlt2fRd6/F3z3xAuu4WUJqeaOsv44/HRBT2zvQ==}
     dependencies:
       axios: 1.6.7
     transitivePeerDependencies:
