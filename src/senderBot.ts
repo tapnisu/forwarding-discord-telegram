@@ -33,11 +33,27 @@ export class SenderBot<C extends Context = Context> extends Bot<C> {
 
         if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
 
-        await this.api.sendMessage(chatId, messagesToSend.join("\n"), {
-          link_preview_options: {
-            is_disabled: this.disableLinkPreview
-          }
-        });
+        const renderedMessage = messagesToSend.join("\n");
+
+        const messageChunks: string[] = [];
+        const MESSAGE_CHUNK = 4096;
+
+        for (
+          let i = 0, charsLength = renderedMessage.length;
+          i < charsLength;
+          i += MESSAGE_CHUNK
+        ) {
+          messageChunks.push(renderedMessage.substring(i, i + MESSAGE_CHUNK));
+        }
+
+        messageChunks.reverse().forEach(
+          async (messageChunk) =>
+            await this.api.sendMessage(chatId, messageChunk, {
+              link_preview_options: {
+                is_disabled: this.disableLinkPreview
+              }
+            })
+        );
       });
     }
   }
