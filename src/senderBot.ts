@@ -28,8 +28,12 @@ export class SenderBot<C extends Context = Context> extends Bot<C> {
   async sendData(messagesToSend: string[], imagesToSend: InputMediaPhoto[]) {
     if (messagesToSend.length != 0) {
       this.chatsToSend.forEach(async (chatId) => {
-        if (imagesToSend.length != 0)
-          await this.api.sendMediaGroup(chatId, imagesToSend);
+        try {
+          if (imagesToSend.length != 0)
+            await this.api.sendMediaGroup(chatId, imagesToSend);
+        } catch (err) {
+          console.error(err);
+        }
 
         if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
 

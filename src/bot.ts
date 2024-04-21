@@ -145,6 +145,7 @@ export class Bot extends Client {
       message.attachments.map(async (attachment) => {
         if (
           (this.config.imagesAsMedia ?? true) &&
+          attachment.contentType &&
           attachment.contentType.startsWith("image") &&
           attachment.size < 10 * 1024 * 1024
         )
