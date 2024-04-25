@@ -86,13 +86,17 @@ export class Bot extends Client {
 
     await Promise.all(
       message.mentions.channels.map(async (channel) => {
-        const fetched_channel = await channel.fetch();
+        try {
+          const fetched_channel = await channel.fetch();
 
-        content = content.replace(
-          `<#${channel.id}>`,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          `#${(fetched_channel as any).name}`
-        );
+          content = content.replace(
+            `<#${channel.id}>`,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            `#${(fetched_channel as any).name}`
+          );
+        } catch (_) {
+          _;
+        }
       })
     );
 
