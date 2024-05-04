@@ -38,7 +38,7 @@ Selfbot that forwards your Discord messages to Telegram
      "channelConfigs": {},
      "disableLinkPreview": false,
      "imagesAsMedia": true,
-     "showDate": true,
+     "showDate": false,
      "showChat": true,
      "stackMessages": false,
      "showMessageUpdates": false,
