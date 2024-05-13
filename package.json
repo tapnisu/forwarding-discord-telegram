@@ -31,7 +31,7 @@
     "@grammyjs/auto-retry": "^2.0.1",
     "discord.js-selfbot-v13": "^3.1.4",
     "dotenv": "^16.4.5",
-    "grammy": "^1.22.4",
+    "grammy": "^1.23.0",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
@@ -55,5 +55,6 @@
     "node": ">=18.0.0"
   },
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "packageManager": "pnpm@9.1.1+sha512.14e915759c11f77eac07faba4d019c193ec8637229e62ec99eefb7cf3c3b75c64447882b7c485142451ee3a6b408059cdfb7b7fa0341b975f12d0f7629c71195"
 }
