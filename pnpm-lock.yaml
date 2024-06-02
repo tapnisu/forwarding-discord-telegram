@@ -23,9 +23,6 @@ importers:
       pm2:
         specifier: '>=5.3.0'
         version: 5.3.1
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
     devDependencies:
       '@types/node':
         specifier: ^20.12.13
@@ -48,6 +45,9 @@ importers:
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
 
 packages:
 
