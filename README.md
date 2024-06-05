@@ -10,9 +10,9 @@ Selfbot that forwards your Discord messages to Telegram
 1. Install node.js from <https://nodejs.org/en/>
 
    > **Important**:
-   > You should use version 16 or newer!
+   > You should use version 18 or newer!
 
-   If your system doesn't have Node 16 (or newer), you can use [Node Version Manager](https://github.com/nvm-sh/nvm).
+   If your system doesn't have Node 18 (or newer), you can use [Node Version Manager](https://github.com/nvm-sh/nvm).
 
 2. Clone this project:
 
@@ -25,7 +25,7 @@ Selfbot that forwards your Discord messages to Telegram
 
    ```sh
    corepack enable
-   pnpm install
+   corepack install
    ```
 
 4. Create `.env` file
