@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@grammyjs/auto-retry": "^2.0.1",
-    "discord.js-selfbot-v13": "^3.2.1",
+    "discord.js-selfbot-v13": "^3.2.2",
     "dotenv": "^16.4.5",
     "grammy": "^1.26.1"
   },
