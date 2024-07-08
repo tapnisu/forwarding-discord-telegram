@@ -12,8 +12,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1(grammy@1.26.1)
       discord.js-selfbot-v13:
-        specifier: ^3.2.1
-        version: 3.2.1
+        specifier: ^3.2.2
+        version: 3.2.2
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -433,8 +433,8 @@ packages:
   discord-api-types@0.37.83:
     resolution: {integrity: sha512-urGGYeWtWNYMKnYlZnOnDHm8fVRffQs3U0SpE8RHeiuLKb/u92APS8HoQnPTFbnXmY1vVnXjXO4dOxcAn3J+DA==}
 
-  discord.js-selfbot-v13@3.2.1:
-    resolution: {integrity: sha512-LOJKuFAwVAAgNDi/SMgazvxwFXXBCemAC2xrtyohjoswQYWLrSK/qCe84bQg1mz+5T50FN8K+GPuXH+G+P4ztg==}
+  discord.js-selfbot-v13@3.2.2:
+    resolution: {integrity: sha512-Qn0fzoTffaqE0Rc1wl7SdUpFELXXHCN3gmxlh26OjxvYR5aXSDJF8fm9xBmkfnbbqFzm6H1EZihMCT4W99UkQA==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
 
   doctrine@3.0.0:
@@ -1690,7 +1690,7 @@ snapshots:
 
   discord-api-types@0.37.83: {}
 
-  discord.js-selfbot-v13@3.2.1:
+  discord.js-selfbot-v13@3.2.2:
     dependencies:
       '@aikochan2k6/qrcode-terminal': 0.12.1
       '@discordjs/builders': 1.8.1
