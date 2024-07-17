@@ -11,7 +11,13 @@ if (env.TELEGRAM_CHAT_ID) channelsToSend.unshift(env.TELEGRAM_CHAT_ID);
 
 const client = new Bot(
   config,
-  new SenderBot(env.TELEGRAM_TOKEN, channelsToSend, config.disableLinkPreview)
+  new SenderBot(
+    env.TELEGRAM_TOKEN,
+    channelsToSend,
+    config.disableLinkPreview,
+    null,
+    env.TELEGRAM_TOPIC_ID ? Number(env.TELEGRAM_TOPIC_ID) : null
+  )
 );
 
 client.login(env.DISCORD_TOKEN);

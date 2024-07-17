@@ -32,8 +32,11 @@ Selfbot that forwards your Discord messages to Telegram
 
    ```env
    DISCORD_TOKEN=<YOUR_DISCORD_TOKEN>
-   TELEGRAM_TOKEN=<YOUR_TELEGRAM_TOKEN>
+   TELEGRAM_TOKEN=<YOUR_TELEGAM_TOKEN>
    TELEGRAM_CHAT_ID=<YOUR_TELEGRAM_CHAT_ID>
+
+   # Optional
+   # TELEGRAM_TOPIC_ID=<YOUR_TELEGRAM_TOKEN_ID>
    ```
 
 5. Config your bot via [`config.json`](сonfig.json) (insert your values)
@@ -64,13 +67,13 @@ Selfbot that forwards your Discord messages to Telegram
    pnpm install
    ```
 
-6. Build bot via
+7. Build bot via
 
    ```sh
    pnpm build
    ```
 
-7. Run bot via
+8. Run bot via
 
    ```sh
    pnpm start
