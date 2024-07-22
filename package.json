@@ -5,9 +5,6 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node .",
-    "pm2:start": "pm2 start . --name 'forwarding-discord-telegram' --exp-backoff-restart-delay=100",
-    "pm2:start:watch": "pm2 start . --name 'forwarding-discord-telegram' --watch --exp-backoff-restart-delay=100",
-    "pm2:stop": "pm2 stop .",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "format": "npx prettier --write .",
@@ -42,14 +39,6 @@
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
     "typescript": "^5.5.3"
-  },
-  "peerDependencies": {
-    "pm2": ">=5.3.0"
-  },
-  "peerDependenciesMeta": {
-    "pm2": {
-      "optional": true
-    }
   },
   "engines": {
     "node": ">=18.0.0"
