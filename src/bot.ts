@@ -179,15 +179,15 @@ export class Bot extends Client {
 
     for (const channel of channels) {
       try {
-        const fetched_channel = await channel.fetch();
+        const fetchedChannel = await channel.fetch();
 
         text = text.replace(
           `<#${channel.id}>`,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          `#${(fetched_channel as any).name}`
+          `#${(fetchedChannel as any).name}`
         );
-      } catch (_) {
-        _;
+      } catch (err) {
+        console.error(err);
       }
     }
 
