@@ -9,15 +9,14 @@ const config = getConfig();
 const channelsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID) channelsToSend.unshift(env.TELEGRAM_CHAT_ID);
 
-const client = new Bot(
-  config,
-  new SenderBot(
-    env.TELEGRAM_TOKEN,
-    channelsToSend,
-    config.disableLinkPreview,
-    null,
-    env.TELEGRAM_TOPIC_ID ? Number(env.TELEGRAM_TOPIC_ID) : null
-  )
+const senderBot = new SenderBot(
+  env.TELEGRAM_TOKEN,
+  channelsToSend,
+  config.disableLinkPreview,
+  null,
+  env.TELEGRAM_TOPIC_ID ? Number(env.TELEGRAM_TOPIC_ID) : null
 );
+
+const client = new Bot(config, senderBot);
 
 client.login(env.DISCORD_TOKEN);

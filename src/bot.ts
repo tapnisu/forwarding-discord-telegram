@@ -1,8 +1,11 @@
 import {
+  AnyChannel,
   Client,
   Message,
   MessageAttachment,
-  PartialMessage
+  PartialMessage,
+  Role,
+  User
 } from "discord.js-selfbot-v13";
 import { Config } from "./config.js";
 import { filterMessages } from "./filterMessages.js";
@@ -23,17 +26,23 @@ export class Bot extends Client {
     this.config = config;
     this.senderBot = senderBot;
 
-    this.on("ready", () => console.log(`Logged in as ${this.user?.tag}!`));
+    this.on("ready", () => {
+      console.log(`Logged in as ${this.user?.tag}!`);
+    });
 
-    this.on("messageCreate", (message) => this.messageAction(message));
+    this.on("messageCreate", (message) => {
+      this.messageAction(message);
+    });
+
     if (config.showMessageUpdates ?? false)
-      this.on("messageUpdate", (_oldMessage, newMessage) =>
-        this.messageAction(newMessage, "updated")
-      );
+      this.on("messageUpdate", (_oldMessage, newMessage) => {
+        this.messageAction(newMessage, "updated");
+      });
+
     if (config.showMessageDeletions ?? false)
-      this.on("messageDelete", (message) =>
-        this.messageAction(message, "deleted")
-      );
+      this.on("messageDelete", (message) => {
+        this.messageAction(message, "deleted");
+      });
 
     if (config.stackMessages)
       setInterval(() => {
@@ -62,7 +71,6 @@ export class Bot extends Client {
     let render = "";
 
     if (tag) render += `[${tag}] `;
-
     if (this.config.showDate) render += `[${date}] `;
     if (this.config.showChat)
       render += message.inGuild()
@@ -71,43 +79,15 @@ export class Bot extends Client {
 
     if (message.reference) {
       const referenceMessage = await message.fetchReference();
-
       render += `\n(Reference to @${referenceMessage.author.tag}'s msg: ${referenceMessage.content})\n`;
     }
 
-    let content = message.content;
-
-    await Promise.all(
-      message.mentions.users.map(
-        async (user) =>
-          (content = content.replace(`<@${user.id}>`, `@${user.displayName}`))
-      )
+    render += this.renderMentions(
+      message.content,
+      message.mentions.users.values(),
+      message.mentions.channels.values(),
+      message.mentions.roles.values()
     );
-
-    await Promise.all(
-      message.mentions.channels.map(async (channel) => {
-        try {
-          const fetched_channel = await channel.fetch();
-
-          content = content.replace(
-            `<#${channel.id}>`,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            `#${(fetched_channel as any).name}`
-          );
-        } catch (_) {
-          _;
-        }
-      })
-    );
-
-    await Promise.all(
-      message.mentions.roles.map(
-        async (roles) =>
-          (content = content.replace(`<@&${roles.id}>`, `@${roles.name}`))
-      )
-    );
-
-    render += content;
 
     const allAttachments: string[] = [];
     const images: InputMediaPhoto[] = [];
@@ -145,25 +125,23 @@ export class Bot extends Client {
 
     render += embeds.join("");
 
-    await Promise.all(
-      message.attachments.map(async (attachment) => {
-        if (
-          (this.config.imagesAsMedia ?? true) &&
-          attachment.contentType &&
-          attachment.contentType.startsWith("image") &&
-          attachment.size < 10 * 1024 * 1024
-        )
-          return images.push(await this.attachmentToMedia(attachment));
+    for (const attachment of message.attachments.values()) {
+      if (
+        (this.config.imagesAsMedia ?? true) &&
+        attachment.contentType &&
+        attachment.contentType.startsWith("image") &&
+        attachment.size < 10 * 1024 * 1024
+      )
+        return images.push(await this.attachmentToMedia(attachment));
 
-        allAttachments.push(
-          `Attachment:\n  Name: ${attachment.name}\n${
-            attachment.description
-              ? `	Description: ${attachment.description}\n`
-              : ""
-          }  Size: ${formatSize(attachment.size)}\n  Url: ${attachment.url}`
-        );
-      })
-    );
+      allAttachments.push(
+        `Attachment:\n  Name: ${attachment.name}\n${
+          attachment.description
+            ? `	Description: ${attachment.description}\n`
+            : ""
+        }  Size: ${formatSize(attachment.size)}\n  Url: ${attachment.url}`
+      );
+    }
 
     render += allAttachments.join("");
 
@@ -172,7 +150,6 @@ export class Bot extends Client {
     if (this.config.stackMessages) {
       this.messagesToSend.push(render);
       this.imagesToSend.push(...images);
-
       return;
     }
 
@@ -188,5 +165,36 @@ export class Bot extends Client {
     const inputFile = new InputFile(data.stream());
 
     return InputMediaBuilder.photo(inputFile);
+  }
+
+  async renderMentions(
+    text: string,
+    users: IterableIterator<User>,
+    channels: IterableIterator<AnyChannel>,
+    roles: IterableIterator<Role>
+  ) {
+    for (const user of users) {
+      text = text.replace(`<@${user.id}>`, `@${user.displayName}`);
+    }
+
+    for (const channel of channels) {
+      try {
+        const fetched_channel = await channel.fetch();
+
+        text = text.replace(
+          `<#${channel.id}>`,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          `#${(fetched_channel as any).name}`
+        );
+      } catch (_) {
+        _;
+      }
+    }
+
+    for (const role of roles) {
+      text = text.replace(`<@&${role.id}>`, `@${role.name}`);
+    }
+
+    return text;
   }
 }
