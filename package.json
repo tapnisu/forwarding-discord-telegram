@@ -7,7 +7,7 @@
     "start": "node .",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "format": "npx prettier --write .",
+    "format": "prettier --write .",
     "lint": "eslint ./"
   },
   "keywords": [
