@@ -82,7 +82,7 @@ export class Bot extends Client {
       render += `\n(Reference to @${referenceMessage.author.tag}'s msg: ${referenceMessage.content})\n`;
     }
 
-    render += this.renderMentions(
+    render += await this.renderMentions(
       message.content,
       message.mentions.users.values(),
       message.mentions.channels.values(),
