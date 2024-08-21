@@ -131,8 +131,10 @@ export class Bot extends Client {
         attachment.contentType &&
         attachment.contentType.startsWith("image") &&
         attachment.size < 10 * 1024 * 1024
-      )
-        return images.push(await this.attachmentToMedia(attachment));
+      ) {
+        images.push(await this.attachmentToMedia(attachment));
+        continue;
+      }
 
       allAttachments.push(
         `Attachment:\n  Name: ${attachment.name}\n${
