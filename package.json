@@ -25,21 +25,21 @@
     "url": "https://tapni.su"
   },
   "dependencies": {
-    "@grammyjs/auto-retry": "^2.0.1",
-    "discord.js-selfbot-v13": "^3.2.2",
+    "@grammyjs/auto-retry": "^2.0.2",
+    "discord.js-selfbot-v13": "^3.3.0",
     "dotenv": "^16.4.5",
-    "grammy": "^1.27.0"
+    "grammy": "^1.29.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
-    "@types/node": "^20.14.11",
-    "eslint": "^9.7.0",
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^20.16.1",
+    "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.8.0",
+    "globals": "^15.9.0",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^7.16.1"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.18.0"
   },
   "engines": {
     "node": ">=18.0.0"
