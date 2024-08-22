@@ -66,7 +66,7 @@ export async function getConfig(): Promise<Config> {
     config.allowedChannelsIds,
     config.allowedUsersIds,
     config.mutedUsersIds,
-    ...Object.keys(config.channelConfigs).flatMap((key) => [
+    ...Object.keys(config.channelConfigs ?? {}).flatMap((key) => [
       config.channelConfigs[key].allowed,
       config.channelConfigs[key].muted
     ])
