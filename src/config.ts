@@ -32,10 +32,10 @@ export async function getConfig(): Promise<Config> {
   if (!existsSync("./config.json")) {
     const defaultConfig = JSON.stringify({
       outputChannels: [],
-      mutedGuildsIds: [],
       allowedGuildsIds: [],
-      mutedChannelsIds: [],
+      mutedGuildsIds: [],
       allowedChannelsIds: [],
+      mutedChannelsIds: [],
       allowedUsersIds: [],
       mutedUsersIds: [],
       channelConfigs: {},
