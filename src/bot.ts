@@ -34,12 +34,12 @@ export class Bot extends Client {
       this.messageAction(message);
     });
 
-    if (config.showMessageUpdates ?? false)
+    if (config.showMessageUpdates)
       this.on("messageUpdate", (_oldMessage, newMessage) => {
         this.messageAction(newMessage, "updated");
       });
 
-    if (config.showMessageDeletions ?? false)
+    if (config.showMessageDeletions)
       this.on("messageDelete", (message) => {
         this.messageAction(message, "deleted");
       });
@@ -113,7 +113,7 @@ export class Bot extends Client {
       if (embed.image) {
         stringEmbed += `  Image: ${embed.image.url}\n`;
 
-        if (this.config.imagesAsMedia ?? true)
+        if (this.config.imagesAsMedia)
           images.push(InputMediaBuilder.photo(embed.image.url));
       }
       if (embed.video) stringEmbed += `  Video: ${embed.video.url}\n`;
@@ -127,7 +127,7 @@ export class Bot extends Client {
 
     for (const attachment of message.attachments.values()) {
       if (
-        (this.config.imagesAsMedia ?? true) &&
+        this.config.imagesAsMedia &&
         attachment.contentType &&
         attachment.contentType.startsWith("image") &&
         attachment.size < 10 * 1024 * 1024
