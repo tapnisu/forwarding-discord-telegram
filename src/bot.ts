@@ -8,7 +8,7 @@ import {
   User
 } from "discord.js-selfbot-v13";
 import { Config } from "./config.js";
-import { filterMessages } from "./filterMessages.js";
+import { isAllowedByConfig } from "./filterMessages.js";
 import { formatSize } from "./format.js";
 import { SenderBot } from "./senderBot.js";
 import { InputMediaBuilder } from "grammy";
@@ -57,7 +57,7 @@ export class Bot extends Client {
     message: Message<boolean> | PartialMessage,
     tag?: string
   ) {
-    if (!filterMessages(message, this.config)) return;
+    if (!isAllowedByConfig(message, this.config)) return;
 
     const date = new Date().toLocaleString("en-US", {
       day: "2-digit",

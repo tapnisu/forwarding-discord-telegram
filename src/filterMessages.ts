@@ -1,84 +1,44 @@
 import { Message, PartialMessage } from "discord.js-selfbot-v13";
-import { Config } from "./config.js";
+import { ChannelId, Config } from "./config.js";
 
-export function filterMessages(
+export function isAllowedByConfig(
   message: Message<boolean> | PartialMessage,
   config: Config
 ): boolean {
-  if (
-    config.mutedGuildsIds != undefined &&
-    config.mutedGuildsIds?.length != 0 &&
-    (config.mutedGuildsIds?.includes(message.guildId) ||
-      config.mutedGuildsIds?.includes(Number(message.guildId)))
-  )
-    return false;
+  const allowedUsers = [
+    ...(config.allowedUsersIds ?? []),
+    ...(config.channelConfigs?.[message.channel.id]?.allowed ?? [])
+  ];
 
-  if (
-    config.allowedGuildsIds != undefined &&
-    config.allowedGuildsIds?.length != 0 &&
-    !config.allowedGuildsIds?.includes(message.guildId) &&
-    !config.allowedGuildsIds?.includes(Number(message.guildId))
-  )
-    return false;
+  const mutedUsers = [
+    ...(config.mutedUsersIds ?? []),
+    ...(config.channelConfigs?.[message.channel.id]?.muted ?? [])
+  ];
 
-  if (
-    config.mutedChannelsIds != undefined &&
-    config.mutedChannelsIds?.length != 0 &&
-    (config.mutedChannelsIds?.includes(message.channel.id) ||
-      config.mutedChannelsIds?.includes(Number(message.channel.id)))
-  )
-    return false;
+  return (
+    // Guild check
+    isInAllowedIds(message.guildId, config.allowedGuildsIds) &&
+    isNotInMutedIds(message.guildId, config.mutedGuildsIds) &&
+    // Channel check
+    isInAllowedIds(message.channelId, config.allowedChannelsIds) &&
+    isNotInMutedIds(message.channelId, config.mutedChannelsIds) &&
+    // Author check
+    isInAllowedIds(message.author.id, allowedUsers) &&
+    isNotInMutedIds(message.author.id, mutedUsers)
+  );
+}
 
-  if (
-    config.allowedChannelsIds != undefined &&
-    config.allowedChannelsIds?.length != 0 &&
-    !config.allowedChannelsIds?.includes(message.channel.id) &&
-    !config.allowedChannelsIds?.includes(Number(message.channel.id))
-  )
-    return false;
+export function isNotInMutedIds(id: string, mutedIds: ChannelId[] = []) {
+  return (
+    mutedIds.length == 0 ||
+    !(mutedIds.includes(id) || mutedIds.includes(Number(id)))
+  );
+}
 
-  if (
-    config.mutedUsersIds != undefined &&
-    config.mutedUsersIds?.length != 0 &&
-    (config.mutedUsersIds?.includes(message.author.id) ||
-      config.mutedUsersIds?.includes(Number(message.author.id)))
-  )
-    return false;
-
-  if (
-    config.allowedUsersIds != undefined &&
-    config.allowedUsersIds?.length != 0 &&
-    !config.allowedUsersIds?.includes(message.author.id) &&
-    !config.allowedUsersIds?.includes(Number(message.author.id))
-  )
-    return false;
-
-  if (
-    config.channelConfigs != undefined &&
-    config.channelConfigs?.[message.channel.id] != undefined &&
-    config.channelConfigs?.[message.channel.id]?.allowed != undefined &&
-    config.channelConfigs?.[message.channel.id]?.allowed?.length != 0 &&
-    !config.channelConfigs?.[message.channel.id]?.allowed?.includes(
-      message.author.id
-    ) &&
-    !config.channelConfigs?.[message.channel.id]?.allowed?.includes(
-      Number(message.author.id)
-    )
-  )
-    return false;
-
-  if (
-    config.channelConfigs?.[message.channel.id] != undefined &&
-    config.channelConfigs?.[message.channel.id]?.muted != undefined &&
-    config.channelConfigs?.[message.channel.id]?.muted?.length != 0 &&
-    (config.channelConfigs?.[message.channel.id]?.muted?.includes(
-      message.author.id
-    ) ||
-      config.channelConfigs?.[message.channel.id]?.muted?.includes(
-        Number(message.author.id)
-      ))
-  )
-    return false;
-
-  return true;
+export function isInAllowedIds(id: string, allowedIds: ChannelId[] = []) {
+  return (
+    allowedIds.length == 0 ||
+    allowedIds.includes(id) ||
+    allowedIds.includes(Number(id))
+  );
 }
