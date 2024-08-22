@@ -43,7 +43,9 @@ export async function getConfig(): Promise<Config> {
       imagesAsMedia: true,
       showDate: true,
       showChat: true,
-      stackMessages: false
+      stackMessages: false,
+      showMessageUpdates: false,
+      showMessageDeletions: false
     });
 
     const formattedDefaultConfig = await prettier.format(defaultConfig, {
