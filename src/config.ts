@@ -1,4 +1,6 @@
-import { existsSync, readFileSync, writeFileSync } from "fs";
+import { readFile, writeFile } from "fs/promises";
+import { existsSync } from "fs";
+import prettier from "prettier";
 
 export type ChannelId = number | string;
 export type ChatId = ChannelId;
@@ -26,49 +28,59 @@ export interface Config {
   showMessageUpdates?: boolean;
 }
 
-export function getConfig(): Config {
-  if (!existsSync("./config.json"))
-    writeFileSync(
-      "./config.json",
-      JSON.stringify({
-        outputChannels: [],
-        mutedGuildsIds: [],
-        allowedGuildsIds: [],
-        mutedChannelsIds: [],
-        allowedChannelsIds: [],
-        allowedUsersIds: [],
-        mutedUsersIds: [],
-        channelConfigs: {},
-        disableLinkPreview: false,
-        imagesAsMedia: true,
-        showDate: true,
-        showChat: true,
-        stackMessages: false
-      })
-    );
+export async function getConfig(): Promise<Config> {
+  if (!existsSync("./config.json")) {
+    const defaultConfig = JSON.stringify({
+      outputChannels: [],
+      mutedGuildsIds: [],
+      allowedGuildsIds: [],
+      mutedChannelsIds: [],
+      allowedChannelsIds: [],
+      allowedUsersIds: [],
+      mutedUsersIds: [],
+      channelConfigs: {},
+      disableLinkPreview: false,
+      imagesAsMedia: true,
+      showDate: true,
+      showChat: true,
+      stackMessages: false
+    });
 
-  const config: Config = JSON.parse(readFileSync("./config.json").toString());
+    const formattedDefaultConfig = await prettier.format(defaultConfig, {
+      parser: "json"
+    });
 
-  config.outputChannels?.forEach((id) => testIDType(id));
-  config.mutedGuildsIds?.forEach((id) => testIDType(id));
-  config.allowedGuildsIds?.forEach((id) => testIDType(id));
-  config.mutedChannelsIds?.forEach((id) => testIDType(id));
-  config.allowedChannelsIds?.forEach((id) => testIDType(id));
-  config.allowedUsersIds?.forEach((id) => testIDType(id));
-  config.mutedUsersIds?.forEach((id) => testIDType(id));
+    await writeFile("./config.json", formattedDefaultConfig);
+  }
 
-  Object.keys(config.channelConfigs).forEach((key) => {
-    config.channelConfigs[key].allowed?.forEach((id) => testIDType(id));
+  const configString = await readFile("./config.json");
+  const config: Config = JSON.parse(configString.toString());
 
-    config.channelConfigs[key].muted?.forEach((id) => testIDType(id));
-  });
+  const idTypes = [
+    config.outputChannels,
+    config.mutedGuildsIds,
+    config.allowedGuildsIds,
+    config.mutedChannelsIds,
+    config.allowedChannelsIds,
+    config.allowedUsersIds,
+    config.mutedUsersIds,
+    ...Object.keys(config.channelConfigs).flatMap((key) => [
+      config.channelConfigs[key].allowed,
+      config.channelConfigs[key].muted
+    ])
+  ];
+
+  testIDsType(idTypes.filter((ids) => ids != undefined).flat());
 
   return config;
 }
 
-export function testIDType(id: ChannelId) {
-  if (typeof id != "string")
-    console.warn(
-      `${id} is not a string! This could lead to errors when matching ids. Please input strings in "${id}" format (with quotes)`
-    );
+export function testIDsType(ids: ChannelId[]) {
+  for (const id of ids) {
+    if (typeof id != "string") {
+      console.warn(
+        `${id} is not a string! This could lead to errors when matching ids. Please input strings in "${id}" format (with quotes)`
+      );
+    }
+  }
 }

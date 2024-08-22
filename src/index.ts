@@ -4,7 +4,7 @@ import { getEnv } from "./env.js";
 import { SenderBot } from "./senderBot.js";
 
 const env = getEnv();
-const config = getConfig();
+const config = await getConfig();
 
 const channelsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID) channelsToSend.unshift(env.TELEGRAM_CHAT_ID);
