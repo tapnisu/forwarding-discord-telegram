@@ -30,7 +30,8 @@
     "@grammyjs/auto-retry": "^2.0.2",
     "discord.js-selfbot-v13": "^3.4.0",
     "dotenv": "^16.4.5",
-    "grammy": "^1.30.0"
+    "grammy": "^1.30.0",
+    "prettier": "^3.3.3"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.0",
@@ -40,7 +41,6 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.11.0",
-    "prettier": "^3.3.3",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.8.1"
   },
