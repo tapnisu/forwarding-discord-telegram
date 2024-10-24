@@ -1,10 +1,11 @@
+name: forwarding-discord-telegram
 services:
-  forwarding-discord-telegram:
-    build: .
+  bot:
+    image: tapnisu/forwarding-discord-telegram:main
     environment:
-      - DISCORD_TOKEN=
-      - TELEGRAM_TOKEN=
-      - TELEGRAM_CHAT_ID=
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID}
     volumes:
       - ./config.json:/app/config.json
     restart: unless-stopped
