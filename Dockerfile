@@ -1,44 +1,25 @@
-# Base image with Node and Python (since pnpm and Python are both needed)
-FROM node:18-bullseye as builder
+FROM node:18-alpine3.20 AS base
+LABEL authors="tapnisu"
 
-# Set working directory in the container
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    libffi-dev \
-    libnacl-dev \
-    libssl-dev \
-    python3 \
-    python3-pip \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+COPY package.json pnpm-lock.yaml /app/
+RUN corepack enable && corepack prepare
 
-# Clone the project from GitHub
-RUN git clone https://github.com/tapnisu/forwarding-discord-telegram.git /app
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
-# Install pnpm globally
-RUN npm install -g pnpm
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-# Install dependencies with pnpm
-RUN pnpm install
+COPY . /app
+RUN pnpm run build
 
-# Build the bot using pnpm
-RUN pnpm build
+FROM base
+COPY --from=build /app/dist /app/dist
+COPY --from=prod-deps /app/node_modules /app/node_modules
 
-# Final stage for runtime
-FROM node:18-bullseye-slim
-
-# Set working directory in the container
-WORKDIR /app
-
-# Copy only the necessary built files from the builder stage
-COPY --from=builder /app/node_modules /app/node_modules
-COPY --from=builder /app/dist /app/dist
-COPY --from=builder /app/package.json /app/package.json
-
-# Install pnpm globally
-RUN npm install -g pnpm
-
-# Run the bot via pnpm
-CMD ["pnpm", "start"]
+CMD [ "pnpm", "run", "start" ]
