@@ -7,6 +7,8 @@ Selfbot that forwards your Discord messages to Telegram
 
 ## Setup
 
+## Natively
+
 1. Install node.js from <https://nodejs.org/en/>
 
    > **Important**:
@@ -16,14 +18,14 @@ Selfbot that forwards your Discord messages to Telegram
 
 2. Clone this project:
 
-   ```sh
+   ```shell
    git clone https://github.com/tapnisu/forwarding-discord-telegram.git
    cd forwarding-discord-telegram
    ```
 
 3. Install [pnpm](https://pnpm.io/) using [Corepack](https://nodejs.org/api/corepack.html):
 
-   ```sh
+   ```shell
    corepack enable
    corepack install
    ```
@@ -63,22 +65,89 @@ Selfbot that forwards your Discord messages to Telegram
 
 6. Install dependencies:
 
-   ```sh
+   ```shell
    pnpm install
    ```
 
 7. Build bot via
 
-   ```sh
+   ```shell
    pnpm build
    ```
 
 8. Run bot via
 
-   ```sh
+   ```shell
    pnpm start
    ```
 
-### 🎉 Now you got your bot running 🎉
+### Docker
 
-Built using [discord.js-selfbot-v13](https://github.com/aiko-chan-ai/discord.js-selfbot-v13), [Grammy](https://www.npmjs.com/package/grammy) and TypeScript
+1. [Install Docker Engine](https://docs.docker.com/engine/install/)
+
+2. Config your bot via [`config.json`](сonfig.json) (insert your values)
+
+   ```json
+   {
+     "outputChannels": [],
+     "mutedGuildsIds": [],
+     "allowedGuildsIds": [],
+     "mutedChannelsIds": [],
+     "allowedChannelsIds": [],
+     "allowedUsersIds": [],
+     "mutedUsersIds": [],
+     "channelConfigs": {},
+     "disableLinkPreview": false,
+     "imagesAsMedia": true,
+     "showDate": false,
+     "showChat": true,
+     "stackMessages": false,
+     "showMessageUpdates": false,
+     "showMessageDeletions": false
+   }
+   ```
+
+3. Run forwarding-discord-telegram using Docker
+
+   ```shell
+   docker run -d \
+     --name forwarding-discord-telegram \
+     --env DISCORD_TOKEN=${DISCORD_TOKEN} \
+     --env TELEGRAM_TOKEN=${TELEGRAM_TOKEN} \
+     --env TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID} \
+     -v $(pwd)/config.json:/app/config.json \
+     --restart unless-stopped \
+     tapnisu/forwarding-discord-telegram:main
+   ```
+
+### Docker Compose
+
+1. [Install Docker Engine](https://docs.docker.com/engine/install/)
+
+2. Config your bot via [`config.json`](сonfig.json) (insert your values)
+
+   ```json
+   {
+     "outputChannels": [],
+     "mutedGuildsIds": [],
+     "allowedGuildsIds": [],
+     "mutedChannelsIds": [],
+     "allowedChannelsIds": [],
+     "allowedUsersIds": [],
+     "mutedUsersIds": [],
+     "channelConfigs": {},
+     "disableLinkPreview": false,
+     "imagesAsMedia": true,
+     "showDate": false,
+     "showChat": true,
+     "stackMessages": false,
+     "showMessageUpdates": false,
+     "showMessageDeletions": false
+   }
+   ```
+
+3. Run forwarding-discord-telegram using Docker Compose
+
+   ```shell
+   docker compose up -d
+   ```
