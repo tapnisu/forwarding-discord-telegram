@@ -28,26 +28,26 @@
   },
   "dependencies": {
     "@grammyjs/auto-retry": "^2.0.2",
-    "discord.js-selfbot-v13": "^3.4.0",
+    "discord.js-selfbot-v13": "^3.4.2",
     "dotenv": "^16.4.5",
-    "grammy": "^1.30.0",
+    "grammy": "^1.31.3",
     "prettier": "^3.3.3"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.0",
-    "@eslint/js": "^9.12.0",
-    "@types/node": "^20.16.11",
-    "eslint": "^9.12.0",
+    "@eslint/compat": "^1.2.2",
+    "@eslint/js": "^9.14.0",
+    "@types/node": "^20.17.6",
+    "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.11.0",
+    "globals": "^15.12.0",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.8.1"
+    "typescript-eslint": "^8.14.0"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "license": "MIT",
   "type": "module",
-  "packageManager": "pnpm@9.12.1+sha512.e5a7e52a4183a02d5931057f7a0dbff9d5e9ce3161e33fa68ae392125b79282a8a8a470a51dfc8a0ed86221442eb2fb57019b0990ed24fab519bf0e1bc5ccfc4"
+  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }
