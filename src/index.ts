@@ -19,4 +19,5 @@ const senderBot = new SenderBot(
 
 const client = new Bot(config, senderBot);
 
+senderBot.start();
 client.login(env.DISCORD_TOKEN);
