@@ -19,5 +19,10 @@ const senderBot = new SenderBot(
 
 const client = new Bot(config, senderBot);
 
-senderBot.start();
+try {
+  senderBot.start();
+} catch (err) {
+  console.error(err);
+}
+
 client.login(env.DISCORD_TOKEN);
