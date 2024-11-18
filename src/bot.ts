@@ -27,7 +27,7 @@ export class Bot extends Client {
     this.senderBot = senderBot;
 
     this.on("ready", () => {
-      console.log(`Logged in as ${this.user?.tag}!`);
+      console.log(`Logged into Discord as @${this.user?.tag}!`);
     });
 
     this.on("messageCreate", (message) => {
