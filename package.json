@@ -1,6 +1,6 @@
 {
   "name": "forwarding-discord-telegram",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Selfbot that forwards your Discord messages to Telegram",
   "main": "dist/index.js",
   "scripts": {
@@ -30,19 +30,19 @@
     "@grammyjs/auto-retry": "^2.0.2",
     "discord.js-selfbot-v13": "^3.4.2",
     "dotenv": "^16.4.5",
-    "grammy": "^1.31.3",
+    "grammy": "^1.32.0",
     "prettier": "^3.3.3"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.2",
-    "@eslint/js": "^9.14.0",
-    "@types/node": "^20.17.6",
-    "eslint": "^9.14.0",
+    "@eslint/compat": "^1.2.3",
+    "@eslint/js": "^9.15.0",
+    "@types/node": "^20.17.7",
+    "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.12.0",
-    "typescript": "^5.6.3",
-    "typescript-eslint": "^8.14.0"
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.15.0"
   },
   "engines": {
     "node": ">=18.0.0"
