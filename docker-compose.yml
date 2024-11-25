@@ -1,7 +1,7 @@
 name: forwarding-discord-telegram
 services:
   bot:
-    image: tapnisu/forwarding-discord-telegram:main
+    image: tapnisu/forwarding-discord-telegram
     environment:
       DISCORD_TOKEN: ${DISCORD_TOKEN}
       TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
