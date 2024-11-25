@@ -117,7 +117,7 @@ Selfbot that forwards your Discord messages to Telegram
      --env TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID} \
      -v $(pwd)/config.json:/app/config.json \
      --restart unless-stopped \
-     tapnisu/forwarding-discord-telegram:main
+     tapnisu/forwarding-discord-telegram
    ```
 
 ### Docker Compose
