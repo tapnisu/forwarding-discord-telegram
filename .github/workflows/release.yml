@@ -3,7 +3,12 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - "main"
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - "main"
 
 jobs:
   docker:
@@ -19,9 +24,11 @@ jobs:
             ghcr.io/tapnisu/forwarding-discord-telegram
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=schedule
             type=ref,event=branch
             type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
             type=sha
 
       - name: Set up QEMU
