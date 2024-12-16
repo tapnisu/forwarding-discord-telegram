@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@grammyjs/auto-retry": "^2.0.2",
-    "discord.js-selfbot-v13": "^3.4.5",
+    "discord.js-selfbot-v13": "^3.4.6",
     "dotenv": "^16.4.5",
     "grammy": "^1.32.0",
     "prettier": "^3.3.3"
