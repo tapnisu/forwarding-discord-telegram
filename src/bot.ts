@@ -1,53 +1,65 @@
 import {
   AnyChannel,
-  Client,
+  Client as SelfBotClient,
   Message,
   MessageAttachment,
   PartialMessage,
   Role,
   User
 } from "discord.js-selfbot-v13";
+import { Client as BotClient } from "discord.js";
+import { InputMediaBuilder } from "grammy";
+import { InputFile, InputMediaPhoto } from "grammy/types";
+
 import { Config } from "./config.js";
 import { isAllowedByConfig } from "./filterMessages.js";
 import { formatSize } from "./format.js";
 import { SenderBot } from "./senderBot.js";
-import { InputMediaBuilder } from "grammy";
-import { InputFile, InputMediaPhoto } from "grammy/types";
 
-export class Bot extends Client {
+export type Client<Ready extends boolean = boolean> =
+  | SelfBotClient<Ready>
+  | BotClient<Ready>;
+
+export class Bot {
   messagesToSend: string[] = [];
   imagesToSend: InputMediaPhoto[] = [];
   senderBot: SenderBot;
   config: Config;
+  client: Client;
 
-  constructor(config: Config, senderBot: SenderBot) {
-    super();
-
+  constructor(client: Client, config: Config, senderBot: SenderBot) {
     this.config = config;
     this.senderBot = senderBot;
+    this.client = client;
 
-    this.on("ready", () => {
-      console.log(`Logged into Discord as @${this.user?.tag}!`);
+    // @ts-expect-error This expression is not callable.
+    this.client.on("ready", (clientArg: Client<true>) => {
+      console.log(`Logged into Discord as @${clientArg.user?.tag}!`);
     });
 
-    this.on("messageCreate", (message) => {
+    // @ts-expect-error This expression is not callable.
+    this.client.on("messageCreate", (message: Message) => {
       this.messageAction(message);
     });
 
     if (config.showMessageUpdates)
-      this.on("messageUpdate", (_oldMessage, newMessage) => {
-        this.messageAction(newMessage, "updated");
-      });
+      // @ts-expect-error This expression is not callable.
+      this.client.on(
+        "messageUpdate",
+        (_oldMessage: Message, newMessage: Message) => {
+          this.messageAction(newMessage, "updated");
+        }
+      );
 
     if (config.showMessageDeletions)
-      this.on("messageDelete", (message) => {
+      // @ts-expect-error This expression is not callable.
+      this.client.on("messageDelete", (message: Message) => {
         this.messageAction(message, "deleted");
       });
 
     if (config.stackMessages)
       setInterval(() => {
         this.senderBot.sendData(this.messagesToSend, this.imagesToSend);
-
         this.messagesToSend = [];
         this.imagesToSend = [];
       }, 5000);

@@ -4,7 +4,8 @@ export interface Env {
   DISCORD_TOKEN: string;
   TELEGRAM_TOKEN: string;
   TELEGRAM_CHAT_ID: string;
-  TELEGRAM_TOPIC_ID: string;
+  TELEGRAM_TOPIC_ID?: string;
+  DISCORD_BOT_BACKEND?: "selfbot" | "bot";
 }
 
 export function getEnv(): Env {

@@ -1,4 +1,5 @@
 import { Message, PartialMessage } from "discord.js-selfbot-v13";
+
 import { ChannelId, Config } from "./config.js";
 
 export function isAllowedByConfig(
