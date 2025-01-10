@@ -46,10 +46,10 @@ Selfbot that forwards your Discord messages to Telegram
    ```json
    {
      "outputChannels": [],
-     "mutedGuildsIds": [],
      "allowedGuildsIds": [],
-     "mutedChannelsIds": [],
+     "mutedGuildsIds": [],
      "allowedChannelsIds": [],
+     "mutedChannelsIds": [],
      "allowedUsersIds": [],
      "mutedUsersIds": [],
      "channelConfigs": {},
@@ -90,10 +90,10 @@ Selfbot that forwards your Discord messages to Telegram
    ```json
    {
      "outputChannels": [],
-     "mutedGuildsIds": [],
      "allowedGuildsIds": [],
-     "mutedChannelsIds": [],
+     "mutedGuildsIds": [],
      "allowedChannelsIds": [],
+     "mutedChannelsIds": [],
      "allowedUsersIds": [],
      "mutedUsersIds": [],
      "channelConfigs": {},

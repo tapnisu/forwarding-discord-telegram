@@ -41,7 +41,7 @@ export async function getConfig(): Promise<Config> {
       channelConfigs: {},
       disableLinkPreview: false,
       imagesAsMedia: true,
-      showDate: true,
+      showDate: false,
       showChat: true,
       stackMessages: false,
       showMessageUpdates: false,
