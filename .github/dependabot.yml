@@ -8,5 +8,11 @@ updates:
       prefix: "chore"
       include: "scope"
     allow:
+      - dependency-name: "discord.js"
+        dependency-type: "direct"
       - dependency-name: "discord.js-selfbot-v13"
+        dependency-type: "direct"
+      - dependency-name: "grammy"
+        dependency-type: "direct"
+      - dependency-name: "@grammyjs/auto-retry"
         dependency-type: "direct"
