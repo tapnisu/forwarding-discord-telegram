@@ -8,12 +8,13 @@ import {
   User
 } from "discord.js-selfbot-v13";
 import { Client as BotClient } from "discord.js";
+import { InputMediaBuilder } from "grammy";
+import { InputFile, InputMediaPhoto } from "grammy/types";
+
 import { Config } from "./config.js";
 import { isAllowedByConfig } from "./filterMessages.js";
 import { formatSize } from "./format.js";
 import { SenderBot } from "./senderBot.js";
-import { InputMediaBuilder } from "grammy";
-import { InputFile, InputMediaPhoto } from "grammy/types";
 
 export type Client<Ready extends boolean = boolean> =
   | SelfBotClient<Ready>

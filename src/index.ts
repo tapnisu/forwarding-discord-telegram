@@ -1,9 +1,10 @@
 import { Client as BotClient, GatewayIntentBits } from "discord.js";
-import { Bot } from "./bot.js";
+import { Client as SelfBotClient } from "discord.js-selfbot-v13";
+
+import { Bot, Client } from "./bot.js";
 import { getConfig } from "./config.js";
 import { getEnv } from "./env.js";
 import { SenderBot } from "./senderBot.js";
-import { Client as SelfBotClient } from "discord.js-selfbot-v13";
 
 const env = getEnv();
 const config = await getConfig();
@@ -23,15 +24,15 @@ senderBot.api
   .getMe()
   .then((me) => console.log(`Logged into Telegram as @${me.username}`));
 
-console.log(env.DISCORD_BOT_BACKEND);
-
-const client = (() => {
+const client: Client = (() => {
   if (env.DISCORD_BOT_BACKEND == "bot")
     return new BotClient({
       intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMembers
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.DirectMessages,
+        GatewayIntentBits.GuildMessages
       ]
     });
 
