@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@grammyjs/auto-retry':
         specifier: ^2.0.2
-        version: 2.0.2(grammy@1.34.0)
+        version: 2.0.2(grammy@1.34.1)
       discord.js:
         specifier: ^14.17.3
         version: 14.17.3
@@ -21,8 +21,8 @@ importers:
         specifier: ^16.4.7
         version: 16.4.7
       grammy:
-        specifier: ^1.34.0
-        version: 1.34.0
+        specifier: ^1.34.1
+        version: 1.34.1
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -505,8 +505,8 @@ packages:
     resolution: {integrity: sha512-OkToC372DtlQeje9/zHIo5CT8lRP/FUgEOKBEhU4e0abL7J7CD24fD9ohiLN5hagG/kWCYj4K5oaxxtj2Z0Dig==}
     engines: {node: '>=18'}
 
-  grammy@1.34.0:
-    resolution: {integrity: sha512-YSLUSLdwycufB0Si9em+Ef3aXt7Vq0LYuGgwF4+ZskPb6+3RzrPdkh28qQNKhCeIXKodgMKQ5CxAHf/fLJZufg==}
+  grammy@1.34.1:
+    resolution: {integrity: sha512-0ypt5d1bna8CqSANlDCg2ce1sx87oDm9gjyPRHWYpAgvjy3WYW9oEmMllAYCWCZ3vHDULW5x14jBMXai51ar0Q==}
     engines: {node: ^12.20.0 || >=14.13.1}
 
   graphemer@1.4.0:
@@ -980,10 +980,10 @@ snapshots:
     dependencies:
       levn: 0.4.1
 
-  '@grammyjs/auto-retry@2.0.2(grammy@1.34.0)':
+  '@grammyjs/auto-retry@2.0.2(grammy@1.34.1)':
     dependencies:
       debug: 4.4.0
-      grammy: 1.34.0
+      grammy: 1.34.1
     transitivePeerDependencies:
       - supports-color
 
@@ -1404,7 +1404,7 @@ snapshots:
 
   globals@15.14.0: {}
 
-  grammy@1.34.0:
+  grammy@1.34.1:
     dependencies:
       '@grammyjs/types': 3.18.0
       abort-controller: 3.0.0
