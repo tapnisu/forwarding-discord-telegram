@@ -64,40 +64,6 @@ export class SenderBot {
     }
   }
 
-  async sendMessage(text: string) {
-    switch (this.botType) {
-      case BotType.Telegram: {
-        const messageChunks: string[] = [];
-        const MESSAGE_CHUNK = 4096;
-
-        for (
-          let i = 0, charsLength = text.length;
-          i < charsLength;
-          i += MESSAGE_CHUNK
-        ) {
-          messageChunks.push(text.substring(i, i + MESSAGE_CHUNK));
-        }
-
-        for (const messageChunk of messageChunks.reverse()) {
-          await this.grammyClient.api.sendMessage(text, messageChunk, {
-            link_preview_options: {
-              is_disabled: this.disableLinkPreview
-            },
-            reply_parameters: {
-              message_id: this.telegramTopicId
-            }
-          });
-        }
-        break;
-      }
-
-      case BotType.DiscordWebhook: {
-        this.webhookClient.send(text);
-        break;
-      }
-    }
-  }
-
   async sendData(messagesToSend: string[], imagesToSend: InputMediaPhoto[]) {
     if (messagesToSend.length == 0) return;
 
@@ -115,7 +81,40 @@ export class SenderBot {
         }
 
       if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
-      this.sendMessage(messagesToSend.join("\n"));
+
+      const text = messagesToSend.join("\n");
+
+      switch (this.botType) {
+        case BotType.Telegram: {
+          const messageChunks: string[] = [];
+          const MESSAGE_CHUNK = 4096;
+
+          for (
+            let i = 0, charsLength = text.length;
+            i < charsLength;
+            i += MESSAGE_CHUNK
+          ) {
+            messageChunks.push(text.substring(i, i + MESSAGE_CHUNK));
+          }
+
+          for (const messageChunk of messageChunks.reverse()) {
+            await this.grammyClient.api.sendMessage(chatId, messageChunk, {
+              link_preview_options: {
+                is_disabled: this.disableLinkPreview
+              },
+              reply_parameters: {
+                message_id: this.telegramTopicId
+              }
+            });
+          }
+          break;
+        }
+
+        case BotType.DiscordWebhook: {
+          this.webhookClient.send(text);
+          break;
+        }
+      }
     }
   }
 }
