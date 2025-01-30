@@ -1,5 +1,6 @@
 import { Client as BotClient, GatewayIntentBits } from "discord.js";
 import { Client as SelfBotClient } from "discord.js-selfbot-v13";
+import { Webhook } from "discord-webhook-node";
 
 import { Bot as GrammyBot } from "grammy";
 
@@ -19,6 +20,16 @@ const grammyClient =
     ? new GrammyBot(env.TELEGRAM_TOKEN)
     : null;
 
+const webhookClient =
+  env.OUTPUT_BACKEND == BotType.DiscordWebhook
+    ? new Webhook(env.DISCORD_WEBHOOK_URL)
+    : null;
+
+if (env.DISCORD_WEBHOOK_URL) {
+  const match = env.DISCORD_WEBHOOK_URL.match(/webhooks\/(\d+)\//);
+  if (match) config.mutedUsersIds?.push(match[1]);
+}
+
 const senderBot = new SenderBot({
   chatsToSend,
   disableLinkPreview: config.disableLinkPreview,
@@ -26,7 +37,8 @@ const senderBot = new SenderBot({
   botType: env.OUTPUT_BACKEND,
 
   grammyClient,
-  telegramTopicId: env.TELEGRAM_TOPIC_ID ? Number(env.TELEGRAM_TOPIC_ID) : null
+  telegramTopicId: env.TELEGRAM_TOPIC_ID ? Number(env.TELEGRAM_TOPIC_ID) : null,
+  webhookClient
 });
 
 senderBot.prepare();

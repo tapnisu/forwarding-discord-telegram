@@ -13,6 +13,7 @@ export interface Env {
   TELEGRAM_TOPIC_ID?: string;
   DISCORD_BOT_BACKEND?: BotBackend;
   OUTPUT_BACKEND?: BotType;
+  DISCORD_WEBHOOK_URL?: string;
 }
 
 export function getEnv(): Env {

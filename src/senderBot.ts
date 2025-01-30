@@ -1,6 +1,7 @@
 import { autoRetry } from "@grammyjs/auto-retry";
 import { Bot } from "grammy";
 import { InputMediaPhoto } from "grammy/types";
+import { Webhook } from "discord-webhook-node";
 
 import { ChannelId } from "./config.js";
 
@@ -17,6 +18,7 @@ export class SenderBot {
   botType: BotType = BotType.Telegram;
 
   grammyClient?: Bot;
+  webhookClient?: Webhook;
 
   constructor(options: {
     chatsToSend: ChannelId[];
@@ -26,6 +28,8 @@ export class SenderBot {
 
     grammyClient?: Bot;
     telegramTopicId?: number;
+
+    webhookClient?: Webhook;
   }) {
     this.chatsToSend = options.chatsToSend;
     this.disableLinkPreview = options.disableLinkPreview;
@@ -42,54 +46,76 @@ export class SenderBot {
         this.grammyClient.catch((err) => {
           console.error(err);
         });
+
+        break;
+
+      case BotType.DiscordWebhook:
+        this.webhookClient = options.webhookClient;
+        break;
     }
   }
 
   async prepare() {
-    const me = await this.grammyClient.api.getMe();
-    return console.log(`Logged into Telegram as @${me.username}`);
+    switch (this.botType) {
+      case BotType.Telegram: {
+        const me = await this.grammyClient.api.getMe();
+        return console.log(`Logged into Telegram as @${me.username}`);
+      }
+    }
+  }
+
+  async sendMessage(text: string) {
+    switch (this.botType) {
+      case BotType.Telegram: {
+        const messageChunks: string[] = [];
+        const MESSAGE_CHUNK = 4096;
+
+        for (
+          let i = 0, charsLength = text.length;
+          i < charsLength;
+          i += MESSAGE_CHUNK
+        ) {
+          messageChunks.push(text.substring(i, i + MESSAGE_CHUNK));
+        }
+
+        for (const messageChunk of messageChunks.reverse()) {
+          await this.grammyClient.api.sendMessage(text, messageChunk, {
+            link_preview_options: {
+              is_disabled: this.disableLinkPreview
+            },
+            reply_parameters: {
+              message_id: this.telegramTopicId
+            }
+          });
+        }
+        break;
+      }
+
+      case BotType.DiscordWebhook: {
+        this.webhookClient.send(text);
+        break;
+      }
+    }
   }
 
   async sendData(messagesToSend: string[], imagesToSend: InputMediaPhoto[]) {
     if (messagesToSend.length == 0) return;
 
     for (const chatId of this.chatsToSend) {
-      try {
-        if (imagesToSend.length != 0)
-          await this.grammyClient.api.sendMediaGroup(chatId, imagesToSend, {
-            reply_parameters: {
-              message_id: this.telegramTopicId
-            }
-          });
-      } catch (err) {
-        console.error(err);
-      }
+      if (this.botType == BotType.Telegram)
+        try {
+          if (imagesToSend.length != 0)
+            await this.grammyClient.api.sendMediaGroup(chatId, imagesToSend, {
+              reply_parameters: {
+                message_id: this.telegramTopicId
+              }
+            });
+        } catch (err) {
+          console.error(err);
+        }
 
       if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
-
-      const renderedMessage = messagesToSend.join("\n");
-
-      const messageChunks: string[] = [];
-      const MESSAGE_CHUNK = 4096;
-
-      for (
-        let i = 0, charsLength = renderedMessage.length;
-        i < charsLength;
-        i += MESSAGE_CHUNK
-      ) {
-        messageChunks.push(renderedMessage.substring(i, i + MESSAGE_CHUNK));
-      }
-
-      for (const messageChunk of messageChunks.reverse()) {
-        await this.grammyClient.api.sendMessage(chatId, messageChunk, {
-          link_preview_options: {
-            is_disabled: this.disableLinkPreview
-          },
-          reply_parameters: {
-            message_id: this.telegramTopicId
-          }
-        });
-      }
+      this.sendMessage(messagesToSend.join("\n"));
     }
   }
 }
