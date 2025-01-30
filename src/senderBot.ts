@@ -1,32 +1,53 @@
 import { autoRetry } from "@grammyjs/auto-retry";
-import { Bot, BotConfig, Context } from "grammy";
+import { Bot } from "grammy";
 import { InputMediaPhoto } from "grammy/types";
 
 import { ChannelId } from "./config.js";
 
-export class SenderBot<C extends Context = Context> extends Bot<C> {
+export enum BotType {
+  Telegram = "telegram",
+  DiscordWebhook = "discord_webhook"
+}
+
+export class SenderBot {
   chatsToSend: ChannelId[];
   telegramTopicId?: number;
-  disableLinkPreview: boolean;
+  disableLinkPreview: boolean = false;
 
-  constructor(
-    token: string,
-    chatsToSend: ChannelId[],
-    disableLinkPreview: boolean,
-    config?: BotConfig<C>,
-    telegramTopicId?: number
-  ) {
-    super(token, config);
+  botType: BotType = BotType.Telegram;
 
-    this.chatsToSend = chatsToSend;
-    this.disableLinkPreview = disableLinkPreview;
-    this.telegramTopicId = telegramTopicId;
+  grammyClient?: Bot;
 
-    this.api.config.use(autoRetry());
+  constructor(options: {
+    chatsToSend: ChannelId[];
+    disableLinkPreview?: boolean;
 
-    this.catch((err) => {
-      console.error(err);
-    });
+    botType?: BotType;
+
+    grammyClient?: Bot;
+    telegramTopicId?: number;
+  }) {
+    this.chatsToSend = options.chatsToSend;
+    this.disableLinkPreview = options.disableLinkPreview;
+    this.telegramTopicId = options.telegramTopicId;
+
+    this.botType = options.botType;
+
+    switch (this.botType) {
+      case BotType.Telegram:
+        this.grammyClient = options.grammyClient;
+
+        this.grammyClient.api.config.use(autoRetry());
+
+        this.grammyClient.catch((err) => {
+          console.error(err);
+        });
+    }
+  }
+
+  async prepare() {
+    const me = await this.grammyClient.api.getMe();
+    return console.log(`Logged into Telegram as @${me.username}`);
   }
 
   async sendData(messagesToSend: string[], imagesToSend: InputMediaPhoto[]) {
@@ -35,7 +56,7 @@ export class SenderBot<C extends Context = Context> extends Bot<C> {
     for (const chatId of this.chatsToSend) {
       try {
         if (imagesToSend.length != 0)
-          await this.api.sendMediaGroup(chatId, imagesToSend, {
+          await this.grammyClient.api.sendMediaGroup(chatId, imagesToSend, {
             reply_parameters: {
               message_id: this.telegramTopicId
             }
@@ -60,7 +81,7 @@ export class SenderBot<C extends Context = Context> extends Bot<C> {
       }
 
       for (const messageChunk of messageChunks.reverse()) {
-        await this.api.sendMessage(chatId, messageChunk, {
+        await this.grammyClient.api.sendMessage(chatId, messageChunk, {
           link_preview_options: {
             is_disabled: this.disableLinkPreview
           },

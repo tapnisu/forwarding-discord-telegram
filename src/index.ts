@@ -1,42 +1,51 @@
 import { Client as BotClient, GatewayIntentBits } from "discord.js";
 import { Client as SelfBotClient } from "discord.js-selfbot-v13";
 
+import { Bot as GrammyBot } from "grammy";
+
 import { Bot, Client } from "./bot.js";
 import { getConfig } from "./config.js";
-import { getEnv } from "./env.js";
-import { SenderBot } from "./senderBot.js";
+import { BotBackend, getEnv } from "./env.js";
+import { BotType, SenderBot } from "./senderBot.js";
 
 const env = getEnv();
 const config = await getConfig();
 
-const channelsToSend = config.outputChannels ?? [];
-if (env.TELEGRAM_CHAT_ID) channelsToSend.unshift(env.TELEGRAM_CHAT_ID);
+const chatsToSend = config.outputChannels ?? [];
+if (env.TELEGRAM_CHAT_ID) chatsToSend.unshift(env.TELEGRAM_CHAT_ID);
 
-const senderBot = new SenderBot(
-  env.TELEGRAM_TOKEN,
-  channelsToSend,
-  config.disableLinkPreview,
-  null,
-  env.TELEGRAM_TOPIC_ID ? Number(env.TELEGRAM_TOPIC_ID) : null
-);
+const grammyClient =
+  env.OUTPUT_BACKEND == BotType.Telegram
+    ? new GrammyBot(env.TELEGRAM_TOKEN)
+    : null;
 
-senderBot.api
-  .getMe()
-  .then((me) => console.log(`Logged into Telegram as @${me.username}`));
+const senderBot = new SenderBot({
+  chatsToSend,
+  disableLinkPreview: config.disableLinkPreview,
+
+  botType: env.OUTPUT_BACKEND,
+
+  grammyClient,
+  telegramTopicId: env.TELEGRAM_TOPIC_ID ? Number(env.TELEGRAM_TOPIC_ID) : null
+});
+
+senderBot.prepare();
 
 const client: Client = (() => {
-  if (env.DISCORD_BOT_BACKEND == "bot")
-    return new BotClient({
-      intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.DirectMessages,
-        GatewayIntentBits.GuildMessages
-      ]
-    });
-
-  return new SelfBotClient();
+  switch (env.DISCORD_BOT_BACKEND) {
+    case BotBackend.Bot:
+      return new BotClient({
+        intents: [
+          GatewayIntentBits.Guilds,
+          GatewayIntentBits.MessageContent,
+          GatewayIntentBits.GuildMembers,
+          GatewayIntentBits.DirectMessages,
+          GatewayIntentBits.GuildMessages
+        ]
+      });
+    case BotBackend.Selfbot:
+      return new SelfBotClient();
+  }
 })();
 
 const bot = new Bot(client, config, senderBot);
