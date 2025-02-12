@@ -26,6 +26,7 @@ Selfbot that forwards your Discord messages to Telegram
 3. Install [pnpm](https://pnpm.io/) using [Corepack](https://nodejs.org/api/corepack.html):
 
    ```shell
+   npm i -g corepack@latest
    corepack enable
    corepack install
    ```
