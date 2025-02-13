@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@grammyjs/auto-retry':
         specifier: ^2.0.2
-        version: 2.0.2(grammy@1.34.1)
+        version: 2.0.2(grammy@1.35.0)
       discord-webhook-node:
         specifier: ^1.1.8
         version: 1.1.8
@@ -24,8 +24,8 @@ importers:
         specifier: ^16.4.7
         version: 16.4.7
       grammy:
-        specifier: ^1.34.1
-        version: 1.34.1
+        specifier: ^1.35.0
+        version: 1.35.0
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -141,8 +141,8 @@ packages:
     peerDependencies:
       grammy: ^1.10.0
 
-  '@grammyjs/types@3.18.0':
-    resolution: {integrity: sha512-/VpQcT6Z0+Lw6H6jv2JvnDmqB1/9rjbFdDBlPBPUW3kQ1bWfjzfaiVk2+J2eiid3o3sLaPp3ZK0XjEI1gWNc3g==}
+  '@grammyjs/types@3.19.0':
+    resolution: {integrity: sha512-N0MS+RJG+AGSNuka1GWVj88oyK1oti4I0eQq6jGo4hic3P9MwFfnHjGQuIExZ3tlJUrZYwC/T7gk4Tu3+guJyg==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -530,8 +530,8 @@ packages:
     resolution: {integrity: sha512-OkToC372DtlQeje9/zHIo5CT8lRP/FUgEOKBEhU4e0abL7J7CD24fD9ohiLN5hagG/kWCYj4K5oaxxtj2Z0Dig==}
     engines: {node: '>=18'}
 
-  grammy@1.34.1:
-    resolution: {integrity: sha512-0ypt5d1bna8CqSANlDCg2ce1sx87oDm9gjyPRHWYpAgvjy3WYW9oEmMllAYCWCZ3vHDULW5x14jBMXai51ar0Q==}
+  grammy@1.35.0:
+    resolution: {integrity: sha512-Qlu5kVaekL4w5clWSpQcRxwJJoEeU13g8DTALuNbZsDAJuFJNXBuI8EqR6U1m1of7j9NEMQz59sXu+0/KsKjyg==}
     engines: {node: ^12.20.0 || >=14.13.1}
 
   graphemer@1.4.0:
@@ -1019,14 +1019,14 @@ snapshots:
     dependencies:
       levn: 0.4.1
 
-  '@grammyjs/auto-retry@2.0.2(grammy@1.34.1)':
+  '@grammyjs/auto-retry@2.0.2(grammy@1.35.0)':
     dependencies:
       debug: 4.4.0
-      grammy: 1.34.1
+      grammy: 1.35.0
     transitivePeerDependencies:
       - supports-color
 
-  '@grammyjs/types@3.18.0': {}
+  '@grammyjs/types@3.19.0': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -1464,9 +1464,9 @@ snapshots:
 
   globals@15.14.0: {}
 
-  grammy@1.34.1:
+  grammy@1.35.0:
     dependencies:
-      '@grammyjs/types': 3.18.0
+      '@grammyjs/types': 3.19.0
       abort-controller: 3.0.0
       debug: 4.4.0
       node-fetch: 2.7.0
