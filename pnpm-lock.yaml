@@ -18,8 +18,8 @@ importers:
         specifier: ^14.18.0
         version: 14.18.0
       discord.js-selfbot-v13:
-        specifier: ^3.5.1
-        version: 3.5.1
+        specifier: ^3.6.0
+        version: 3.6.0
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
@@ -59,10 +59,6 @@ importers:
         version: 8.19.1(eslint@9.17.0)(typescript@5.7.3)
 
 packages:
-
-  '@discordjs/builders@1.10.0':
-    resolution: {integrity: sha512-ikVZsZP+3shmVJ5S1oM+7SveUCK3L9fTyfA8aJ7uD9cNQlTqF+3Irbk2Y22KXTb3C3RNUahRkSInClJMkHrINg==}
-    engines: {node: '>=16.11.0'}
 
   '@discordjs/builders@1.10.1':
     resolution: {integrity: sha512-OWo1fY4ztL1/M/DUyRPShB4d/EzVfuUvPTRRHRIt/YxBrUYSz0a+JicD5F5zHFoNs2oTuWavxCOVFV1UljHTng==}
@@ -363,17 +359,14 @@ packages:
   dijkstrajs@1.0.3:
     resolution: {integrity: sha512-qiSlmBq9+BCdCA/L46dw8Uy93mloxsPSbwnm5yrKn2vMPiy8KyAskTF6zuV/j5BMsmOGZDPs7KjU+mjb670kfA==}
 
-  discord-api-types@0.37.117:
-    resolution: {integrity: sha512-d+Z6RKd7v3q22lsil7yASucqMfVVV0s0XSqu3cw7kyHVXiDO/mAnqMzqma26IYnIm2mk3TlupYJDGrdL908ZKA==}
-
   discord-api-types@0.37.119:
     resolution: {integrity: sha512-WasbGFXEB+VQWXlo6IpW3oUv73Yuau1Ig4AZF/m13tXcTKnMpc/mHjpztIlz4+BM9FG9BHQkEXiPto3bKduQUg==}
 
   discord-webhook-node@1.1.8:
     resolution: {integrity: sha512-3u0rrwywwYGc6HrgYirN/9gkBYqmdpvReyQjapoXARAHi0P0fIyf3W5tS5i3U3cc7e44E+e7dIHYUeec7yWaug==}
 
-  discord.js-selfbot-v13@3.5.1:
-    resolution: {integrity: sha512-AG4bYnymw8Ji0fsjVKG0f3gKoH/xuGTKn2TpxGtLhmiL8JwYywsoF7IFQ/Cl3avOPY+MKmeaR0JNScImQvG0tw==}
+  discord.js-selfbot-v13@3.6.0:
+    resolution: {integrity: sha512-gGb18FblMt2e2pwhKMSLKqDLPw2yG3IbTNoZJKeMV9hJCivjn8gcqfhwhRbSHq0DNfDrKLjvCWY08/X8rIWnEA==}
     engines: {node: '>=18.17'}
 
   discord.js@14.18.0:
@@ -917,16 +910,6 @@ packages:
 
 snapshots:
 
-  '@discordjs/builders@1.10.0':
-    dependencies:
-      '@discordjs/formatters': 0.6.0
-      '@discordjs/util': 1.1.1
-      '@sapphire/shapeshift': 4.0.0
-      discord-api-types: 0.37.119
-      fast-deep-equal: 3.1.3
-      ts-mixer: 6.0.4
-      tslib: 2.8.1
-
   '@discordjs/builders@1.10.1':
     dependencies:
       '@discordjs/formatters': 0.6.0
@@ -1249,8 +1232,6 @@ snapshots:
 
   dijkstrajs@1.0.3: {}
 
-  discord-api-types@0.37.117: {}
-
   discord-api-types@0.37.119: {}
 
   discord-webhook-node@1.1.8:
@@ -1260,13 +1241,13 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  discord.js-selfbot-v13@3.5.1:
+  discord.js-selfbot-v13@3.6.0:
     dependencies:
-      '@discordjs/builders': 1.10.0
+      '@discordjs/builders': 1.10.1
       '@discordjs/collection': 1.5.3
       '@sapphire/async-queue': 1.5.5
       '@sapphire/shapeshift': 3.9.7
-      discord-api-types: 0.37.117
+      discord-api-types: 0.37.119
       fetch-cookie: 2.2.0
       find-process: 1.4.10
       prism-media: 1.3.5
