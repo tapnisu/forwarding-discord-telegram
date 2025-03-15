@@ -16,9 +16,17 @@ const config = await getConfig();
 const chatsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID) chatsToSend.unshift(env.TELEGRAM_CHAT_ID);
 
+const agent = env.PROXY_URL
+  ? new ProxyAgent({
+      getProxyForUrl: () => env.PROXY_URL
+    })
+  : undefined;
+
 const grammyClient =
   env.OUTPUT_BACKEND == BotType.Telegram
-    ? new GrammyBot(env.TELEGRAM_TOKEN)
+    ? new GrammyBot(env.TELEGRAM_TOKEN, {
+        client: { baseFetchConfig: { agent, compress: true } }
+      })
     : null;
 
 const webhookClient =
@@ -56,13 +64,9 @@ const client: Client = (() => {
           GatewayIntentBits.GuildMessages
         ]
       });
-    case BotBackend.Selfbot: {
-      const agent = new ProxyAgent({
-        getProxyForUrl: () => env.PROXY_URL
-      });
-
+    case BotBackend.Selfbot:
       return new SelfBotClient(
-        env.PROXY_URL !== undefined
+        env.PROXY_URL !== undefined && agent !== undefined
           ? {
               ws: {
                 agent
@@ -75,7 +79,6 @@ const client: Client = (() => {
             }
           : undefined
       );
-    }
   }
 })();
 
