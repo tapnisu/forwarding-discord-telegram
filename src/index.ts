@@ -8,6 +8,7 @@ import { Bot, Client } from "./bot.js";
 import { getConfig } from "./config.js";
 import { BotBackend, getEnv } from "./env.js";
 import { BotType, SenderBot } from "./senderBot.js";
+import { ProxyAgent } from "proxy-agent";
 
 const env = getEnv();
 const config = await getConfig();
@@ -55,8 +56,26 @@ const client: Client = (() => {
           GatewayIntentBits.GuildMessages
         ]
       });
-    case BotBackend.Selfbot:
-      return new SelfBotClient();
+    case BotBackend.Selfbot: {
+      const agent = new ProxyAgent({
+        getProxyForUrl: () => env.PROXY_URL
+      });
+
+      return new SelfBotClient(
+        env.PROXY_URL !== undefined
+          ? {
+              ws: {
+                agent
+              },
+              http: {
+                agent: {
+                  uri: env.PROXY_URL
+                }
+              }
+            }
+          : undefined
+      );
+    }
   }
 })();
 
