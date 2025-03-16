@@ -14,6 +14,7 @@ export interface Env {
   DISCORD_BOT_BACKEND?: BotBackend;
   OUTPUT_BACKEND?: BotType;
   DISCORD_WEBHOOK_URL?: string;
+  PROXY_URL?: string;
 }
 
 export function getEnv(): Env {

@@ -8,6 +8,7 @@ import { Bot, Client } from "./bot.js";
 import { getConfig } from "./config.js";
 import { BotBackend, getEnv } from "./env.js";
 import { BotType, SenderBot } from "./senderBot.js";
+import { ProxyAgent } from "proxy-agent";
 
 const env = getEnv();
 const config = await getConfig();
@@ -15,9 +16,17 @@ const config = await getConfig();
 const chatsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID) chatsToSend.unshift(env.TELEGRAM_CHAT_ID);
 
+const agent = env.PROXY_URL
+  ? new ProxyAgent({
+      getProxyForUrl: () => env.PROXY_URL
+    })
+  : undefined;
+
 const grammyClient =
   env.OUTPUT_BACKEND == BotType.Telegram
-    ? new GrammyBot(env.TELEGRAM_TOKEN)
+    ? new GrammyBot(env.TELEGRAM_TOKEN, {
+        client: { baseFetchConfig: { agent, compress: true } }
+      })
     : null;
 
 const webhookClient =
@@ -56,7 +65,20 @@ const client: Client = (() => {
         ]
       });
     case BotBackend.Selfbot:
-      return new SelfBotClient();
+      return new SelfBotClient(
+        env.PROXY_URL !== undefined && agent !== undefined
+          ? {
+              ws: {
+                agent
+              },
+              http: {
+                agent: {
+                  uri: env.PROXY_URL
+                }
+              }
+            }
+          : undefined
+      );
   }
 })();
 
