@@ -87,7 +87,6 @@ export class SenderBot {
 
       let text = messagesToSend.join("\n");
 
-      console.log(this.replacementsDictionary);
       for (const [a, b] of Object.entries(this.replacementsDictionary)) {
         text = text.replaceAll(a, b);
       }
