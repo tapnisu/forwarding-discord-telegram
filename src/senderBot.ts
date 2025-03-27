@@ -14,6 +14,7 @@ export class SenderBot {
   chatsToSend: ChannelId[];
   telegramTopicId?: number;
   disableLinkPreview: boolean = false;
+  replacementsDictionary: Record<string, string> = {};
 
   botType: BotType = BotType.Telegram;
 
@@ -23,6 +24,7 @@ export class SenderBot {
   constructor(options: {
     chatsToSend: ChannelId[];
     disableLinkPreview?: boolean;
+    replacementsDictionary?: Record<string, string>;
 
     botType?: BotType;
 
@@ -34,6 +36,7 @@ export class SenderBot {
     this.chatsToSend = options.chatsToSend;
     this.disableLinkPreview = options.disableLinkPreview;
     this.telegramTopicId = options.telegramTopicId;
+    this.replacementsDictionary = options.replacementsDictionary || {};
 
     this.botType = options.botType;
 
@@ -82,7 +85,12 @@ export class SenderBot {
 
       if (messagesToSend.length == 0 || messagesToSend.join("") == "") return;
 
-      const text = messagesToSend.join("\n");
+      let text = messagesToSend.join("\n");
+
+      console.log(this.replacementsDictionary);
+      for (const [a, b] of Object.entries(this.replacementsDictionary)) {
+        text = text.replaceAll(a, b);
+      }
 
       switch (this.botType) {
         case BotType.Telegram: {

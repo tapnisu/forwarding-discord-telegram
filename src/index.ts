@@ -42,6 +42,7 @@ if (env.DISCORD_WEBHOOK_URL) {
 const senderBot = new SenderBot({
   chatsToSend,
   disableLinkPreview: config.disableLinkPreview,
+  replacementsDictionary: config.replacementsDictionary,
 
   botType: env.OUTPUT_BACKEND,
 

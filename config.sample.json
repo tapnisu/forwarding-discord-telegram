@@ -18,5 +18,8 @@
   "showChat": true,
   "stackMessages": false,
   "showMessageUpdates": false,
-  "showMessageDeletions": false
+  "showMessageDeletions": false,
+  "replacementsDictionary": {
+    ":joy:": "😂"
+  }
 }

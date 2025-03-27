@@ -26,6 +26,7 @@ export interface Config {
   stackMessages?: boolean;
   showMessageDeletions?: boolean;
   showMessageUpdates?: boolean;
+  replacementsDictionary?: Record<string, string>;
 }
 
 export async function getConfig(): Promise<Config> {
@@ -45,8 +46,9 @@ export async function getConfig(): Promise<Config> {
       showChat: true,
       stackMessages: false,
       showMessageUpdates: false,
-      showMessageDeletions: false
-    });
+      showMessageDeletions: false,
+      replacementsDictionary: {}
+    } satisfies Config);
 
     const formattedDefaultConfig = await prettier.format(defaultConfig, {
       parser: "json"
