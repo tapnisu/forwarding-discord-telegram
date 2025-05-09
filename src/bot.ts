@@ -16,6 +16,11 @@ import { isAllowedByConfig } from "./filterMessages.js";
 import { formatSize } from "./format.js";
 import { SenderBot } from "./senderBot.js";
 
+interface RenderOutput {
+  content: string;
+  images: InputMediaPhoto[];
+}
+
 export type Client<Ready extends boolean = boolean> =
   | SelfBotClient<Ready>
   | BotClient<Ready>;
@@ -38,23 +43,50 @@ export class Bot {
     });
 
     // @ts-expect-error This expression is not callable.
-    this.client.on("messageCreate", (message: Message) => {
-      this.messageAction(message);
+    this.client.on("messageCreate", async (message: Message) => {
+      if (!isAllowedByConfig(message, this.config)) return;
+      const renderOutput = await this.messageAction(message);
+
+      if (this.config.stackMessages) {
+        this.messagesToSend.push(renderOutput.content);
+        this.imagesToSend.push(...renderOutput.images);
+      } else {
+        this.senderBot.sendData([renderOutput.content], renderOutput.images);
+      }
     });
 
     if (config.showMessageUpdates)
       // @ts-expect-error This expression is not callable.
       this.client.on(
         "messageUpdate",
-        (_oldMessage: Message, newMessage: Message) => {
-          this.messageAction(newMessage, "updated");
+        async (_oldMessage: Message, newMessage: Message) => {
+          if (!isAllowedByConfig(newMessage, this.config)) return;
+          const renderOutput = await this.messageAction(newMessage, "updated");
+
+          if (this.config.stackMessages) {
+            this.messagesToSend.push(renderOutput.content);
+            this.imagesToSend.push(...renderOutput.images);
+          } else {
+            this.senderBot.sendData(
+              [renderOutput.content],
+              renderOutput.images
+            );
+          }
         }
       );
 
     if (config.showMessageDeletions)
       // @ts-expect-error This expression is not callable.
-      this.client.on("messageDelete", (message: Message) => {
-        this.messageAction(message, "deleted");
+      this.client.on("messageDelete", async (message: Message) => {
+        if (!isAllowedByConfig(message, this.config)) return;
+        const renderOutput = await this.messageAction(message, "deleted");
+
+        if (this.config.stackMessages) {
+          this.messagesToSend.push(renderOutput.content);
+          this.imagesToSend.push(...renderOutput.images);
+        } else {
+          this.senderBot.sendData([renderOutput.content], renderOutput.images);
+        }
       });
 
     if (config.stackMessages)
@@ -69,8 +101,6 @@ export class Bot {
     message: Message<boolean> | PartialMessage,
     tag?: string
   ) {
-    if (!isAllowedByConfig(message, this.config)) return;
-
     const date = new Date().toLocaleString("en-US", {
       day: "2-digit",
       year: "2-digit",
@@ -81,6 +111,8 @@ export class Bot {
     });
 
     let render = "";
+    const allAttachments: string[] = [];
+    const images: InputMediaPhoto[] = [];
 
     if (tag) render += `[${tag}] `;
     if (this.config.showDate) render += `[${date}] `;
@@ -91,7 +123,9 @@ export class Bot {
 
     if (message.reference) {
       const referenceMessage = await message.fetchReference();
-      render += `\n(Reference to @${referenceMessage.author.tag}'s msg: ${referenceMessage.content})\n`;
+      const renderOutput = await this.messageAction(referenceMessage);
+      render += `\n(Reference to @${referenceMessage.author.tag}'s msg:\n> ${renderOutput.content})\n`;
+      images.push(...renderOutput.images);
     }
 
     render += await this.renderMentions(
@@ -100,9 +134,6 @@ export class Bot {
       message.mentions.channels.values(),
       message.mentions.roles.values()
     );
-
-    const allAttachments: string[] = [];
-    const images: InputMediaPhoto[] = [];
 
     const embeds = message.embeds.map((embed) => {
       let stringEmbed = "Embed:\n";
@@ -161,13 +192,7 @@ export class Bot {
 
     console.log(render);
 
-    if (this.config.stackMessages) {
-      this.messagesToSend.push(render);
-      this.imagesToSend.push(...images);
-      return;
-    }
-
-    this.senderBot.sendData([render], images);
+    return { content: render, images } as RenderOutput;
   }
 
   async attachmentToMedia(attachment: MessageAttachment) {
