@@ -151,8 +151,7 @@ export class Bot {
       if (embed.timestamp) otherEmbedParts += `  Url: ${embed.timestamp}\n`;
 
       const fields = embed.fields.map(
-        (field) =>
-          `    Name: ${field.name}\n      Value: ${field.value}\n`
+        (field) => `    Name: ${field.name}\n      Value: ${field.value}\n`
       );
       if (fields.length != 0)
         otherEmbedParts += `  Fields:\n${fields.join("")}`;
