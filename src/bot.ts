@@ -13,7 +13,7 @@ import { InputFile, InputMediaPhoto } from "grammy/types";
 
 import { Config } from "./config.js";
 import { isAllowedByConfig } from "./filterMessages.js";
-import { formatSize } from "./format.js";
+import { escapeHtml, formatSize } from "./format.js";
 import { SenderBot } from "./senderBot.js";
 
 interface RenderOutput {
@@ -51,7 +51,10 @@ export class Bot {
         this.messagesToSend.push(renderOutput.content);
         this.imagesToSend.push(...renderOutput.images);
       } else {
-        this.senderBot.sendData([renderOutput.content], renderOutput.images);
+        await this.senderBot.sendData(
+          [renderOutput.content],
+          renderOutput.images
+        );
       }
     });
 
@@ -67,7 +70,7 @@ export class Bot {
             this.messagesToSend.push(renderOutput.content);
             this.imagesToSend.push(...renderOutput.images);
           } else {
-            this.senderBot.sendData(
+            await this.senderBot.sendData(
               [renderOutput.content],
               renderOutput.images
             );
@@ -135,35 +138,41 @@ export class Bot {
       message.mentions.roles.values()
     );
 
-    const embeds = message.embeds.map((embed) => {
-      let stringEmbed = "Embed:\n";
+    render = escapeHtml(render);
 
-      if (embed.title) stringEmbed += `  Title: ${embed.title}\n`;
-      if (embed.description)
-        stringEmbed += `  Description: ${embed.description}\n`;
-      if (embed.url) stringEmbed += `  Url: ${embed.url}\n`;
-      if (embed.color) stringEmbed += `  Color: ${embed.color}\n`;
-      if (embed.timestamp) stringEmbed += `  Url: ${embed.timestamp}\n`;
+    const embeds = message.embeds.map((embed) => {
+      let stringEmbed = "";
+      let otherEmbedParts = "";
+
+      if (embed.title)
+        stringEmbed += `<a href="${escapeHtml(embed.url)}">${escapeHtml(embed.title)}\n</a>`;
+      if (embed.description) otherEmbedParts += `  ${embed.description}\n`;
+      if (embed.color) otherEmbedParts += `  Color: ${embed.color}\n`;
+      if (embed.timestamp) otherEmbedParts += `  Url: ${embed.timestamp}\n`;
 
       const fields = embed.fields.map(
         (field) =>
-          `    Field:\n      Name: ${field.name}\n      Value: ${field.value}\n`
+          `    Name: ${field.name}\n      Value: ${field.value}\n`
       );
-      if (fields.length != 0) stringEmbed += `  Fields:\n${fields.join("")}`;
+      if (fields.length != 0)
+        otherEmbedParts += `  Fields:\n${fields.join("")}`;
 
       if (embed.thumbnail)
-        stringEmbed += `  Thumbnail: ${embed.thumbnail.url}\n`;
+        otherEmbedParts += `  Thumbnail: ${embed.thumbnail.url}\n`;
       if (embed.image) {
-        stringEmbed += `  Image: ${embed.image.url}\n`;
+        otherEmbedParts += `  Image: ${embed.image.url}\n`;
 
         if (this.config.imagesAsMedia)
           images.push(InputMediaBuilder.photo(embed.image.url));
       }
-      if (embed.video) stringEmbed += `  Video: ${embed.video.url}\n`;
-      if (embed.author) stringEmbed += `  Author: ${embed.author.name}\n`;
-      if (embed.footer) stringEmbed += `  Footer: ${embed.footer.iconURL}\n`;
+      if (embed.video) otherEmbedParts += `  Video: ${embed.video.url}\n`;
+      if (embed.author) otherEmbedParts += `  Author: ${embed.author.name}\n`;
+      if (embed.footer)
+        otherEmbedParts += `  Footer: ${embed.footer.iconURL}\n`;
 
-      return stringEmbed;
+      stringEmbed += escapeHtml(otherEmbedParts);
+
+      return `<blockquote>${stringEmbed}</blockquote>\n`;
     });
 
     render += embeds.join("");
@@ -188,7 +197,7 @@ export class Bot {
       );
     }
 
-    render += allAttachments.join("");
+    render += allAttachments.map(escapeHtml).join("");
 
     console.log(render);
 

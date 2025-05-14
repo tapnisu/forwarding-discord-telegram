@@ -11,3 +11,12 @@ export function formatSize(length: number): string {
 
   return `${length.toFixed(2)} ${SIZE_UNITS[i]}`;
 }
+
+export const escapeHtml = (unsafe: string) => {
+  return unsafe
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+};

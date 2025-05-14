@@ -111,7 +111,8 @@ export class SenderBot {
               },
               reply_parameters: {
                 message_id: this.telegramTopicId
-              }
+              },
+              parse_mode: "HTML"
             });
           }
           break;
