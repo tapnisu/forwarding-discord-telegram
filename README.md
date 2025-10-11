@@ -2,8 +2,8 @@
 
 Selfbot that forwards your Discord messages to Telegram
 
-> **Warning**:
-> Selfbots are against Discord's Terms of Service, use at your own risk!
+> [!CAUTION]
+> **Selfbots are against Discord's Terms of Service, use at your own risk!**
 
 ## Setup
 
@@ -11,8 +11,8 @@ Selfbot that forwards your Discord messages to Telegram
 
 1. Install node.js from <https://nodejs.org/en/>
 
-   > **Important**:
-   > You should use version 18 or newer!
+   > [!IMPORTANT]
+   > **You should use version 18 or newer!**
 
    If your system doesn't have Node 18 (or newer), you can use [Node Version Manager](https://github.com/nvm-sh/nvm).
 
