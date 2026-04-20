@@ -48,9 +48,9 @@ export async function getConfig(): Promise<Config> {
       showChat: true,
       stackMessages: false,
       showMessageUpdates: false,
+      showMessageDeletions: false,
       messageUpdateMaxAgeDays: 1,
       messageDeleteMaxAgeDays: 1,
-      showMessageDeletions: false,
       replacementsDictionary: {}
     } satisfies Config);
 
