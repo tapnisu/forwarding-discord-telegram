@@ -61,6 +61,17 @@ export class Bot {
         "messageUpdate",
         async (_oldMessage: Message, newMessage: Message) => {
           if (!isAllowedByConfig(newMessage, this.config)) return;
+
+          if (this.config.messageUpdateMaxAgeDays !== undefined) {
+            const maxAgeMs =
+              this.config.messageUpdateMaxAgeDays * 24 * 60 * 60 * 1000;
+            const messageAgeMs = Date.now() - newMessage.createdTimestamp;
+
+            if (messageAgeMs > maxAgeMs) {
+              return;
+            }
+          }
+
           const renderOutput = await this.messageAction(newMessage, "updated");
 
           if (this.config.stackMessages) {
@@ -79,6 +90,17 @@ export class Bot {
       // @ts-expect-error This expression is not callable.
       this.client.on("messageDelete", async (message: Message) => {
         if (!isAllowedByConfig(message, this.config)) return;
+
+        if (this.config.messageUpdateMaxAgeDays !== undefined) {
+          const maxAgeMs =
+            this.config.messageUpdateMaxAgeDays * 24 * 60 * 60 * 1000;
+          const messageAgeMs = Date.now() - message.createdTimestamp;
+
+          if (messageAgeMs > maxAgeMs) {
+            return;
+          }
+        }
+
         const renderOutput = await this.messageAction(message, "deleted");
 
         if (this.config.stackMessages) {
