@@ -8,24 +8,29 @@ export function isAllowedByConfig(
 ): boolean {
   const allowedUsers = [
     ...(config.allowedUsersIds ?? []),
-    ...(config.channelConfigs?.[message.channel.id]?.allowed ?? [])
+    ...(config.channelConfigs?.[message.channelId]?.allowed ?? [])
   ];
 
   const mutedUsers = [
     ...(config.mutedUsersIds ?? []),
-    ...(config.channelConfigs?.[message.channel.id]?.muted ?? [])
+    ...(config.channelConfigs?.[message.channelId]?.muted ?? [])
   ];
+
+  const authorId =
+    "author" in message && message.author ? message.author.id : undefined;
 
   return (
     // Guild check
-    isInAllowedIds(message.guildId, config.allowedGuildsIds) &&
-    isNotInMutedIds(message.guildId, config.mutedGuildsIds) &&
+    (typeof message.guildId !== "string" ||
+      (isInAllowedIds(message.guildId, config.allowedGuildsIds) &&
+        isNotInMutedIds(message.guildId, config.mutedGuildsIds))) &&
     // Channel check
     isInAllowedIds(message.channelId, config.allowedChannelsIds) &&
     isNotInMutedIds(message.channelId, config.mutedChannelsIds) &&
     // Author check
-    isInAllowedIds(message.author.id, allowedUsers) &&
-    isNotInMutedIds(message.author.id, mutedUsers)
+    (authorId === undefined ||
+      (isInAllowedIds(authorId, allowedUsers) &&
+        isNotInMutedIds(authorId, mutedUsers)))
   );
 }
 

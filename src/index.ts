@@ -16,18 +16,21 @@ const config = await getConfig();
 const chatsToSend = config.outputChannels ?? [];
 if (env.TELEGRAM_CHAT_ID) chatsToSend.unshift(env.TELEGRAM_CHAT_ID);
 
-const agent = env.PROXY_URL
-  ? new ProxyAgent({
-      getProxyForUrl: () => env.PROXY_URL
-    })
-  : undefined;
+const agent = (() => {
+  const proxy_url = env.PROXY_URL;
+  if (proxy_url === undefined) return undefined;
+
+  return new ProxyAgent({
+    getProxyForUrl: () => proxy_url
+  });
+})();
 
 const grammyClient =
   env.OUTPUT_BACKEND == BotType.Telegram
     ? new GrammyBot(env.TELEGRAM_TOKEN, {
         client: { baseFetchConfig: { agent, compress: true } }
       })
-    : null;
+    : undefined;
 
 const webhookClient =
   env.OUTPUT_BACKEND == BotType.DiscordWebhook
@@ -47,7 +50,9 @@ const senderBot = new SenderBot({
   botType: env.OUTPUT_BACKEND,
 
   grammyClient,
-  telegramTopicId: env.TELEGRAM_TOPIC_ID ? Number(env.TELEGRAM_TOPIC_ID) : null,
+  telegramTopicId: env.TELEGRAM_TOPIC_ID
+    ? Number(env.TELEGRAM_TOPIC_ID)
+    : undefined,
   webhookClient
 });
 
@@ -80,6 +85,8 @@ const client: Client = (() => {
             }
           : undefined
       );
+    default:
+      throw "Wrong backend type";
   }
 })();
 

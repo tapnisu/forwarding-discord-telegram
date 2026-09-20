@@ -34,18 +34,18 @@ export class SenderBot {
     webhookClient?: Webhook;
   }) {
     this.chatsToSend = options.chatsToSend;
-    this.disableLinkPreview = options.disableLinkPreview;
+    this.disableLinkPreview = options.disableLinkPreview ?? false;
     this.telegramTopicId = options.telegramTopicId;
     this.replacementsDictionary = options.replacementsDictionary || {};
 
-    this.botType = options.botType;
+    this.botType = options.botType ?? BotType.Telegram;
 
     switch (this.botType) {
       case BotType.Telegram:
+        if (options.grammyClient === undefined) throw "Grammy Client not found";
+
         this.grammyClient = options.grammyClient;
-
         this.grammyClient.api.config.use(autoRetry());
-
         this.grammyClient.catch((err) => {
           console.error(err);
         });
@@ -61,6 +61,7 @@ export class SenderBot {
   async prepare() {
     switch (this.botType) {
       case BotType.Telegram: {
+        if (this.grammyClient === undefined) throw "Grammy Client not found";
         const me = await this.grammyClient.api.getMe();
         return console.log(`Logged into Telegram as @${me.username}`);
       }
@@ -73,11 +74,15 @@ export class SenderBot {
     for (const chatId of this.chatsToSend) {
       if (this.botType == BotType.Telegram)
         try {
+          if (this.grammyClient === undefined) throw "Grammy Client not found";
           if (imagesToSend.length != 0)
             await this.grammyClient.api.sendMediaGroup(chatId, imagesToSend, {
-              reply_parameters: {
-                message_id: this.telegramTopicId
-              }
+              reply_parameters:
+                this.telegramTopicId !== undefined
+                  ? {
+                      message_id: this.telegramTopicId
+                    }
+                  : undefined
             });
         } catch (err) {
           console.error(err);
@@ -104,14 +109,19 @@ export class SenderBot {
             messageChunks.push(text.substring(i, i + MESSAGE_CHUNK));
           }
 
+          if (this.grammyClient === undefined) throw "Grammy Client not found";
+
           for (const messageChunk of messageChunks.reverse()) {
             await this.grammyClient.api.sendMessage(chatId, messageChunk, {
               link_preview_options: {
                 is_disabled: this.disableLinkPreview
               },
-              reply_parameters: {
-                message_id: this.telegramTopicId
-              }
+              reply_parameters:
+                this.telegramTopicId !== undefined
+                  ? {
+                      message_id: this.telegramTopicId
+                    }
+                  : undefined
             });
           }
           break;
