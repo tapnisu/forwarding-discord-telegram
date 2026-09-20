@@ -21,7 +21,7 @@ jobs:
       - name: Sync node version and setup cache
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: "pnpm"
 
       - name: Install dependencies
@@ -32,8 +32,7 @@ jobs:
 
       - name: Install prod dependencies
         run: |
-          rm -rf node_modules
-          pnpm install --prod --frozen-lockfile
+          pnpm install --prod --frozen-lockfile --config.node-linker=isolated
 
       - name: Prepare portable directory
         run: |

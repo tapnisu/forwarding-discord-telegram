@@ -119,3 +119,6 @@ dist
 
 # Config file
 config.json
+
+# Release dir
+release/
