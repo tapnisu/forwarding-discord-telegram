@@ -1,0 +1,64 @@
+name: Release Portable Zip
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build-portable:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Sync node version and setup cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Install prod dependencies
+        run: |
+          rm -rf node_modules
+          pnpm install --prod --frozen-lockfile
+
+      - name: Prepare portable directory
+        run: |
+          mkdir -p release/node
+
+          NODE_VERSION=$(node -v)
+          curl -sSL "https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-win-x64.zip" -o /tmp/node-win.zip
+          unzip -q /tmp/node-win.zip -d /tmp
+          cp "/tmp/node-${NODE_VERSION}-win-x64/node.exe" release/node/
+
+          cp -r .env.sample config.sample.json dist node_modules LICENSE scripts/* release/
+
+      - name: Create ZIP archive
+        run: |
+          cd release
+          zip -r ../forwarding-discord-telegram-portable-win-x64 .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: forwarding-discord-telegram-portable-win-x64
+          path: forwarding-discord-telegram-portable-win-x64.zip
+
+      - name: Create GitHub Release Asset
+        uses: softprops/action-gh-release@v3
+        if: github.ref_type == 'tag'
+        with:
+          files: forwarding-discord-telegram-portable-win-x64.zip
