@@ -1,4 +1,4 @@
 @echo off
 cd /d "%~dp0"
-.\node\node.exe src/index.js
+.\node\node.exe dist/index.js
 pause
