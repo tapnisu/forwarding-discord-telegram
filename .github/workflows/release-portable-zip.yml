@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: forwarding-discord-telegram-x64-pc-windows
-          path: forwarding-discord-telegram-x64-pc-windows.zip
+          path: release/*
 
       - name: Create GitHub Release Asset
         uses: softprops/action-gh-release@v3
