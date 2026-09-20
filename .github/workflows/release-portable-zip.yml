@@ -47,16 +47,16 @@ jobs:
       - name: Create ZIP archive
         run: |
           cd release
-          zip -r ../forwarding-discord-telegram-portable-win-x64 .
+          zip -r ../forwarding-discord-telegram-x64-pc-windows.zip .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v5
         with:
-          name: forwarding-discord-telegram-portable-win-x64
-          path: forwarding-discord-telegram-portable-win-x64.zip
+          name: forwarding-discord-telegram-x64-pc-windows
+          path: forwarding-discord-telegram-x64-pc-windows.zip
 
       - name: Create GitHub Release Asset
         uses: softprops/action-gh-release@v3
         if: github.ref_type == 'tag'
         with:
-          files: forwarding-discord-telegram-portable-win-x64.zip
+          files: forwarding-discord-telegram-x64-pc-windows.zip
