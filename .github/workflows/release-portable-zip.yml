@@ -35,12 +35,12 @@ jobs:
 
       - name: Prepare portable directory
         run: |
-          mkdir -p release/node
+          mkdir -p release/bin
 
           NODE_VERSION=$(node -v)
           curl -sSL "https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-win-x64.zip" -o /tmp/node-win.zip
           unzip -q /tmp/node-win.zip -d /tmp
-          cp "/tmp/node-${NODE_VERSION}-win-x64/node.exe" release/node/
+          cp "/tmp/node-${NODE_VERSION}-win-x64/node.exe" release/bin/
 
           cp -r .env.sample config.sample.json dist node_modules LICENSE scripts/* release/
           cp .env.sample release/.env
