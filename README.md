@@ -7,7 +7,27 @@ Selfbot that forwards your Discord messages to Telegram
 
 ## Setup
 
-## Natively
+### Easy Windows Guide
+
+1. Get your Discord Token (<https://www.youtube.com/watch?v=LnBnm_tZlyU>)
+
+2. Get your Telegram Token (<https://www.youtube.com/watch?v=B9VsT7vV6jI>)
+
+3. Get your Telegram Chat Id (<https://t.me/SimpleID_Bot>)
+
+4. Download this [Zip](https://github.com/tapnisu/forwarding-discord-telegram/actions/runs/35577872234/artifacts/10628871283) and unarchive it
+
+5. Configure .env
+
+   ```env
+   DISCORD_TOKEN=<YOUR_DISCORD_TOKEN>
+   TELEGRAM_TOKEN=<YOUR_TELEGAM_TOKEN>
+   TELEGRAM_CHAT_ID=<YOUR_TELEGRAM_CHAT_ID>
+   ```
+
+6. Run start.bat!
+
+### Natively
 
 1. Install node.js from <https://nodejs.org/en/>
 
@@ -62,7 +82,7 @@ Selfbot that forwards your Discord messages to Telegram
      "showMessageUpdates": false,
      "showMessageDeletions": false,
      "messageUpdateMaxAgeDays": 1,
-     "messageDeleteMaxAgeDays": 1,
+     "messageDeleteMaxAgeDays": 1
    }
    ```
 
@@ -84,7 +104,7 @@ Selfbot that forwards your Discord messages to Telegram
    pnpm start
    ```
 
-### Docker
+#### Docker
 
 1. [Install Docker Engine](https://docs.docker.com/engine/install/)
 
@@ -123,7 +143,7 @@ Selfbot that forwards your Discord messages to Telegram
      tapnisu/forwarding-discord-telegram
    ```
 
-### Docker Compose
+#### Docker Compose
 
 1. [Install Docker Engine](https://docs.docker.com/engine/install/)
 
