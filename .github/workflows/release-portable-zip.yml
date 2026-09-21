@@ -43,6 +43,7 @@ jobs:
           cp "/tmp/node-${NODE_VERSION}-win-x64/node.exe" release/node/
 
           cp -r .env.sample config.sample.json dist node_modules LICENSE scripts/* release/
+          cp .env.sample release/.env
 
       - name: Create ZIP archive
         run: |
@@ -54,6 +55,7 @@ jobs:
         with:
           name: forwarding-discord-telegram-x64-pc-windows
           path: release/*
+          include-hidden-files: true
 
       - name: Create GitHub Release Asset
         uses: softprops/action-gh-release@v3
