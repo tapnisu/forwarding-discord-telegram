@@ -21,7 +21,7 @@ jobs:
       - name: Sync node version and setup cache
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -51,7 +51,7 @@ jobs:
           zip -r ../forwarding-discord-telegram-x64-pc-windows.zip .
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: forwarding-discord-telegram-x64-pc-windows
           path: release/*
