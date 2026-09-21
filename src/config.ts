@@ -73,7 +73,9 @@ export async function getConfig(): Promise<Config> {
     config.allowedUsersIds,
     config.mutedUsersIds,
     ...Object.keys(config.channelConfigs ?? {}).flatMap((key) => [
+      // @ts-expect-error 'config.channelConfigs' is possibly 'undefined'.
       config.channelConfigs[key].allowed,
+      // @ts-expect-error 'config.channelConfigs' is possibly 'undefined'.
       config.channelConfigs[key].muted
     ])
   ];

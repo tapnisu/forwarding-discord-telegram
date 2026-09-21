@@ -128,7 +128,7 @@ export class SenderBot {
         }
 
         case BotType.DiscordWebhook: {
-          this.webhookClient.send(text);
+          this.webhookClient?.send(text);
           break;
         }
       }

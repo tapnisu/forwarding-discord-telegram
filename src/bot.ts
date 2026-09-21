@@ -22,8 +22,7 @@ interface RenderOutput {
 }
 
 export type Client<Ready extends boolean = boolean> =
-  | SelfBotClient<Ready>
-  | BotClient<Ready>;
+  SelfBotClient<Ready> | BotClient<Ready>;
 
 export class Bot {
   messagesToSend: string[] = [];
@@ -150,12 +149,13 @@ export class Bot {
       images.push(...renderOutput.images);
     }
 
-    render += await this.renderMentions(
-      message.content,
-      message.mentions.users.values(),
-      message.mentions.channels.values(),
-      message.mentions.roles.values()
-    );
+    if (message.content !== null)
+      render += await this.renderMentions(
+        message.content,
+        message.mentions.users.values(),
+        message.mentions.channels.values(),
+        message.mentions.roles.values()
+      );
 
     const embeds = message.embeds.map((embed) => {
       let stringEmbed = "Embed:\n";

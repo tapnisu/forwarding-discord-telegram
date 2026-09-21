@@ -18,7 +18,7 @@ if (env.TELEGRAM_CHAT_ID) chatsToSend.unshift(env.TELEGRAM_CHAT_ID);
 
 const agent = (() => {
   const proxy_url = env.PROXY_URL;
-  if (proxy_url === undefined) return undefined;
+  if (proxy_url === undefined) return;
 
   return new ProxyAgent({
     getProxyForUrl: () => proxy_url
@@ -32,10 +32,13 @@ const grammyClient =
       })
     : undefined;
 
-const webhookClient =
-  env.OUTPUT_BACKEND == BotType.DiscordWebhook
-    ? new Webhook(env.DISCORD_WEBHOOK_URL)
-    : null;
+const webhookClient = (() => {
+  if (env.OUTPUT_BACKEND == BotType.DiscordWebhook) {
+    if (env.DISCORD_WEBHOOK_URL == undefined)
+      throw "Backend type is discord_webhook, but DISCORD_WEBHOOK_URL is missing";
+    return new Webhook(env.DISCORD_WEBHOOK_URL);
+  }
+})();
 
 if (env.DISCORD_WEBHOOK_URL) {
   const match = env.DISCORD_WEBHOOK_URL.match(/webhooks\/(\d+)\//);
