@@ -3,18 +3,6 @@ import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import typescript from "@rollup/plugin-typescript";
 
-const ignoreFfmpegStatic = () => ({
-  name: "ignore-ffmpeg-static",
-  resolveId(id: string) {
-    if (id === "ffmpeg-static") return id;
-    return null;
-  },
-  load(id: string) {
-    if (id === "ffmpeg-static") return "export default null;";
-    return null;
-  }
-});
-
 export default {
   input: "src/index.ts",
   output: {
@@ -25,10 +13,10 @@ export default {
   plugins: [
     resolveNode({ preferBuiltins: true }),
     commonjs({
+      ignore: ["ffmpeg-static"],
       ignoreDynamicRequires: true
     }),
     json(),
-    typescript(),
-    ignoreFfmpegStatic()
+    typescript()
   ]
 };
